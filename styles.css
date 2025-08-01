@@ -530,17 +530,25 @@ section {
 
 /* Blog page grid */
 .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
     margin-bottom: 4rem;
+    max-width: 100%;
+    width: 100%;
+    overflow: visible !important;
 }
 
 .blog-card {
-    background: white;
-    border: 1px solid #e2e8f0;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: white !important;
+    border: 1px solid #e2e8f0 !important;
+    overflow: hidden !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .blog-card:hover {
@@ -715,6 +723,14 @@ footer {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1rem;
+    color: white;
+}
+
+.footer-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: white;
 }
 
 .footer-section p, .footer-section a {
@@ -722,10 +738,46 @@ footer {
     text-decoration: none;
     margin-bottom: 0.5rem;
     display: block;
+    transition: color 0.2s ease;
 }
 
 .footer-section a:hover {
     color: white;
+    text-decoration: underline;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid #718096;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #a0aec0;
+    margin: 0;
+    font-size: 0.9rem;
 }
 
 /* Page headers */
@@ -1185,6 +1237,16 @@ footer {
         flex-direction: column;
         gap: 0.5rem;
     }
+    
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1199,4 +1261,35 @@ footer {
     .article-hero-content {
         padding: 0 1rem;
     }
+    
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-section {
+        margin-bottom: 1.5rem;
+    }
 } 
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Blog section */
+.blog {
+    padding: 2rem 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Blog page grid */ 

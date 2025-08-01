@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajanvaraus - Liisa Kinnunen</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ajanvaraus-styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="supabase-client.js"></script>
@@ -43,25 +44,23 @@
 
         <!-- Booking Section -->
         <section class="booking-section">
-            <div class="container">
+            <div class="appointment-container">
                 <!-- Week Navigator -->
-                <div class="week-navigator">
-                    <button class="nav-btn" id="prev-week">
-                        <span>&larr;</span> Edellinen viikko
+                <div class="week-navigation">
+                    <button class="nav-button" id="prev-week">
+                        ← Edellinen viikko
                     </button>
-                    <div class="current-week" id="current-week">
+                    <div id="current-week">
                         <h2>15. - 21. tammikuuta 2024</h2>
                     </div>
-                    <button class="nav-btn" id="next-week">
-                        Seuraava viikko <span>&rarr;</span>
+                    <button class="nav-button" id="next-week">
+                        Seuraava viikko →
                     </button>
                 </div>
 
                 <!-- Schedule Grid -->
-                <div class="schedule-container">
-                    <div class="schedule-grid" id="aikataulu-grid">
-                        <!-- Schedule content will be loaded dynamically -->
-                    </div>
+                <div class="schedule-grid" id="aikataulu-grid">
+                    <!-- Schedule content will be loaded dynamically -->
                 </div>
 
                 <!-- Booking Form -->
@@ -97,7 +96,7 @@
                                     <!-- Selected time will be displayed here -->
                                 </div>
                             </div>
-                            <div class="form-actions">
+                            <div class="form-buttons">
                                 <button type="button" class="btn btn-secondary" id="cancel-booking">Peruuta</button>
                                 <button type="submit" class="btn btn-primary">Varaa aika</button>
                             </div>

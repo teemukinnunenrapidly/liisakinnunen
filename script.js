@@ -489,3 +489,14 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
     });
 }); 
+
+    // Initialize products loader when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        window.productsLoader = new ProductsLoader();
+        
+        // Handle placeholder images for static article pages
+        const articleHeroImage = document.querySelector('.article-hero-image');
+        if (articleHeroImage && !articleHeroImage.style.getPropertyValue('--article-image')) {
+            articleHeroImage.style.setProperty('--article-image', 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5Q0EzQUYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5LdXZhIGVpIG9sZSBhdmFpbGxhYmxlPC90ZXh0Pgo8L3N2Zz4K")');
+        }
+    });

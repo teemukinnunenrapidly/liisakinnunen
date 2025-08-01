@@ -71,6 +71,10 @@ class ArticleViewer {
         const imageUrl = this.article.kuvan_url || this.article.featured_image || '';
         const publishedDate = this.article.created_at ? new Date(this.article.created_at).toLocaleDateString('fi-FI') : 'Ei päivämäärää';
 
+        // Create placeholder image if no image is provided
+        const placeholderImage = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5Q0EzQUYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5LdXZhIGVpIG9sZSBhdmFpbGxhYmxlPC90ZXh0Pgo8L3N2Zz4K';
+        const finalImageUrl = imageUrl || placeholderImage;
+
         // Update page title and meta description
         document.title = `${title} - Liisa Kinnunen`;
         const metaDescription = document.querySelector('meta[name="description"]');
@@ -91,9 +95,9 @@ class ArticleViewer {
                     ${this.article.excerpt ? `<p class="article-excerpt">${this.article.excerpt}</p>` : ''}
                 </div>
 
-                ${imageUrl ? `
+                ${finalImageUrl ? `
                     <div class="article-image">
-                        <img src="${imageUrl}" alt="${title}" class="article-hero-img">
+                        <img src="${finalImageUrl}" alt="${title}" class="article-hero-img">
                     </div>
                 ` : ''}
 

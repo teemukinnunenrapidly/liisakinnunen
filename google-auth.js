@@ -99,10 +99,11 @@ class GoogleAuthHandler {
             this.updateStatus('loading', 'Yhdistetään kalenteria...')
 
             // Exchange code for tokens
-            const tokenResponse = await fetch('/functions/v1/exchange-google-code', {
+            const tokenResponse = await fetch('https://qqbqywurjlnrlsvyuvxf.supabase.co/functions/v1/exchange-google-code', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxYnF5d3Vyamxucmxzdnl1dnhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMzkzOTgsImV4cCI6MjA2OTYxNTM5OH0.9nlkXt3Sn9ET8SsZImmQeekYKxFRGxCo3ofUPmWuwew'
                 },
                 body: JSON.stringify({
                     code: code,

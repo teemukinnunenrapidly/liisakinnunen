@@ -75,10 +75,11 @@ class AppointmentLoader {
             const endDate = endOfWeek.toISOString()
             
             // Fetch booked times from Supabase Edge Function
-            const response = await fetch('/functions/v1/get-google-calendar-events', {
+            const response = await fetch('https://qqbqywurjlnrlsvyuvxf.supabase.co/functions/v1/get-google-calendar-events', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxYnF5d3Vyamxucmxzdnl1dnhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMzkzOTgsImV4cCI6MjA2OTYxNTM5OH0.9nlkXt3Sn9ET8SsZImmQeekYKxFRGxCo3ofUPmWuwew'
                 },
                 body: JSON.stringify({
                     startDate: startDate,
@@ -270,10 +271,11 @@ class AppointmentLoader {
 
         try {
             // Create calendar event
-            const response = await fetch('/functions/v1/create-google-calendar-event', {
+            const response = await fetch('https://qqbqywurjlnrlsvyuvxf.supabase.co/functions/v1/create-google-calendar-event', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxYnF5d3Vyamxucmxzdnl1dnhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMzkzOTgsImV4cCI6MjA2OTYxNTM5OH0.9nlkXt3Sn9ET8SsZImmQeekYKxFRGxCo3ofUPmWuwew'
                 },
                 body: JSON.stringify(bookingData)
             })

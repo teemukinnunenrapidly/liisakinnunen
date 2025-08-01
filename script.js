@@ -198,28 +198,38 @@ document.addEventListener('DOMContentLoaded', function() {
     // Checkout button functionality
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', function() {
+            console.log('Checkout button clicked');
             if (cart.length === 0) {
                 showNotification('Ostoskorisi on tyhjä!');
                 return;
             }
             
+            console.log('Cart has items, showing Stripe button');
             // Show Stripe checkout button
             const stripeCheckoutBtn = document.getElementById('stripe-checkout-btn');
             if (stripeCheckoutBtn) {
                 stripeCheckoutBtn.style.display = 'inline-block';
+                console.log('Stripe checkout button shown');
+            } else {
+                console.error('Stripe checkout button not found');
             }
         });
+    } else {
+        console.error('Checkout button not found');
     }
 
     // Stripe checkout functionality
     const stripeCheckoutBtn = document.getElementById('stripe-checkout-btn');
     if (stripeCheckoutBtn && window.stripeConfig) {
+        console.log('Stripe checkout button found and stripeConfig available');
         stripeCheckoutBtn.addEventListener('click', async function() {
+            console.log('Stripe checkout button clicked');
             if (cart.length === 0) {
                 showNotification('Ostoskorisi on tyhjä!');
                 return;
             }
 
+            console.log('Cart items:', cart);
             try {
                 // Create line items for Stripe
                 const lineItems = cart.map(item => ({
@@ -232,6 +242,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     quantity: item.quantity,
                 }));
+
+                console.log('Line items created:', lineItems);
 
                 // Create checkout session
                 const response = await fetch('https://qqbqywurjlnrlsvyuvxf.supabase.co/functions/v1/create-checkout-session', {
@@ -248,11 +260,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     }),
                 });
 
+                console.log('Response status:', response.status);
+
                 if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Response error:', errorText);
                     throw new Error('Network response was not ok');
                 }
 
                 const session = await response.json();
+                console.log('Session created:', session);
 
                 // Redirect to Stripe Checkout
                 const result = await window.stripeConfig.stripe.redirectToCheckout({
@@ -260,6 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 if (result.error) {
+                    console.error('Stripe redirect error:', result.error);
                     showNotification('Virhe maksun aloittamisessa: ' + result.error.message);
                 }
             } catch (error) {
@@ -267,6 +285,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 showNotification('Virhe maksun aloittamisessa. Yritä uudelleen.');
             }
         });
+    } else {
+        console.error('Stripe checkout button or stripeConfig not available');
+        console.log('stripeCheckoutBtn:', stripeCheckoutBtn);
+        console.log('window.stripeConfig:', window.stripeConfig);
     }
 
     // Load cart on page load

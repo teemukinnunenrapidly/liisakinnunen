@@ -1,8 +1,12 @@
 // Stripe configuration
 const STRIPE_PUBLISHABLE_KEY = 'pk_test_51RrKi2BpSsJAelSjusF2naQOpdkb1Ci20a0KBB247oyrBxpyOnLKUwFPFJz5HwyTu4669yjQT1p0jpWn1zRphvx200NlDHF6Zb';
 
+console.log('Stripe config loading...');
+
 // Initialize Stripe
 const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+
+console.log('Stripe initialized:', stripe);
 
 // Product configurations
 const PRODUCTS = {
@@ -23,8 +27,12 @@ const PRODUCTS = {
     }
 };
 
+console.log('Products configured:', PRODUCTS);
+
 // Export for use in other files
 window.stripeConfig = {
     stripe,
     PRODUCTS
-}; 
+};
+
+console.log('Stripe config exported to window.stripeConfig'); 

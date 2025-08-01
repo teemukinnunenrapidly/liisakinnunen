@@ -247,6 +247,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const session = await response.json();
                 console.log('Session created:', session);
 
+                // Check if stripeConfig is available
+                if (!window.stripeConfig || !window.stripeConfig.stripe) {
+                    console.error('Stripe configuration not available');
+                    showNotification('Maksupalvelu ei ole saatavilla. Yritä uudelleen.');
+                    return;
+                }
+
                 // Redirect to Stripe Checkout
                 const result = await window.stripeConfig.stripe.redirectToCheckout({
                     sessionId: session.id,
@@ -466,7 +473,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize products loader when DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
-        window.productsLoader = new ProductsLoader();
+        // Only initialize ProductsLoader if it's available (on shop page)
+        if (typeof ProductsLoader !== 'undefined') {
+            window.productsLoader = new ProductsLoader();
+        }
         
         // Handle placeholder images for static article pages
         const articleHeroImage = document.querySelector('.article-hero-image');

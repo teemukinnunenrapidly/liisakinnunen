@@ -470,18 +470,50 @@ class AppointmentLoader {
 
     selectTimeSlot(slotDateTime, timeSlot, dayDate) {
         this.selectedTimeSlot = {
-            startTime: slotDateTime.toISOString(),
-            endTime: new Date(slotDateTime.getTime() + 60 * 60 * 1000).toISOString(), // +1 hour
-            displayTime: timeSlot,
-            displayDate: dayDate.toLocaleDateString('fi-FI', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            })
+            dateTime: slotDateTime,
+            timeSlot: timeSlot,
+            dayDate: dayDate
         }
         
+        // Update selected time summary
+        this.updateSelectedTimeSummary()
+        
         this.showBookingForm()
+    }
+
+    updateSelectedTimeSummary() {
+        const summaryElement = document.getElementById('selected-time-summary')
+        if (!summaryElement || !this.selectedTimeSlot) return
+        
+        const { dateTime, timeSlot, dayDate } = this.selectedTimeSlot
+        
+        // Format date
+        const dateStr = dayDate.toLocaleDateString('fi-FI', { 
+            weekday: 'long', 
+            day: 'numeric', 
+            month: 'long',
+            year: 'numeric'
+        })
+        
+        // Calculate end time
+        const startTime = new Date(dateTime)
+        const endTime = new Date(startTime)
+        endTime.setHours(endTime.getHours() + 1)
+        
+        const startTimeStr = startTime.toLocaleTimeString('fi-FI', { 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        })
+        const endTimeStr = endTime.toLocaleTimeString('fi-FI', { 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        })
+        
+        summaryElement.innerHTML = `
+            <div class="date-time">${dateStr}</div>
+            <div class="duration">${startTimeStr} - ${endTimeStr}</div>
+            <div class="price">Hinta: 70€</div>
+        `
     }
 
     showBookingForm() {
@@ -516,10 +548,11 @@ class AppointmentLoader {
         const bookingData = {
             clientName: formData.get('clientName'),
             clientEmail: formData.get('clientEmail'),
+            clientPhone: formData.get('clientPhone'),
             serviceType: formData.get('serviceType'),
             notes: formData.get('notes'),
-            startTime: this.selectedTimeSlot.startTime,
-            endTime: this.selectedTimeSlot.endTime
+            startTime: this.selectedTimeSlot.dateTime.toISOString(),
+            endTime: new Date(this.selectedTimeSlot.dateTime.getTime() + 60 * 60 * 1000).toISOString() // +1 hour
         }
 
         try {

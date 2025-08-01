@@ -139,9 +139,14 @@
                 </div>
 
                 <!-- Booking Form -->
-                <div class="booking-form-container" id="booking-form-container" style="display: none;">
+                <div class="booking-form-container" id="booking-form-container">
                     <div class="booking-form">
-                        <h3>Varaa aika</h3>
+                        <div class="booking-summary">
+                            <h3>Varaa aika</h3>
+                            <div class="selected-time-summary" id="selected-time-summary">
+                                <!-- Selected time summary will be displayed here -->
+                            </div>
+                        </div>
                         <form id="booking-form">
                             <div class="form-group">
                                 <label for="client-name">Nimi *</label>
@@ -150,6 +155,10 @@
                             <div class="form-group">
                                 <label for="client-email">Sähköposti *</label>
                                 <input type="email" id="client-email" name="clientEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="client-phone">Puhelinnumero *</label>
+                                <input type="tel" id="client-phone" name="clientPhone" required>
                             </div>
                             <div class="form-group">
                                 <label for="service-type">Palvelu *</label>
@@ -162,14 +171,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="booking-notes">Lisätiedot</label>
-                                <textarea id="booking-notes" name="notes" rows="3" placeholder="Kerro tarkemmin mitä haluat..."></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Valittu aika:</label>
-                                <div class="selected-time" id="selected-time">
-                                    <!-- Selected time will be displayed here -->
-                                </div>
+                                <label for="booking-notes">Viesti</label>
+                                <textarea id="booking-notes" name="notes" rows="3" placeholder="Kerro tarkemmin mitä haluat tai onko erityisiä toiveita..."></textarea>
                             </div>
                             <div class="form-buttons">
                                 <button type="button" class="btn btn-secondary" id="cancel-booking">Peruuta</button>

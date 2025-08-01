@@ -10,26 +10,23 @@
     <script src="supabase-client.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html">Liisa Kinnunen</a>
-            </div>
-            <ul class="nav-menu">
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Liisa Kinnunen</a>
+            <ul class="nav-links">
                 <li><a href="index.html">Etusivu</a></li>
                 <li><a href="palvelut.html">Palvelut</a></li>
-                <li><a href="blogi.html">Blogi</a></li>
-                <li><a href="ajanvaraus.html">Ajanvaraus</a></li>
                 <li><a href="kauppa.html">Kauppa</a></li>
+                <li><a href="blogi.html">Blogi</a></li>
+                <li><a href="ajanvaraus.html">Varaa aika</a></li>
             </ul>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-cart">
+                <button class="cart-icon" id="cart-icon">
+                    🛒 <span class="cart-count" id="cart-count">0</span>
+                </button>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <main>
@@ -106,20 +103,19 @@
 
     <!-- Cart Popup -->
     <div class="cart-popup" id="cart-popup">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3>Ostoskori</h3>
-                <button class="close-btn" id="close-cart">&times;</button>
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
             </div>
             <div class="cart-items" id="cart-items">
-                <!-- Cart items will be loaded here -->
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
             </div>
-            <div class="cart-footer">
+            <div class="cart-popup-footer">
                 <div class="cart-total">
-                    <span>Yhteensä:</span>
-                    <span id="cart-total">0,00 €</span>
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
                 </div>
-                <button class="btn btn-primary" id="checkout-btn">Kassalle</button>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ class AppointmentLoader {
         this.scheduleGrid = document.getElementById('aikataulu-grid')
         this.bookingForm = document.getElementById('booking-form-container')
         this.selectedTimeSlot = null
+        this.suggestedTimes = document.getElementById('suggested-times')
         
         // Check if we should show next week automatically
         this.checkAutoNextWeek()
@@ -67,6 +68,19 @@ class AppointmentLoader {
 
         document.getElementById('cancel-booking').addEventListener('click', () => {
             this.hideBookingForm()
+        })
+
+        // Suggested times buttons
+        document.querySelectorAll('.select-time-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const day = e.target.dataset.day
+                this.selectSuggestedTime(day)
+            })
+        })
+
+        // View toggle
+        document.getElementById('show-full-calendar').addEventListener('click', () => {
+            this.toggleView()
         })
     }
 
@@ -222,6 +236,81 @@ class AppointmentLoader {
 
         // Render mobile calendar
         this.renderMobileCalendar(startOfWeek, bookedSlots)
+        
+        // Find and display suggested times
+        this.findSuggestedTimes(startOfWeek, bookedSlots)
+    }
+
+    findSuggestedTimes(startOfWeek, bookedSlots) {
+        const weekDays = ['Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai', 'Sunnuntai']
+        const timeSlots = this.generateTimeSlots()
+        
+        // Find next available slots for Monday (1), Tuesday (2), Wednesday (3)
+        const targetDays = [1, 2, 3] // Monday, Tuesday, Wednesday
+        const suggestedSlots = {}
+        
+        targetDays.forEach(dayIndex => {
+            const dayDate = new Date(startOfWeek)
+            dayDate.setDate(dayDate.getDate() + dayIndex)
+            
+            // Find first available slot for this day
+            for (let timeSlot of timeSlots) {
+                const slotDateTime = this.createSlotDateTime(dayDate, timeSlot)
+                const isBooked = this.isSlotBooked(slotDateTime, bookedSlots)
+                const isPast = this.isSlotInPast(slotDateTime)
+                const isWeekend = dayDate.getDay() === 0 || dayDate.getDay() === 6
+                
+                if (!isPast && !isWeekend && !isBooked) {
+                    suggestedSlots[dayIndex] = {
+                        date: dayDate,
+                        time: timeSlot,
+                        dayName: weekDays[dayIndex]
+                    }
+                    break
+                }
+            }
+        })
+        
+        // Update the suggested times display
+        this.updateSuggestedTimesDisplay(suggestedSlots)
+    }
+
+    updateSuggestedTimesDisplay(suggestedSlots) {
+        const dayNames = ['monday', 'tuesday', 'wednesday']
+        const dayIndices = [1, 2, 3]
+        
+        dayIndices.forEach((dayIndex, i) => {
+            const dayName = dayNames[i]
+            const slot = suggestedSlots[dayIndex]
+            
+            const timeElement = document.getElementById(`${dayName}-time`)
+            const dateElement = document.getElementById(`${dayName}-date`)
+            
+            if (slot && timeElement && dateElement) {
+                const dayNumber = slot.date.getDate()
+                const monthName = slot.date.toLocaleDateString('fi-FI', { month: 'short' })
+                
+                timeElement.textContent = slot.time
+                dateElement.textContent = `${slot.dayName} ${dayNumber}. ${monthName}`
+                
+                // Enable the button
+                const button = document.querySelector(`[data-day="${dayName}"]`)
+                if (button) {
+                    button.disabled = false
+                    button.style.opacity = '1'
+                }
+            } else if (timeElement && dateElement) {
+                timeElement.textContent = 'Ei vapaita aikoja'
+                dateElement.textContent = 'Ei saatavilla'
+                
+                // Disable the button
+                const button = document.querySelector(`[data-day="${dayName}"]`)
+                if (button) {
+                    button.disabled = true
+                    button.style.opacity = '0.5'
+                }
+            }
+        })
     }
 
     renderMobileCalendar(startOfWeek, bookedSlots) {
@@ -441,6 +530,49 @@ class AppointmentLoader {
                 <button onclick="location.reload()">Yritä uudelleen</button>
             </div>
         `
+    }
+
+    toggleView() {
+        const suggestedTimes = document.getElementById('suggested-times')
+        const scheduleGrid = document.getElementById('schedule-grid')
+        const mobileCalendar = document.querySelector('.mobile-calendar')
+        const toggleBtn = document.getElementById('show-full-calendar')
+        
+        if (suggestedTimes.style.display === 'none') {
+            // Show suggested times
+            suggestedTimes.style.display = 'block'
+            scheduleGrid.style.display = 'none'
+            mobileCalendar.style.display = 'none'
+            toggleBtn.textContent = 'Näytä koko kalenteri'
+        } else {
+            // Show full calendar
+            suggestedTimes.style.display = 'none'
+            scheduleGrid.style.display = 'block'
+            mobileCalendar.style.display = 'block'
+            toggleBtn.textContent = 'Näytä ehdotetut ajat'
+        }
+    }
+
+    selectSuggestedTime(day) {
+        const timeElement = document.getElementById(`${day}-time`)
+        const dateElement = document.getElementById(`${day}-date`)
+        
+        if (timeElement && dateElement && timeElement.textContent !== '-') {
+            const time = timeElement.textContent
+            const date = dateElement.textContent
+            
+            // Parse the date and time
+            const [dayName, dayNumber, month] = date.split(' ')
+            const currentYear = new Date().getFullYear()
+            const dateString = `${dayNumber}.${month}.${currentYear}`
+            
+            // Create a proper date object
+            const selectedDate = new Date(dateString)
+            const [hours, minutes] = time.split(':').map(Number)
+            selectedDate.setHours(hours, minutes, 0, 0)
+            
+            this.selectTimeSlot(selectedDate, time, selectedDate)
+        }
     }
 }
 

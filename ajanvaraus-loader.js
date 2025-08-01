@@ -242,22 +242,28 @@ class AppointmentLoader {
         const days = ['monday', 'tuesday', 'wednesday']
         
         days.forEach(day => {
-            const timeElement = document.getElementById(`${day}-time`)
             const dateElement = document.getElementById(`${day}-date`)
             const card = document.getElementById(`${day}-card`)
-            const button = card.querySelector('.select-time-btn')
             
             if (suggestedSlots[day]) {
                 const slot = suggestedSlots[day]
-                timeElement.textContent = slot.time
                 dateElement.textContent = slot.date
-                button.disabled = false
                 card.style.opacity = '1'
+                
+                // Enable all buttons for this day
+                const buttons = card.querySelectorAll('.select-time-btn')
+                buttons.forEach(button => {
+                    button.disabled = false
+                })
             } else {
-                timeElement.textContent = '-'
                 dateElement.textContent = '-'
-                button.disabled = true
                 card.style.opacity = '0.5'
+                
+                // Disable all buttons for this day
+                const buttons = card.querySelectorAll('.select-time-btn')
+                buttons.forEach(button => {
+                    button.disabled = true
+                })
             }
         })
     }
@@ -537,12 +543,10 @@ class AppointmentLoader {
         }
     }
 
-    selectSuggestedTime(day) {
-        const timeElement = document.getElementById(`${day}-time`)
-        const dateElement = document.getElementById(`${day}-date`)
-        const serviceDropdown = document.getElementById(`${day}-service`)
+    selectSuggestedTime(day, time) {
+        const serviceDropdown = document.getElementById(`${day}-service-${this.getTimeSlotIndex(time)}`)
         
-        if (timeElement && dateElement && timeElement.textContent !== '-') {
+        if (serviceDropdown) {
             // Check if service is selected
             const selectedService = serviceDropdown.value
             if (!selectedService) {
@@ -550,24 +554,36 @@ class AppointmentLoader {
                 return
             }
             
-            const time = timeElement.textContent
+            // Get the date for this day
+            const dateElement = document.getElementById(`${day}-date`)
             const date = dateElement.textContent
             
-            // Parse the date and time
-            const [dayName, dayNumber, month] = date.split(' ')
-            const currentYear = new Date().getFullYear()
-            const dateString = `${dayNumber}.${month}.${currentYear}`
-            
-            // Create a proper date object
-            const selectedDate = new Date(dateString)
-            const [hours, minutes] = time.split(':').map(Number)
-            selectedDate.setHours(hours, minutes, 0, 0)
-            
-            // Store selected service
-            this.selectedService = selectedService
-            
-            this.selectTimeSlot(selectedDate, time, selectedDate)
+            if (date && date !== '-') {
+                // Parse the date and time
+                const [dayName, dayNumber, month] = date.split(' ')
+                const currentYear = new Date().getFullYear()
+                const dateString = `${dayNumber}.${month}.${currentYear}`
+                
+                // Create a proper date object
+                const selectedDate = new Date(dateString)
+                const [hours, minutes] = time.split(':').map(Number)
+                selectedDate.setHours(hours, minutes, 0, 0)
+                
+                // Store selected service
+                this.selectedService = selectedService
+                
+                this.selectTimeSlot(selectedDate, time, selectedDate)
+            }
         }
+    }
+
+    getTimeSlotIndex(time) {
+        const timeMap = {
+            '09:00': '1',
+            '12:00': '2', 
+            '14:00': '3'
+        }
+        return timeMap[time] || '1'
     }
 }
 

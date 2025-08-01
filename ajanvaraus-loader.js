@@ -2,7 +2,7 @@
 class AppointmentLoader {
     constructor() {
         this.currentWeek = new Date()
-        this.scheduleGrid = document.getElementById('schedule-grid')
+        this.scheduleGrid = document.getElementById('aikataulu-grid')
         this.suggestedTimes = document.getElementById('suggested-times')
         
         this.initializeEventListeners()
@@ -595,7 +595,7 @@ class AppointmentLoader {
 
     toggleView() {
         const suggestedTimes = document.getElementById('suggested-times')
-        const scheduleGrid = document.getElementById('schedule-grid')
+        const scheduleGrid = document.getElementById('aikataulu-grid')
         const mobileCalendar = document.querySelector('.mobile-calendar')
         const toggleBtn = document.getElementById('show-full-calendar')
         
@@ -625,18 +625,16 @@ class AppointmentLoader {
                 return
             }
             
-            // Get the date for this day
-            const dateElement = document.getElementById(`${day}-date`)
-            const date = dateElement.textContent
+            // Get the current week's start date and calculate the day date
+            const startOfWeek = this.getStartOfWeek(this.currentWeek)
+            const dayIndices = { 'monday': 1, 'tuesday': 2, 'wednesday': 3 }
+            const dayIndex = dayIndices[day]
             
-            if (date && date !== '-') {
-                // Parse the date and time
-                const [dayName, dayNumber, month] = date.split(' ')
-                const currentYear = new Date().getFullYear()
-                const dateString = `${dayNumber}.${month}.${currentYear}`
+            if (dayIndex) {
+                const selectedDate = new Date(startOfWeek)
+                selectedDate.setDate(selectedDate.getDate() + dayIndex)
                 
-                // Create a proper date object
-                const selectedDate = new Date(dateString)
+                // Create a proper date object with the selected time
                 const [hours, minutes] = time.split(':').map(Number)
                 selectedDate.setHours(hours, minutes, 0, 0)
                 

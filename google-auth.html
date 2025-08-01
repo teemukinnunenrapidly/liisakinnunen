@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Kalenteri Yhdistäminen - Liisa Kinnunen</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="supabase-client.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">Liisa Kinnunen</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Etusivu</a></li>
+                <li><a href="palvelut.html">Palvelut</a></li>
+                <li><a href="blogi.html">Blogi</a></li>
+                <li><a href="ajanvaraus.html">Ajanvaraus</a></li>
+                <li><a href="kauppa.html">Kauppa</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <header class="page-header">
+            <div class="container">
+                <h1>Google Kalenteri Yhdistäminen</h1>
+                <p>Yhdistä Google Kalenteri ajanvarausjärjestelmään</p>
+            </div>
+        </header>
+
+        <!-- Google Auth Section -->
+        <section class="google-auth-section">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-info">
+                        <h2>Miksi yhdistää Google Kalenteri?</h2>
+                        <p>Tämä sivu mahdollistaa Google Kalenterin yhdistämisen ajanvarausjärjestelmään. Kun yhdistät kalenterin:</p>
+                        <ul>
+                            <li>✅ Asiakkaat voivat nähdä vapaat ajat reaaliajassa</li>
+                            <li>✅ Ajanvaraukset lisätään automaattisesti kalenteriin</li>
+                            <li>✅ Saat sähköposti-ilmoitukset uusista varauksista</li>
+                            <li>✅ Kalenteri pysyy synkronoituna kaikissa laitteissa</li>
+                        </ul>
+                    </div>
+
+                    <div class="auth-status" id="auth-status">
+                        <div class="status-card">
+                            <h3>Yhdistämisen tila</h3>
+                            <div class="status-indicator" id="status-indicator">
+                                <span class="status-dot disconnected"></span>
+                                <span class="status-text">Ei yhdistetty</span>
+                            </div>
+                            <p class="status-description" id="status-description">
+                                Kalenteri ei ole vielä yhdistetty. Klikkaa "Yhdistä Google Kalenteri" -nappia aloittaaksesi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="auth-actions">
+                        <button class="btn btn-primary" id="connect-calendar-btn">
+                            <span class="btn-icon">📅</span>
+                            Yhdistä Google Kalenteri
+                        </button>
+                        <button class="btn btn-secondary" id="disconnect-calendar-btn" style="display: none;">
+                            <span class="btn-icon">❌</span>
+                            Poista yhteys
+                        </button>
+                    </div>
+
+                    <div class="auth-instructions">
+                        <h3>Yhdistämisohjeet</h3>
+                        <ol>
+                            <li>Klikkaa "Yhdistä Google Kalenteri" -nappia</li>
+                            <li>Sinut ohjataan Google:n valtuutussivulle</li>
+                            <li>Kirjaudu Google-tiliisi (jos et ole jo kirjautunut)</li>
+                            <li>Hyväksy kalenterin käyttöoikeudet</li>
+                            <li>Sinut ohjataan takaisin tälle sivulle</li>
+                            <li>Yhdistäminen on valmis!</li>
+                        </ol>
+                        <div class="permissions-info">
+                            <h4>Pyydetyt oikeudet:</h4>
+                            <ul>
+                                <li>📖 <strong>Kalenterin lukeminen</strong> - Näyttää vapaat ajat</li>
+                                <li>✏️ <strong>Kalenterin muokkaaminen</strong> - Lisää uusia varauksia</li>
+                                <li>👤 <strong>Profiilitietojen lukeminen</strong> - Näyttää kalenterin omistajan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Ostoskori</h3>
+                <button class="close-btn" id="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Yhteensä:</span>
+                    <span id="cart-total">0,00 €</span>
+                </div>
+                <button class="btn btn-primary" id="checkout-btn">Kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                    <p>Email: liisa@liisakinnunen.fi</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Palvelut</h3>
+                    <ul>
+                        <li><a href="palvelut.html#äitiysfysioterapia">Äitiysfysioterapia</a></li>
+                        <li><a href="palvelut.html#personal-trainer">Personal Trainer</a></li>
+                        <li><a href="palvelut.html#fysioterapia">Fysioterapia</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Blogi</h3>
+                    <ul>
+                        <li><a href="blogi.html">Kaikki artikkelit</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="google-auth.js"></script>
+</body>
+</html> 

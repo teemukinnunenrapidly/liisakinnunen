@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajanvaraus - Liisa Kinnunen</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="supabase-client.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">Liisa Kinnunen</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Etusivu</a></li>
+                <li><a href="palvelut.html">Palvelut</a></li>
+                <li><a href="blogi.html">Blogi</a></li>
+                <li><a href="ajanvaraus.html" class="active">Ajanvaraus</a></li>
+                <li><a href="kauppa.html">Kauppa</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <header class="page-header">
+            <div class="container">
+                <h1>Ajanvaraus</h1>
+                <p>Varaa aika Liisan palveluihin</p>
+            </div>
+        </header>
+
+        <!-- Booking Section -->
+        <section class="booking-section">
+            <div class="container">
+                <!-- Week Navigator -->
+                <div class="week-navigator">
+                    <button class="nav-btn" id="prev-week">
+                        <span>&larr;</span> Edellinen viikko
+                    </button>
+                    <div class="current-week" id="current-week">
+                        <h2>15. - 21. tammikuuta 2024</h2>
+                    </div>
+                    <button class="nav-btn" id="next-week">
+                        Seuraava viikko <span>&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Schedule Grid -->
+                <div class="schedule-container">
+                    <div class="schedule-grid" id="aikataulu-grid">
+                        <!-- Schedule content will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="booking-form-container" id="booking-form-container" style="display: none;">
+                    <div class="booking-form">
+                        <h3>Varaa aika</h3>
+                        <form id="booking-form">
+                            <div class="form-group">
+                                <label for="client-name">Nimi *</label>
+                                <input type="text" id="client-name" name="clientName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="client-email">Sähköposti *</label>
+                                <input type="email" id="client-email" name="clientEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service-type">Palvelu *</label>
+                                <select id="service-type" name="serviceType" required>
+                                    <option value="">Valitse palvelu</option>
+                                    <option value="Äitiysfysioterapia">Äitiysfysioterapia</option>
+                                    <option value="Personal Trainer">Personal Trainer</option>
+                                    <option value="Fysioterapia">Fysioterapia</option>
+                                    <option value="Konsultointi">Konsultointi</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking-notes">Lisätiedot</label>
+                                <textarea id="booking-notes" name="notes" rows="3" placeholder="Kerro tarkemmin mitä haluat..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Valittu aika:</label>
+                                <div class="selected-time" id="selected-time">
+                                    <!-- Selected time will be displayed here -->
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" id="cancel-booking">Peruuta</button>
+                                <button type="submit" class="btn btn-primary">Varaa aika</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Ostoskori</h3>
+                <button class="close-btn" id="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Yhteensä:</span>
+                    <span id="cart-total">0,00 €</span>
+                </div>
+                <button class="btn btn-primary" id="checkout-btn">Kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                    <p>Email: liisa@liisakinnunen.fi</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Palvelut</h3>
+                    <ul>
+                        <li><a href="palvelut.html#äitiysfysioterapia">Äitiysfysioterapia</a></li>
+                        <li><a href="palvelut.html#personal-trainer">Personal Trainer</a></li>
+                        <li><a href="palvelut.html#fysioterapia">Fysioterapia</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Blogi</h3>
+                    <ul>
+                        <li><a href="blogi.html">Kaikki artikkelit</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="ajanvaraus-loader.js"></script>
+</body>
+</html> 

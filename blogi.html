@@ -7,6 +7,8 @@
     <meta name="description" content="Liisa Kinnusen blogi - artikkeleita fysioterapiasta, äitiysfysioterapiasta ja hyvinvoinnista">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="supabase-client.js"></script>
 </head>
 <body>
     <header class="header">
@@ -80,96 +82,9 @@
                     <button class="filter-btn" data-category="hyvinvointi">Hyvinvointi</button>
                 </div>
 
-                <div class="blog-grid">
-                    <article class="blog-card" data-category="aitiysfysioterapia">
-                        <div class="blog-image">
-                            <img src="images/blog-1.jpg" alt="Blogi: Äitiysfysioterapia" class="blog-img">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="blog-date">15.12.2024</span>
-                                <span class="blog-category">Äitiysfysioterapia</span>
-                            </div>
-                            <h3><a href="raskausajan-hyvinvointi.html">Raskausajan hyvinvointi ja liikunta</a></h3>
-                            <p>Miten liikunta tukee raskausajan hyvinvointia ja mitä harjoituksia voi turvallisesti tehdä.</p>
-                            <a href="raskausajan-hyvinvointi.html" class="read-more">Lue lisää →</a>
-                        </div>
-                    </article>
-
-                    <article class="blog-card" data-category="lantionpohja">
-                        <div class="blog-image">
-                            <img src="images/blog-2.jpg" alt="Blogi: Lantionpohjalihasten harjoittelu" class="blog-img">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="blog-date">10.12.2024</span>
-                                <span class="blog-category">Lantionpohja</span>
-                            </div>
-                            <h3><a href="lantionpohjalihasten-harjoittelu.html">Lantionpohjalihasten harjoittelu 5 vaiheessa</a></h3>
-                            <p>Praktinen opas lantionpohjalihasten harjoitteluun ja kuntoutukseen.</p>
-                            <a href="lantionpohjalihasten-harjoittelu.html" class="read-more">Lue lisää →</a>
-                        </div>
-                    </article>
-
-                    <article class="blog-card" data-category="hyvinvointi">
-                        <div class="blog-image">
-                            <img src="images/blog-3.jpg" alt="Blogi: Psykofyysinen fysioterapia" class="blog-img">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="blog-date">05.12.2024</span>
-                                <span class="blog-category">Hyvinvointi</span>
-                            </div>
-                            <h3><a href="psykofyysinen-fysioterapia.html">Psykofyysinen fysioterapia - kokonaisvaltainen lähestymistapa</a></h3>
-                            <p>Miten kehon ja mielen hyvinvointi liittyvät toisiinsa ja miten psykofyysinen fysioterapia auttaa.</p>
-                            <a href="psykofyysinen-fysioterapia.html" class="read-more">Lue lisää →</a>
-                        </div>
-                    </article>
-
-                    <article class="blog-card" data-category="aitiysfysioterapia">
-                        <div class="blog-image">
-                            <img src="images/blog-4.jpg" alt="Blogi: Synnytyksestä palautuminen" class="blog-img">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="blog-date">01.12.2024</span>
-                                <span class="blog-category">Äitiysfysioterapia</span>
-                            </div>
-                            <h3><a href="synnytyksesta-palautuminen.html">Synnytyksestä palautuminen - ensimmäiset kuukaudet</a></h3>
-                            <p>Praktisia ohjeita synnytyksestä palautumiseen ja vatsalihasten erkauman kuntoutukseen.</p>
-                            <a href="synnytyksesta-palautuminen.html" class="read-more">Lue lisää →</a>
-                        </div>
-                    </article>
-
-                    <article class="blog-card" data-category="lantionpohja">
-                        <div class="blog-image">
-                            <img src="images/blog-5.jpg" alt="Blogi: Lantionpohjan mittaus" class="blog-img">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="blog-date">25.11.2024</span>
-                                <span class="blog-category">Lantionpohja</span>
-                            </div>
-                            <h3><a href="lantionpohjan-mittaus.html">Lantionpohjan mittaus ja tutkiminen</a></h3>
-                            <p>Miten lantionpohjan toimintaa mitataan ja mitä mittaukset kertovat.</p>
-                            <a href="lantionpohjan-mittaus.html" class="read-more">Lue lisää →</a>
-                        </div>
-                    </article>
-
-                    <article class="blog-card" data-category="hyvinvointi">
-                        <div class="blog-image">
-                            <img src="images/blog-6.jpg" alt="Blogi: Työhyvinvointi" class="blog-img">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="blog-date">20.11.2024</span>
-                                <span class="blog-category">Hyvinvointi</span>
-                            </div>
-                            <h3><a href="tyohyvinvointi.html">Työhyvinvointi ja virkistysillat - miten huolehtia itsestäsi</a></h3>
-                            <p>Praktisia ohjeita työhyvinvoinnin edistämiseen ja stressinhallintaan arjessa.</p>
-                            <a href="tyohyvinvointi.html" class="read-more">Lue lisää →</a>
-                        </div>
-                    </article>
+                <!-- Dynamic article list container -->
+                <div id="artikkelilista" class="blog-grid">
+                    <!-- Articles will be loaded dynamically here -->
                 </div>
 
                 <div class="blog-pagination">
@@ -222,5 +137,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="artikkeli-loader.js"></script>
 </body>
 </html> 

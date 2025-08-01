@@ -477,14 +477,17 @@
 }
 
 .card-header {
+    text-align: center;
     margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.card-header h4 {
-    color: #111827;
+.day-name {
     font-size: 18px;
     font-weight: 600;
-    margin: 0 0 8px 0;
+    color: #111827;
+    line-height: 1.4;
 }
 
 .card-header .date {

@@ -290,9 +290,22 @@ class AppointmentLoader {
         // Update day header with date if we have slots
         if (availableSlots.length > 0) {
             const date = availableSlots[0].date
-            dayDateElement.textContent = date
+            // Update the day name to include the date
+            const dayNames = {
+                'monday': 'Maanantai',
+                'tuesday': 'Tiistai', 
+                'wednesday': 'Keskiviikko'
+            }
+            dayNameElement.textContent = `${dayNames[day]} ${date}`
+            dayDateElement.textContent = '' // Clear the separate date element
         } else {
-            dayDateElement.textContent = '-'
+            const dayNames = {
+                'monday': 'Maanantai',
+                'tuesday': 'Tiistai',
+                'wednesday': 'Keskiviikko'
+            }
+            dayNameElement.textContent = `${dayNames[day]} -`
+            dayDateElement.textContent = ''
         }
         
         timeSlotItems.forEach((item, index) => {

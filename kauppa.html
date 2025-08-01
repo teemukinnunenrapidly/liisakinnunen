@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kauppa - Liisa Kinnunen</title>
+    <meta name="description" content="Liisa Kinnusen digitaalinen kauppa - luennoita, koulutuksia ja hyvinvointipalveluita">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link active">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Kauppa</h1>
+                <p>Luennot, koulutukset ja hyvinvointipalvelut</p>
+            </div>
+        </section>
+
+        <section class="shop">
+            <div class="container">
+                <div class="shop-filters">
+                    <button class="filter-btn active" data-category="all">Kaikki</button>
+                    <button class="filter-btn" data-category="luennot">Luennot</button>
+                    <button class="filter-btn" data-category="koulutukset">Koulutukset</button>
+                    <button class="filter-btn" data-category="hyvinvointi">Hyvinvointi</button>
+                </div>
+
+                <div class="products-grid">
+                    <div class="product-card" data-category="luennot">
+                        <div class="product-image">
+                            <img src="images/luento-1.jpg" alt="Luento: Äitiysfysioterapia" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h3>Äitiysfysioterapia - perusteet</h3>
+                            <p>Luento äitiysfysioterapian perusteista ja raskausajan hyvinvoinnista.</p>
+                            <div class="product-price">50€</div>
+                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="koulutukset">
+                        <div class="product-image">
+                            <img src="images/koulutus-1.jpg" alt="Koulutus: Lantionpohjalihasten harjoittelu" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h3>Lantionpohjalihasten harjoittelu</h3>
+                            <p>Ammattillinen koulutus lantionpohjalihasten toimintaan ja kuntoutukseen.</p>
+                            <div class="product-price">150€</div>
+                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="hyvinvointi">
+                        <div class="product-image">
+                            <img src="images/hyvinvointi-1.jpg" alt="Hyvinvointi: Psykofyysinen fysioterapia" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h3>Psykofyysinen fysioterapia</h3>
+                            <p>Kokonaisvaltainen lähestymistapa kehon ja mielen hyvinvointiin.</p>
+                            <div class="product-price">80€</div>
+                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="luennot">
+                        <div class="product-image">
+                            <img src="images/luento-2.jpg" alt="Luento: Personal Trainer -ohjaus" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h3>Personal Trainer -ohjaus</h3>
+                            <p>Luento henkilökohtaisesta lihaskuntoharjoittelun ohjauksesta.</p>
+                            <div class="product-price">40€</div>
+                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="koulutukset">
+                        <div class="product-image">
+                            <img src="images/koulutus-2.jpg" alt="Koulutus: Vatsalihasten erkauman kuntoutus" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h3>Vatsalihasten erkauman kuntoutus</h3>
+                            <p>Kattava koulutus vatsalihasten erkauman tunnistamiseen ja kuntoutukseen.</p>
+                            <div class="product-price">120€</div>
+                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="hyvinvointi">
+                        <div class="product-image">
+                            <img src="images/hyvinvointi-2.jpg" alt="Hyvinvointi: Työhyvinvointi ja virkistysillat" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h3>Työhyvinvointi ja virkistysillat</h3>
+                            <p>Praktisia ohjeita työhyvinvoinnin edistämiseen ja stressinhallintaan.</p>
+                            <div class="product-price">60€</div>
+                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

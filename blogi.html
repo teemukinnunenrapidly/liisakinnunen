@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogi - Liisa Kinnunen</title>
+    <meta name="description" content="Liisa Kinnusen blogi - artikkeleita fysioterapiasta, äitiysfysioterapiasta ja hyvinvoinnista">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link active">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Blogi</h1>
+                <p>Artikkeleita fysioterapiasta, äitiysfysioterapiasta ja hyvinvoinnista</p>
+            </div>
+        </section>
+
+        <section class="blog">
+            <div class="container">
+                <div class="blog-filters">
+                    <button class="filter-btn active" data-category="all">Kaikki</button>
+                    <button class="filter-btn" data-category="aitiysfysioterapia">Äitiysfysioterapia</button>
+                    <button class="filter-btn" data-category="lantionpohja">Lantionpohja</button>
+                    <button class="filter-btn" data-category="hyvinvointi">Hyvinvointi</button>
+                </div>
+
+                <div class="blog-grid">
+                    <article class="blog-card" data-category="aitiysfysioterapia">
+                        <div class="blog-image">
+                            <img src="images/blog-1.jpg" alt="Blogi: Äitiysfysioterapia" class="blog-img">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">15.12.2024</span>
+                                <span class="blog-category">Äitiysfysioterapia</span>
+                            </div>
+                            <h3><a href="raskausajan-hyvinvointi.html">Raskausajan hyvinvointi ja liikunta</a></h3>
+                            <p>Miten liikunta tukee raskausajan hyvinvointia ja mitä harjoituksia voi turvallisesti tehdä.</p>
+                            <a href="raskausajan-hyvinvointi.html" class="read-more">Lue lisää →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="lantionpohja">
+                        <div class="blog-image">
+                            <img src="images/blog-2.jpg" alt="Blogi: Lantionpohjalihasten harjoittelu" class="blog-img">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">10.12.2024</span>
+                                <span class="blog-category">Lantionpohja</span>
+                            </div>
+                            <h3><a href="lantionpohjalihasten-harjoittelu.html">Lantionpohjalihasten harjoittelu 5 vaiheessa</a></h3>
+                            <p>Praktinen opas lantionpohjalihasten harjoitteluun ja kuntoutukseen.</p>
+                            <a href="lantionpohjalihasten-harjoittelu.html" class="read-more">Lue lisää →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="hyvinvointi">
+                        <div class="blog-image">
+                            <img src="images/blog-3.jpg" alt="Blogi: Psykofyysinen fysioterapia" class="blog-img">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">05.12.2024</span>
+                                <span class="blog-category">Hyvinvointi</span>
+                            </div>
+                            <h3><a href="psykofyysinen-fysioterapia.html">Psykofyysinen fysioterapia - kokonaisvaltainen lähestymistapa</a></h3>
+                            <p>Miten kehon ja mielen hyvinvointi liittyvät toisiinsa ja miten psykofyysinen fysioterapia auttaa.</p>
+                            <a href="psykofyysinen-fysioterapia.html" class="read-more">Lue lisää →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="aitiysfysioterapia">
+                        <div class="blog-image">
+                            <img src="images/blog-4.jpg" alt="Blogi: Synnytyksestä palautuminen" class="blog-img">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">01.12.2024</span>
+                                <span class="blog-category">Äitiysfysioterapia</span>
+                            </div>
+                            <h3><a href="synnytyksesta-palautuminen.html">Synnytyksestä palautuminen - ensimmäiset kuukaudet</a></h3>
+                            <p>Praktisia ohjeita synnytyksestä palautumiseen ja vatsalihasten erkauman kuntoutukseen.</p>
+                            <a href="synnytyksesta-palautuminen.html" class="read-more">Lue lisää →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="lantionpohja">
+                        <div class="blog-image">
+                            <img src="images/blog-5.jpg" alt="Blogi: Lantionpohjan mittaus" class="blog-img">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">25.11.2024</span>
+                                <span class="blog-category">Lantionpohja</span>
+                            </div>
+                            <h3><a href="lantionpohjan-mittaus.html">Lantionpohjan mittaus ja tutkiminen</a></h3>
+                            <p>Miten lantionpohjan toimintaa mitataan ja mitä mittaukset kertovat.</p>
+                            <a href="lantionpohjan-mittaus.html" class="read-more">Lue lisää →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="hyvinvointi">
+                        <div class="blog-image">
+                            <img src="images/blog-6.jpg" alt="Blogi: Työhyvinvointi" class="blog-img">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">20.11.2024</span>
+                                <span class="blog-category">Hyvinvointi</span>
+                            </div>
+                            <h3><a href="tyohyvinvointi.html">Työhyvinvointi ja virkistysillat - miten huolehtia itsestäsi</a></h3>
+                            <p>Praktisia ohjeita työhyvinvoinnin edistämiseen ja stressinhallintaan arjessa.</p>
+                            <a href="tyohyvinvointi.html" class="read-more">Lue lisää →</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="blog-pagination">
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">Seuraava →</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h2>Tilaa uutiskirje</h2>
+                <p>Saatu uusimmat artikkelit ja ajankohtaiset tiedot suoraan sähköpostiisi</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Sähköpostiosoitteesi" required>
+                    <button type="submit" class="btn btn-primary">Tilaa</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

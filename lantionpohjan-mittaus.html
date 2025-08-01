@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lantionpohjan mittaus ja tutkiminen - Liisa Kinnunen</title>
+    <meta name="description" content="Miten lantionpohjan toimintaa mitataan ja mitä mittaukset kertovat. Liisa Kinnusen ammattilaisohjeet lantionpohjan tutkimiseen.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <article class="article">
+            <div class="container">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-date">25.11.2024</span>
+                        <span class="article-category">Lantionpohja</span>
+                        <span class="article-author">Liisa Kinnunen</span>
+                    </div>
+                    <h1 class="article-title">Lantionpohjan mittaus ja tutkiminen</h1>
+                    <p class="article-excerpt">Miten lantionpohjan toimintaa mitataan ja mitä mittaukset kertovat. Ammattilaisohjeet lantionpohjan tutkimiseen.</p>
+                </div>
+
+                <div class="article-image">
+                    <img src="images/blog-5.jpg" alt="Lantionpohjan mittaus" class="article-hero-img">
+                </div>
+
+                <div class="article-content">
+                    <div class="article-text">
+                        <h2>Miksi lantionpohjan mittaus on tärkeää?</h2>
+                        <p>Lantionpohjan mittaus on tärkeä osa lantionpohjan ongelmien diagnosointia ja kuntoutussuunnitelman laatimista. Mittaukset antavat tarkkaa tietoa lantionpohjan toiminnasta ja auttavat määrittämään sopivat kuntoutusmenetelmät.</p>
+
+                        <h3>Milloin lantionpohjan mittaus on tarpeen?</h3>
+                        <p>Lantionpohjan mittaus on tarpeen seuraavissa tilanteissa:</p>
+                        <ul>
+                            <li><strong>Virtsankarkailu:</strong> Jos kärsit virtsankarkailusta</li>
+                            <li><strong>Lantionpohjan laskeuma:</strong> Jos koet lantionpohjan laskeumaa</li>
+                            <li><strong>Kivut lantionpohjassa:</strong> Jos koet kipuja lantionpohjassa</li>
+                            <li><strong>Seksuaaliset ongelmat:</strong> Jos koet seksuaalisia ongelmia</li>
+                            <li><strong>Synnytyksen jälkeen:</strong> Rutiinimittaus synnytyksen jälkeen</li>
+                            <li><strong>Iän myötä:</strong> Iän myötä lantionpohjan toiminta voi heikentyä</li>
+                        </ul>
+
+                        <h3>Lantionpohjan mittausmenetelmät</h3>
+                        <p>Lantionpohjan toimintaa mitataan useilla eri menetelmillä:</p>
+
+                        <h4>1. Kliininen tutkimus</h4>
+                        <p>Kliininen tutkimus on lantionpohjan mittauksen perusta:</p>
+                        <ul>
+                            <li><strong>Anamneesi:</strong> Potilashistoria ja oireiden kuuleminen</li>
+                            <li><strong>Fyysinen tutkimus:</strong> Lantionpohjan palpitaatio</li>
+                            <li><strong>Lihaskunnon arviointi:</strong> Lantionpohjalihasten voiman mittaus</li>
+                            <li><strong>Koordinaation testaus:</strong> Lantionpohjalihasten koordinaation arviointi</li>
+                        </ul>
+
+                        <h4>2. Elektromyografia (EMG)</h4>
+                        <p>EMG-mittaus antaa tarkkaa tietoa lantionpohjalihasten toiminnasta:</p>
+                        <ul>
+                            <li><strong>Lihassähköjen mittaus:</strong> Mitataan lihasten sähköistä aktiivisuutta</li>
+                            <li><strong>Reaktioajan mittaus:</strong> Mitataan lihasten reaktioaikaa</li>
+                            <li><strong>Kestokurssin mittaus:</strong> Mitataan lihasten kestokurssia</li>
+                            <li><strong>Koordinaation mittaus:</strong> Mitataan lihasten koordinaatiota</li>
+                        </ul>
+
+                        <h4>3. Manometria</h4>
+                        <p>Manometria mittaa lantionpohjan painetta:</p>
+                        <ul>
+                            <li><strong>Levonnan paine:</strong> Lantionpohjan paine levossa</li>
+                            <li><strong>Supistuksen paine:</strong> Lantionpohjan paine supistuksessa</li>
+                            <li><strong>Kestokurssin paine:</strong> Lantionpohjan paine pitkässä supistuksessa</li>
+                            <li><strong>Koordinaation paine:</strong> Lantionpohjan paine koordinaatiossa</li>
+                        </ul>
+
+                        <h4>4. Ultrasonografia</h4>
+                        <p>Ultraäänitutkimus antaa visuaalista tietoa lantionpohjasta:</p>
+                        <ul>
+                            <li><strong>Lantionpohjan liike:</strong> Mitataan lantionpohjan liikettä</li>
+                            <li><strong>Lihasten paksuus:</strong> Mitataan lihasten paksuutta</li>
+                            <li><strong>Lantionpohjan asento:</strong> Arvioidaan lantionpohjan asentoa</li>
+                            <li><strong>Laskeuman tunnistaminen:</strong> Tunnistetaan mahdolliset laskeumat</li>
+                        </ul>
+
+                        <h3>Mittauksen kulku</h3>
+                        <p>Lantionpohjan mittaus tapahtuu yleensä seuraavassa järjestyksessä:</p>
+
+                        <h4>1. Alustava keskustelu</h4>
+                        <p>Mittauksen alussa keskustellaan:</p>
+                        <ul>
+                            <li>Oireista ja niiden vaikeustasosta</li>
+                            <li>Potilashistoriasta</li>
+                            <li>Lääkityksestä</li>
+                            <li>Elämäntavoista</li>
+                            <li>Odotuksista kuntoutukseen</li>
+                        </ul>
+
+                        <h4>2. Fyysinen tutkimus</h4>
+                        <p>Fyysinen tutkimus sisältää:</p>
+                        <ul>
+                            <li>Lantionpohjan palpitaation</li>
+                            <li>Lihaskunnon arvioinnin</li>
+                            <li>Koordinaation testauksen</li>
+                            <li>Mahdollisten laskeumien tunnistamisen</li>
+                        </ul>
+
+                        <h4>3. Mittauslaitteet</h4>
+                        <p>Mittauksessa käytetään:</p>
+                        <ul>
+                            <li><strong>EMG-laitteet:</strong> Lihassähköjen mittaukseen</li>
+                            <li><strong>Manometri:</strong> Paineen mittaukseen</li>
+                            <li><strong>Ultraäänilaitteet:</strong> Visuaaliseen tutkimukseen</li>
+                            <li><strong>Tietokone:</strong> Tulosten tallentamiseen ja analysointiin</li>
+                        </ul>
+
+                        <h4>4. Tulosten analysointi</h4>
+                        <p>Mittauksen jälkeen analysoidaan:</p>
+                        <ul>
+                            <li>Lantionpohjalihasten voima</li>
+                            <li>Koordinaatio ja reaktioaika</li>
+                            <li>Kestokurssi</li>
+                            <li>Mahdolliset poikkeavuudet</li>
+                        </ul>
+
+                        <h3>Mittauksen tulosten tulkinta</h3>
+                        <p>Mittauksen tulokset tulkitaan seuraavien kriteerien mukaan:</p>
+
+                        <h4>Normaali toiminta</h4>
+                        <ul>
+                            <li>Lantionpohjalihakset ovat riittävän vahvat</li>
+                            <li>Koordinaatio on hyvä</li>
+                            <li>Reaktioaika on normaali</li>
+                            <li>Kestokurssi on riittävä</li>
+                            <li>Ei virtsankarkailua tai muita oireita</li>
+                        </ul>
+
+                        <h4>Heikentynyt toiminta</h4>
+                        <ul>
+                            <li>Lantionpohjalihakset ovat heikot</li>
+                            <li>Koordinaatio on heikentynyt</li>
+                            <li>Reaktioaika on hidastunut</li>
+                            <li>Kestokurssi on lyhyt</li>
+                            <li>Mahdollisia oireita</li>
+                        </ul>
+
+                        <h4>Vakava toimintahäiriö</h4>
+                        <ul>
+                            <li>Lantionpohjalihakset ovat hyvin heikot</li>
+                            <li>Koordinaatio on huono</li>
+                            <li>Reaktioaika on hidastunut</li>
+                            <li>Kestokurssi on hyvin lyhyt</li>
+                            <li>Selkeitä oireita</li>
+                        </ul>
+
+                        <h3>Mittauksen jälkeen</h3>
+                        <p>Mittauksen jälkeen laaditaan kuntoutussuunnitelma:</p>
+
+                        <h4>Kuntoutussuunnitelma</h4>
+                        <ul>
+                            <li><strong>Harjoitusohjelma:</strong> Räätälöity harjoitusohjelma</li>
+                            <li><strong>Seuranta:</strong> Seuranta-ajat määritellään</li>
+                            <li><strong>Uudelleenmittaus:</strong> Uudelleenmittaus 3-6 kuukauden jälkeen</li>
+                            <li><strong>Lääkitys:</strong> Jos tarpeen, lääkitys määritellään</li>
+                            <li><strong>Kirurgia:</strong> Jos tarpeen, kirurginen hoito harkitaan</li>
+                        </ul>
+
+                        <h3>Kotimittaukset</h3>
+                        <p>Voit seurata lantionpohjan toimintaa myös kotona:</p>
+
+                        <h4>Yksinkertaiset kotimittaukset</h4>
+                        <ul>
+                            <li><strong>Virtsankarkailun seuranta:</strong> Kirjaa virtsankarkailun esiintyvyys</li>
+                            <li><strong>Lihaskunnon arviointi:</strong> Arvioi lantionpohjalihasten voimaa</li>
+                            <li><strong>Oireiden seuranta:</strong> Kirjaa oireiden muutokset</li>
+                            <li><strong>Harjoittelun seuranta:</strong> Kirjaa harjoittelun määrä ja laatu</li>
+                        </ul>
+
+                        <h3>Kun kannattaa hakea mittaus</h3>
+                        <p>Ota yhteyttä fysioterapeuttiin mittauksen tarpeesta, jos:</p>
+                        <ul>
+                            <li>Kärsit virtsankarkailusta</li>
+                            <li>Koen lantionpohjan laskeumaa</li>
+                            <li>Koen kipuja lantionpohjassa</li>
+                            <li>Koen seksuaalisia ongelmia</li>
+                            <li>Olet synnyttänyt ja haluat tarkistaa lantionpohjan toiminnan</li>
+                            <li>Olet yli 50-vuotias ja haluat tarkistaa lantionpohjan toiminnan</li>
+                        </ul>
+
+                        <h3>Yhteenveto</h3>
+                        <p>Lantionpohjan mittaus on tärkeä osa lantionpohjan ongelmien diagnosointia ja kuntoutusta. Mittaukset antavat tarkkaa tietoa lantionpohjan toiminnasta ja auttavat määrittämään sopivat kuntoutusmenetelmät.</p>
+
+                        <p>Jos harkitset lantionpohjan mittauksen tarpeellisuutta, ota yhteyttä. Autan sinua määrittämään sopivan mittausmenetelmän ja kuntoutussuunnitelman!</p>
+                    </div>
+
+                    <div class="article-footer">
+                        <div class="article-tags">
+                            <span class="tag">Lantionpohja</span>
+                            <span class="tag">Mittaus</span>
+                            <span class="tag">Tutkimus</span>
+                            <span class="tag">Diagnosointi</span>
+                        </div>
+                        <div class="article-share">
+                            <h4>Jaa artikkeli:</h4>
+                            <div class="share-buttons">
+                                <button class="share-btn" data-platform="facebook">Facebook</button>
+                                <button class="share-btn" data-platform="twitter">Twitter</button>
+                                <button class="share-btn" data-platform="linkedin">LinkedIn</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section class="related-articles">
+            <div class="container">
+                <h2>Aiheeseen liittyvät artikkelit</h2>
+                <div class="related-grid">
+                    <article class="related-card">
+                        <img src="images/blog-2.jpg" alt="Lantionpohjalihasten harjoittelu" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="lantionpohjalihasten-harjoittelu.html">Lantionpohjalihasten harjoittelu 5 vaiheessa</a></h3>
+                            <p>Praktinen opas lantionpohjalihasten harjoitteluun ja kuntoutukseen.</p>
+                        </div>
+                    </article>
+                    <article class="related-card">
+                        <img src="images/blog-4.jpg" alt="Synnytyksestä palautuminen" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="synnytyksesta-palautuminen.html">Synnytyksestä palautuminen - ensimmäiset kuukaudet</a></h3>
+                            <p>Praktisia ohjeita synnytyksestä palautumiseen ja vatsalihasten erkauman kuntoutukseen.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

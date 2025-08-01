@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raskausajan hyvinvointi ja liikunta - Liisa Kinnunen</title>
+    <meta name="description" content="Opas raskausajan hyvinvointiin ja turvalliseen liikuntaan. Liisa Kinnusen ammattilaisohjeet raskaana oleville naisille.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <article class="article">
+            <div class="container">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-date">15.12.2024</span>
+                        <span class="article-category">Äitiysfysioterapia</span>
+                        <span class="article-author">Liisa Kinnunen</span>
+                    </div>
+                    <h1 class="article-title">Raskausajan hyvinvointi ja liikunta</h1>
+                    <p class="article-excerpt">Miten liikunta tukee raskausajan hyvinvointia ja mitä harjoituksia voi turvallisesti tehdä raskausaikana.</p>
+                </div>
+
+                <div class="article-image">
+                    <img src="images/blog-1.jpg" alt="Raskausajan hyvinvointi ja liikunta" class="article-hero-img">
+                </div>
+
+                <div class="article-content">
+                    <div class="article-text">
+                        <h2>Miksi liikunta on tärkeää raskausaikana?</h2>
+                        <p>Raskausaikana liikunta on erityisen tärkeää sekä äidin että lapsen hyvinvoinnin kannalta. Säännöllinen liikunta auttaa ylläpitämään kunnon, vähentää raskausoireita ja valmistaa kehoa synnytykseen. Tässä artikkelissa käyn läpi turvallisia ja tehokkaita harjoituksia raskausaikana.</p>
+
+                        <h3>Raskausajan liikunnan hyödyt</h3>
+                        <ul>
+                            <li><strong>Kunnon ylläpito:</strong> Liikunta auttaa ylläpitämään lihaskuntoa ja joustavuutta</li>
+                            <li><strong>Energian lisäys:</strong> Säännöllinen liikunta lisää energiaa ja vähentää väsymystä</li>
+                            <li><strong>Unenlaadun parantaminen:</strong> Liikunta auttaa nukkumaan paremmin</li>
+                            <li><strong>Stressin vähentäminen:</strong> Liikunta vapauttaa endorfiinejä ja vähentää stressiä</li>
+                            <li><strong>Synnytyksen valmistautuminen:</strong> Liikunta vahvistaa lantionpohjalihaksia</li>
+                        </ul>
+
+                        <h3>Turvalliset harjoitukset raskausaikana</h3>
+                        <p>Raskausaikana on tärkeää valita turvallisia harjoituksia, jotka eivät aiheuta liiallista rasitusta. Suosittelen seuraavia harjoituksia:</p>
+
+                        <h4>1. Kävely</h4>
+                        <p>Kävely on erinomainen harjoitus raskausaikana. Se on matalaintensiteettinen, turvallinen ja voi tehdä sitä lähes missä tahansa. Suosittelen 30-60 minuutin kävelyä päivässä, jos mahdollista.</p>
+
+                        <h4>2. Raskausjooga</h4>
+                        <p>Raskausjooga keskittyy hengitykseen, venyttelyyn ja rentoutumiseen. Se auttaa ylläpitämään joustavuutta ja valmistaa kehoa synnytykseen. Jooga voi myös auttaa vähentämään raskausoireita kuten pahoinvointia ja selkäkipuja.</p>
+
+                        <h4>3. Uinti</h4>
+                        <p>Uinti on erinomainen harjoitus raskausaikana, koska vesi tukee kehoa ja vähentää painon aiheuttamaa rasitusta. Uinti on myös hyvä kardioharjoitus, joka ei aiheuta liiallista kuormitusta.</p>
+
+                        <h4>4. Lantionpohjalihasten harjoittelu</h4>
+                        <p>Lantionpohjalihasten harjoittelu on erityisen tärkeää raskausaikana. Se auttaa valmistamaan kehoa synnytykseen ja vähentää riskiä lantionpohjan ongelmille. Suosittelen harjoitella lantionpohjalihaksia päivittäin.</p>
+
+                        <h3>Harjoitukset, joita kannattaa välttää</h3>
+                        <p>Raskausaikana on tärkeää välttää harjoituksia, jotka voivat aiheuttaa vahinkoa äidille tai lapselle:</p>
+                        <ul>
+                            <li>Kontaktilajit (jalkapallo, koripallo)</li>
+                            <li>Korkealla intensiteetillä tehdyt harjoitukset</li>
+                            <li>Harjoitukset, jotka vaativat pitkän makaamisen selällään</li>
+                            <li>Uskomattoman kuumissa olosuhteissa tehdyt harjoitukset</li>
+                            <li>Uskomattoman korkealla intensiteetillä tehdyt harjoitukset</li>
+                        </ul>
+
+                        <h3>Kun kannattaa lopettaa harjoittelu</h3>
+                        <p>Jos koet seuraavia oireita harjoittelun aikana, lopeta heti ja ota yhteyttä lääkäriin:</p>
+                        <ul>
+                            <li>Vatsakivut</li>
+                            <li>Raskausvuoto</li>
+                            <li>Pyrstökipu</li>
+                            <li>Liiallinen väsymys</li>
+                            <li>Pahoinvointi</li>
+                        </ul>
+
+                        <h3>Yhteenveto</h3>
+                        <p>Liikunta on tärkeää raskausaikana, mutta on tärkeää valita turvallisia harjoituksia. Kuuntele kehoasi ja lopeta harjoittelu, jos koet epämiellyttäviä oireita. Jos olet epävarma harjoituksista, ota yhteyttä fysioterapeuttiin tai lääkäriin.</p>
+
+                        <p>Muista, että jokainen raskaus on erilainen, joten harjoitukset kannattaa räätälöidä omien tarpeidesi mukaan. Jos haluat henkilökohtaista ohjausta raskausajan liikuntaan, olen aina valmis auttamaan!</p>
+                    </div>
+
+                    <div class="article-footer">
+                        <div class="article-tags">
+                            <span class="tag">Raskaus</span>
+                            <span class="tag">Liikunta</span>
+                            <span class="tag">Hyvinvointi</span>
+                            <span class="tag">Äitiysfysioterapia</span>
+                        </div>
+                        <div class="article-share">
+                            <h4>Jaa artikkeli:</h4>
+                            <div class="share-buttons">
+                                <button class="share-btn" data-platform="facebook">Facebook</button>
+                                <button class="share-btn" data-platform="twitter">Twitter</button>
+                                <button class="share-btn" data-platform="linkedin">LinkedIn</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section class="related-articles">
+            <div class="container">
+                <h2>Aiheeseen liittyvät artikkelit</h2>
+                <div class="related-grid">
+                    <article class="related-card">
+                        <img src="images/blog-2.jpg" alt="Lantionpohjalihasten harjoittelu" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="lantionpohjalihasten-harjoittelu.html">Lantionpohjalihasten harjoittelu 5 vaiheessa</a></h3>
+                            <p>Praktinen opas lantionpohjalihasten harjoitteluun ja kuntoutukseen.</p>
+                        </div>
+                    </article>
+                    <article class="related-card">
+                        <img src="images/blog-3.jpg" alt="Psykofyysinen fysioterapia" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="psykofyysinen-fysioterapia.html">Psykofyysinen fysioterapia - kokonaisvaltainen lähestymistapa</a></h3>
+                            <p>Miten kehon ja mielen hyvinvointi liittyvät toisiinsa ja miten psykofyysinen fysioterapia auttaa.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

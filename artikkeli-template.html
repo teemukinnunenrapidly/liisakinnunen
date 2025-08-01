@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Äitiysfysioterapia ja hyvinvointi - Liisa Kinnunen</title>
+    <meta name="description" content="Artikkeli äitiysfysioterapiasta ja hyvinvoinnista - Liisa Kinnusen asiantuntemusta">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <article class="article">
+            <div class="container">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-date">15.12.2024</span>
+                        <span class="article-category">Äitiysfysioterapia</span>
+                        <span class="article-read-time">5 min lukuaika</span>
+                    </div>
+                    <h1 class="article-title">Raskausajan hyvinvointi ja liikunta</h1>
+                    <p class="article-excerpt">Miten liikunta tukee raskausajan hyvinvointia ja mitä harjoituksia voi turvallisesti tehdä raskausaikana. Praktisia ohjeita ja vinkkejä raskausajan liikuntaan.</p>
+                </div>
+
+                <div class="article-content">
+                    <div class="article-image">
+                        <img src="images/article-hero.jpg" alt="Artikkelin pääkuva" class="article-hero-img">
+                    </div>
+
+                    <div class="article-text">
+                        <h2>Miksi liikunta on tärkeää raskausaikana?</h2>
+                        <p>Raskausaikana liikunta tukee sekä kehon että mielen hyvinvointia. Säännöllinen liikunta parantaa verenkiertoa, vahvistaa lihaksia ja auttaa hallitsemaan painon nousua. Se myös vähentää raskausajan yleisiä oireita kuten selkäkipuja ja turvotuksia.</p>
+                        
+                        <p>Liikunta myös vapauttaa endorfiineja, jotka parantavat mielialaa ja auttavat hallitsemaan stressiä. Raskausaikana liikunta voi olla erityisen hyödyllistä myös synnytykseen valmistautumisessa.</p>
+
+                        <h2>Turvalliset harjoitukset raskausaikana</h2>
+                        <p>Raskausaikana on tärkeää valita turvallisia harjoituksia, jotka sopivat kehon muutoksiin. Suositeltuja harjoituksia ovat kävely, uinti, raskausjooga ja kevyt lihaskuntoharjoittelu.</p>
+
+                        <blockquote>
+                            <p>"Raskausaikana liikunnan tulee olla mukavaa ja turvallista. Kuuntele kehoasi ja älä tee mitään, mikä tuntuu epämiellyttävältä."</p>
+                            <cite>- Liisa Kinnunen, Fysioterapeutti</cite>
+                        </blockquote>
+
+                        <h3>Harjoitukset, joita kannattaa välttää</h3>
+                        <p>Raskausaikana kannattaa välttää kontaktilajeja, hyppimistä ja harjoituksia, jotka vaativat selän makaamista pitkiä aikoja. Myös kuumissa olosuhteissa harjoittelu ei ole suositeltavaa.</p>
+
+                        <ul>
+                            <li>Kävely 30-60 minuuttia päivässä</li>
+                            <li>Raskausjooga 2-3 kertaa viikossa</li>
+                            <li>Kevyt lihaskuntoharjoittelu</li>
+                            <li>Uinti tai vesiliikunta</li>
+                        </ul>
+
+                        <h2>Yhteenveto</h2>
+                        <p>Raskausaikana liikunta on tärkeää hyvinvoinnin kannalta, mutta se tulee tehdä turvallisesti ja kehon kuunnellen. Säännöllinen liikunta tukee sekä fyysistä että henkistä hyvinvointia ja auttaa valmistautumaan synnytykseen.</p>
+                    </div>
+                </div>
+
+                <div class="article-footer">
+                    <div class="article-tags">
+                        <span class="tag">Äitiysfysioterapia</span>
+                        <span class="tag">Raskausajan liikunta</span>
+                        <span class="tag">Hyvinvointi</span>
+                    </div>
+                    
+                    <div class="article-share">
+                        <h4>Jaa artikkeli:</h4>
+                        <div class="share-buttons">
+                            <button class="share-btn" data-platform="facebook">Facebook</button>
+                            <button class="share-btn" data-platform="twitter">Twitter</button>
+                            <button class="share-btn" data-platform="linkedin">LinkedIn</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section class="related-articles">
+            <div class="container">
+                <h2>Aiheeseen liittyvät artikkelit</h2>
+                <div class="related-grid">
+                    <article class="related-card">
+                        <img src="images/related-1.jpg" alt="Aiheeseen liittyvä artikkeli" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="artikkeli-template.html">Aiheeseen liittyvän artikkelin otsikko</a></h3>
+                            <p>Lyhyt kuvaus aiheeseen liittyvästä artikkelista.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="related-card">
+                        <img src="images/related-2.jpg" alt="Aiheeseen liittyvä artikkeli" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="artikkeli-template.html">Toisen artikkelin otsikko</a></h3>
+                            <p>Lyhyt kuvaus toisesta aiheeseen liittyvästä artikkelista.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h2>Tilaa uutiskirje</h2>
+                <p>Saatu uusimmat artikkelit ja ajankohtaiset tiedot suoraan sähköpostiisi</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Sähköpostiosoitteesi" required>
+                    <button type="submit" class="btn btn-primary">Tilaa</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

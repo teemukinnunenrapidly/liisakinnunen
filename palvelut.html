@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palvelut - Liisa Kinnunen</title>
+    <meta name="description" content="Liisa Kinnusen fysioterapia- ja Personal Trainer -palvelut - äitiysfysioterapia, lantionpohjalihasten kuntoutus ja lihaskuntoharjoittelu">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link active">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Palvelut</h1>
+                <p>Fysioterapia ja liikunnanohjaus - autan kohti parempaa kehon hallintaa ja kivuttomampaa arkea</p>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🤰</div>
+                        <h3>Äitiysfysioterapia</h3>
+                        <p>Erikoistunut äitiysfysioterapiaan ja synnytyksestä palautumiseen. Autan raskausajan hyvinvoinnissa ja synnytykseen valmistautumisessa.</p>
+                        <ul class="service-features">
+                            <li>Raskausajan hyvinvointi</li>
+                            <li>Synnytykseen valmistautuminen</li>
+                            <li>Synnytyksestä palautuminen</li>
+                            <li>Vatsalihasten erkauman kuntoutus</li>
+                        </ul>
+                        <a href="#yhteystiedot" class="btn btn-primary">Varaa aika</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">💪</div>
+                        <h3>Personal Trainer -palvelut</h3>
+                        <p>Henkilökohtaista lihaskuntoharjoittelun ohjausta ja kuntouttavaa harjoittelua. Sopii sekä aloittelijoille että kokeneemmille treenaajille.</p>
+                        <ul class="service-features">
+                            <li>Lihaskuntoharjoittelu</li>
+                            <li>Kuntosaliohjaukset</li>
+                            <li>Toiminnallinen treeni</li>
+                            <li>Henkilökohtaiset ohjelmat</li>
+                        </ul>
+                        <a href="#yhteystiedot" class="btn btn-primary">Varaa aika</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🩺</div>
+                        <h3>Lantionpohjalihasten kuntoutus</h3>
+                        <p>Erikoistunut lantionpohjalihasten toimintaan ja kuntoutukseen. Autan eri kiputilojen ja toimintahäiriöiden hoitamisessa.</p>
+                        <ul class="service-features">
+                            <li>Lantionpohjan mittaus</li>
+                            <li>Lantionpohjalihasten harjoittelu</li>
+                            <li>Kivut ja jännitystilat</li>
+                            <li>Manuaalinen hoito</li>
+                        </ul>
+                        <a href="#yhteystiedot" class="btn btn-primary">Varaa aika</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🧠</div>
+                        <h3>Psykofyysinen fysioterapia</h3>
+                        <p>Kokonaisvaltainen lähestymistapa, joka huomioi sekä kehon että mielen hyvinvoinnin. Autan löytämään tasapainon elämään.</p>
+                        <ul class="service-features">
+                            <li>Psykofyysinen tutkiminen</li>
+                            <li>Työhyvinvointi ja virkistysillat</li>
+                            <li>Kivunhoito</li>
+                            <li>Stressinhallinta</li>
+                        </ul>
+                        <a href="#yhteystiedot" class="btn btn-primary">Varaa aika</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing">
+            <div class="container">
+                <h2 class="section-title">Hinnoittelu</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Äitiysfysioterapia</h3>
+                        <div class="price">70-100€</div>
+                        <ul>
+                            <li>Äitiysfysioterapia 60 min: 70€</li>
+                            <li>Äitiysfysioterapia 90 min: 100€</li>
+                            <li>Lantionpohjan mittaus: 100€</li>
+                        </ul>
+                        <a href="#yhteystiedot" class="btn btn-secondary">Varaa aika</a>
+                    </div>
+                    <div class="pricing-card featured">
+                        <h3>Personal Trainer</h3>
+                        <div class="price">70-99€</div>
+                        <ul>
+                            <li>Pt-aloitus 90 min: 99€</li>
+                            <li>Ohjelman päivitys 60 min: 70€</li>
+                            <li>8x 45 min paketti: 490€</li>
+                            <li>10x 45 min paketti: 550€</li>
+                        </ul>
+                        <a href="#yhteystiedot" class="btn btn-primary">Varaa aika</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Intensiivinen ohjaus</h3>
+                        <div class="price">490€</div>
+                        <ul>
+                            <li>8x 60 min kuukausi: 490€</li>
+                            <li>Säännöllinen ohjaus</li>
+                            <li>Kaksi kertaa viikossa</li>
+                            <li>Henkilökohtainen treeni</li>
+                        </ul>
+                        <a href="#yhteystiedot" class="btn btn-secondary">Varaa aika</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

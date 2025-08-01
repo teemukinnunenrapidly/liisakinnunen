@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psykofyysinen fysioterapia - kokonaisvaltainen lähestymistapa - Liisa Kinnunen</title>
+    <meta name="description" content="Miten kehon ja mielen hyvinvointi liittyvät toisiinsa ja miten psykofyysinen fysioterapia auttaa. Liisa Kinnusen ammattilaisohjeet.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <article class="article">
+            <div class="container">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-date">05.12.2024</span>
+                        <span class="article-category">Hyvinvointi</span>
+                        <span class="article-author">Liisa Kinnunen</span>
+                    </div>
+                    <h1 class="article-title">Psykofyysinen fysioterapia - kokonaisvaltainen lähestymistapa</h1>
+                    <p class="article-excerpt">Miten kehon ja mielen hyvinvointi liittyvät toisiinsa ja miten psykofyysinen fysioterapia auttaa. Kokonaisvaltainen näkökulma hyvinvointiin.</p>
+                </div>
+
+                <div class="article-image">
+                    <img src="images/blog-3.jpg" alt="Psykofyysinen fysioterapia" class="article-hero-img">
+                </div>
+
+                <div class="article-content">
+                    <div class="article-text">
+                        <h2>Mikä on psykofyysinen fysioterapia?</h2>
+                        <p>Psykofyysinen fysioterapia on kokonaisvaltainen lähestymistapa, joka huomioi sekä kehon että mielen hyvinvoinnin. Perinteinen fysioterapia keskittyy lähinnä fyysisiin ongelmiin, mutta psykofyysinen fysioterapia ymmärtää, että keho ja mieli ovat erottamattomasti yhteydessä toisiinsa.</p>
+
+                        <h3>Kehon ja mielen yhteys</h3>
+                        <p>Psykofyysinen fysioterapia perustuu siihen ymmärrykseen, että:</p>
+                        <ul>
+                            <li><strong>Stressi vaikuttaa kehoon:</strong> Pitkittynyt stressi voi aiheuttaa lihaskireyksiä, päänsärkyä ja muita fyysisiä oireita</li>
+                            <li><strong>Fyysiset ongelmat vaikuttavat mieleen:</strong> Krooninen kipu voi aiheuttaa masennusta ja ahdistusta</li>
+                            <li><strong>Hengitys yhdistää kehon ja mielen:</strong> Hengityksen säätely on avain psykofyysiseen hyvinvointiin</li>
+                            <li><strong>Liikunta parantaa mielenterveyttä:</strong> Fyysinen aktiivisuus vapauttaa endorfiinejä ja parantaa mielialaa</li>
+                            <li><strong>Rentoutuminen on tärkeää:</strong> Mielen rentoutuminen auttaa kehon palautumisessa</li>
+                        </ul>
+
+                        <h3>Psykofyysisen fysioterapian menetelmät</h3>
+                        <p>Psykofyysisen fysioterapian menetelmät yhdistävät perinteisiä fysioterapian menetelmiä mielenterveyden huomioon:</p>
+
+                        <h4>1. Hengitysterapia</h4>
+                        <p>Hengitysterapia on psykofyysisen fysioterapian perusta. Oikea hengitys auttaa:</p>
+                        <ul>
+                            <li>Vähentämään stressiä ja ahdistusta</li>
+                            <li>Parantamaan happisaturaatiota</li>
+                            <li>Rentouttamaan lihaksia</li>
+                            <li>Parantamaan keskittymiskykyä</li>
+                            <li>Reguloimaan autonomista hermostoa</li>
+                        </ul>
+
+                        <h4>2. Progressiivinen lihasrentoutus</h4>
+                        <p>Progressiivinen lihasrentoutus on menetelmä, jossa rentoutetaan lihaksia järjestelmällisesti:</p>
+                        <ol>
+                            <li>Keskity johonkin lihasryhmään</li>
+                            <li>Kiristä lihakset 5-10 sekuntia</li>
+                            <li>Rentouta lihakset ja tarkkaile eroa</li>
+                            <li>Toista kaikille lihasryhmille</li>
+                        </ol>
+
+                        <h4>3. Mindfulness ja meditaatio</h4>
+                        <p>Mindfulness-harjoitukset auttavat:</p>
+                        <ul>
+                            <li>Keskittämään huomion nykyhetkeen</li>
+                            <li>Vähentämään stressiä ja ahdistusta</li>
+                            <li>Parantamaan unenlaatua</li>
+                            <li>Lisäämään itsetietoisuutta</li>
+                            <li>Parantamaan kipukäsittelyä</li>
+                        </ul>
+
+                        <h4>4. Liikuntaterapia</h4>
+                        <p>Liikuntaterapia psykofyysisessä fysioterapiassa keskittyy:</p>
+                        <ul>
+                            <li>Liikunnan iloon ja nautintoon</li>
+                            <li>Kehon tuntemiseen</li>
+                            <li>Liikunnan rentouttaviin vaikutuksiin</li>
+                            <li>Liikunnan stressin vähentävään vaikutukseen</li>
+                            <li>Liikunnan itsetunnon parantaviin vaikutuksiin</li>
+                        </ul>
+
+                        <h3>Kun psykofyysinen fysioterapia auttaa</h3>
+                        <p>Psykofyysinen fysioterapia on erityisen hyödyllinen seuraavissa tilanteissa:</p>
+                        <ul>
+                            <li><strong>Krooninen kipu:</strong> Kipu, joka ei parane perinteisillä menetelmillä</li>
+                            <li><strong>Stressi ja ahdistus:</strong> Fyysisten oireiden aiheuttama stressi</li>
+                            <li><strong>Unettomuus:</strong> Mielen ja kehon rentoutumisen ongelmat</li>
+                            <li><strong>Trauma:</strong> Fyysisten ja psyykkisten traumojen jälkeinen kuntoutus</li>
+                            <li><strong>Burnout:</strong> Työuupumus ja sen fyysiset oireet</li>
+                            <li><strong>Krooniset sairaudet:</strong> Sairauksien aiheuttamat psyykkiset vaikutukset</li>
+                        </ul>
+
+                        <h3>Psykofyysisen fysioterapian hyödyt</h3>
+                        <p>Psykofyysisen fysioterapian hyödyt ovat monipuoliset:</p>
+                        <ul>
+                            <li><strong>Kokonaisvaltainen hyvinvointi:</strong> Kehon ja mielen tasapaino</li>
+                            <li><strong>Kipun vähentäminen:</strong> Fyysisten ja psyykkisten kipujen lievitys</li>
+                            <li><strong>Stressin hallinta:</strong> Parempi kyky käsitellä stressiä</li>
+                            <li><strong>Unenlaadun parantaminen:</strong> Parempi unenlaatu ja palautuminen</li>
+                            <li><strong>Itsetunnon parantaminen:</strong> Positiivisempi suhde kehoon</li>
+                            <li><strong>Elämänlaadun parantaminen:</strong> Yleisen hyvinvoinnin lisäys</li>
+                        </ul>
+
+                        <h3>Kotiharjoitukset psykofyysiseen hyvinvointiin</h3>
+                        <p>Voit harjoitella psykofyysistä hyvinvointia myös kotona:</p>
+
+                        <h4>Päivittäinen hengitysharjoitus</h4>
+                        <p>Varaa 5-10 minuuttia päivässä hengitysharjoitukselle:</p>
+                        <ol>
+                            <li>Istu mukavassa asennossa</li>
+                            <li>Sulje silmäsi</li>
+                            <li>Keskity hengitykseesi</li>
+                            <li>Hengitä syvään ja hitaasti</li>
+                            <li>Huomaa, miten keho rentoutuu</li>
+                        </ol>
+
+                        <h4>Liikunnan ilo</h4>
+                        <p>Valitse liikuntamuoto, josta nautit:</p>
+                        <ul>
+                            <li>Kävely luonnossa</li>
+                            <li>Jooga tai pilates</li>
+                            <li>Uinti</li>
+                            <li>Tanssi</li>
+                            <li>Mikä tahansa liikunta, joka tuntuu hyvältä</li>
+                        </ul>
+
+                        <h4>Rentoutumisharjoitukset</h4>
+                        <p>Kokeile erilaisia rentoutumisharjoituksia:</p>
+                        <ul>
+                            <li>Progressiivinen lihasrentoutus</li>
+                            <li>Visualisointiharjoitukset</li>
+                            <li>Mindfulness-meditaatio</li>
+                            <li>Lämpimät kylpyammeet</li>
+                            <li>Musiikin kuuntelu</li>
+                        </ul>
+
+                        <h3>Kun kannattaa hakea apua</h3>
+                        <p>Ota yhteyttä psykofyysiseen fysioterapeuttiin, jos:</p>
+                        <ul>
+                            <li>Krooninen kipu ei parane perinteisillä menetelmillä</li>
+                            <li>Stressi vaikuttaa fyysiseen hyvinvointiin</li>
+                            <li>Haluat oppia parempia rentoutumistekniikoita</li>
+                            <li>Tarvitset tukea mielen ja kehon tasapainoon</li>
+                            <li>Haluat kokonaisvaltaista lähestymistapaa hyvinvointiin</li>
+                        </ul>
+
+                        <h3>Yhteenveto</h3>
+                        <p>Psykofyysinen fysioterapia tarjoaa kokonaisvaltaisen lähestymistavan hyvinvointiin. Se ymmärtää, että keho ja mieli ovat yhteydessä toisiinsa ja että hyvinvointi vaatii molempien huomioimista.</p>
+
+                        <p>Jos haluat kokeilla psykofyysistä fysioterapiaa tai oppia lisää kehon ja mielen yhteisestä hyvinvoinnista, olen aina valmis auttamaan. Muista, että jokainen ihminen on erilainen, joten harjoitukset räätälöidään aina yksilöllisesti!</p>
+                    </div>
+
+                    <div class="article-footer">
+                        <div class="article-tags">
+                            <span class="tag">Psykofyysinen</span>
+                            <span class="tag">Hyvinvointi</span>
+                            <span class="tag">Fysioterapia</span>
+                            <span class="tag">Mielenterveys</span>
+                        </div>
+                        <div class="article-share">
+                            <h4>Jaa artikkeli:</h4>
+                            <div class="share-buttons">
+                                <button class="share-btn" data-platform="facebook">Facebook</button>
+                                <button class="share-btn" data-platform="twitter">Twitter</button>
+                                <button class="share-btn" data-platform="linkedin">LinkedIn</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section class="related-articles">
+            <div class="container">
+                <h2>Aiheeseen liittyvät artikkelit</h2>
+                <div class="related-grid">
+                    <article class="related-card">
+                        <img src="images/blog-1.jpg" alt="Raskausajan hyvinvointi ja liikunta" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="raskausajan-hyvinvointi.html">Raskausajan hyvinvointi ja liikunta</a></h3>
+                            <p>Miten liikunta tukee raskausajan hyvinvointia ja mitä harjoituksia voi turvallisesti tehdä raskausaikana.</p>
+                        </div>
+                    </article>
+                    <article class="related-card">
+                        <img src="images/blog-2.jpg" alt="Lantionpohjalihasten harjoittelu" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="lantionpohjalihasten-harjoittelu.html">Lantionpohjalihasten harjoittelu 5 vaiheessa</a></h3>
+                            <p>Praktinen opas lantionpohjalihasten harjoitteluun ja kuntoutukseen.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

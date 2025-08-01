@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Työhyvinvointi ja virkistysillat - miten huolehtia itsestäsi - Liisa Kinnunen</title>
+    <meta name="description" content="Praktisia ohjeita työhyvinvoinnin edistämiseen ja stressinhallintaan arjessa. Liisa Kinnusen ammattilaisohjeet työhyvinvointiin.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <article class="article">
+            <div class="container">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-date">20.11.2024</span>
+                        <span class="article-category">Hyvinvointi</span>
+                        <span class="article-author">Liisa Kinnunen</span>
+                    </div>
+                    <h1 class="article-title">Työhyvinvointi ja virkistysillat - miten huolehtia itsestäsi</h1>
+                    <p class="article-excerpt">Praktisia ohjeita työhyvinvoinnin edistämiseen ja stressinhallintaan arjessa. Opas parempaan työhyvinvointiin.</p>
+                </div>
+
+                <div class="article-image">
+                    <img src="images/blog-6.jpg" alt="Työhyvinvointi" class="article-hero-img">
+                </div>
+
+                <div class="article-content">
+                    <div class="article-text">
+                        <h2>Miksi työhyvinvointi on tärkeää?</h2>
+                        <p>Työhyvinvointi on tärkeä osa yleistä hyvinvointiamme. Hyvä työhyvinvointi parantaa työtehoa, vähentää stressiä ja auttaa ylläpitämään tasapainoa työn ja vapaa-ajan välillä. Tässä artikkelissa käyn läpi käytännön ohjeet työhyvinvoinnin edistämiseen.</p>
+
+                        <h3>Työhyvinvoinnin haasteet</h3>
+                        <p>Modernissa työelämässä kohtaamme useita haasteita:</p>
+                        <ul>
+                            <li><strong>Istuma-asento:</strong> Pitkät istumisajat aiheuttavat lihaskireyksiä</li>
+                            <li><strong>Stressi:</strong> Työstressi vaikuttaa sekä kehoon että mieleen</li>
+                            <li><strong>Liikunnan puute:</strong> Työajan aikana liikunta on usein vähäistä</li>
+                            <li><strong>Epäterveelliset elämäntavat:</strong> Kiireinen työajo voi vaikuttaa ruokailuun ja unenlaatuun</li>
+                            <li><strong>Työ ja vapaa-aika:</strong> Rajojen häilyminen työn ja vapaa-ajan välillä</li>
+                        </ul>
+
+                        <h3>Fyysinen hyvinvointi työpaikalla</h3>
+                        <p>Fyysinen hyvinvointi on työhyvinvoinnin perusta:</p>
+
+                        <h4>1. Ergonomia työpaikalla</h4>
+                        <p>Hyvä ergonomia on tärkeää:</p>
+                        <ul>
+                            <li><strong>Työpöytä ja tuoli:</strong> Varmista, että työpöytä ja tuoli ovat oikean korkuiset</li>
+                            <li><strong>Näyttö:</strong> Näytön tulee olla silmien korkeudella</li>
+                            <li><strong>Hiiri ja näppäimistö:</strong> Varmista, että kädet ovat luonnollisessa asennossa</li>
+                            <li><strong>Valaistus:</strong> Riittävä valaistus vähentää silmien rasitusta</li>
+                            <li><strong>Ilmanvaihto:</strong> Hyvä ilmanvaihto parantaa keskittymiskykyä</li>
+                        </ul>
+
+                        <h4>2. Liikunta työajan aikana</h4>
+                        <p>Liikunta työajan aikana on tärkeää:</p>
+                        <ul>
+                            <li><strong>Lyhyet tauot:</strong> Ota 5-10 minuutin tauot tunnin välein</li>
+                            <li><strong>Venytykset:</strong> Tee venytyksiä tauoilla</li>
+                            <li><strong>Kävely:</strong> Käytä tikkaat hissin sijaan</li>
+                            <li><strong>Seisominen:</strong> Vaihtoehtoisesti seisomapöytä</li>
+                            <li><strong>Työpaikkaliikunta:</strong> Liikku työpaikalla tauoilla</li>
+                        </ul>
+
+                        <h4>3. Lihaskireysten ehkäisy</h4>
+                        <p>Lihaskireykset ovat yleisiä istumatyössä:</p>
+                        <ul>
+                            <li><strong>Niska ja hartiat:</strong> Venytä niskaa ja hartioita säännöllisesti</li>
+                            <li><strong>Selkä:</strong> Tee selän venytyksiä</li>
+                            <li><strong>Ranteet:</strong> Venytä ranteita ja sormia</li>
+                            <li><strong>Jalat:</strong> Liikuta jalkoja säännöllisesti</li>
+                            <li><strong>Silmät:</strong> Anna silmien levätä katsomalla kaukaiseen</li>
+                        </ul>
+
+                        <h3>Mielen hyvinvointi työpaikalla</h3>
+                        <p>Mielen hyvinvointi on yhtä tärkeää kuin fyysinen:</p>
+
+                        <h4>1. Stressinhallinta</h4>
+                        <p>Stressinhallinta on avain työhyvinvoinnin kannalta:</p>
+                        <ul>
+                            <li><strong>Hengitysharjoitukset:</strong> Syvät hengitysharjoitukset rentouttavat</li>
+                            <li><strong>Mindfulness:</strong> Keskity nykyhetkeen</li>
+                            <li><strong>Priorisointi:</strong> Järjestä tehtävät tärkeysjärjestykseen</li>
+                            <li><strong>Rajaaminen:</strong> Aseta selkeät rajat työlle</li>
+                            <li><strong>Harrastukset:</strong> Varaa aikaa harrastuksille</li>
+                        </ul>
+
+                        <h4>2. Sosiaalinen hyvinvointi</h4>
+                        <p>Hyvät työsuhteet ovat tärkeitä:</p>
+                        <ul>
+                            <li><strong>Kommunikaatio:</strong> Puhu avoimesti kollegojen kanssa</li>
+                            <li><strong>Yhteistyö:</strong> Tee yhteistyötä kollegoiden kanssa</li>
+                            <li><strong>Tuki:</strong> Pyydä apua tarvittaessa</li>
+                            <li><strong>Yhteiset aktiviteetit:</strong> Osallistu työpaikan aktiviteetteihin</li>
+                            <li><strong>Kiitollisuus:</strong> Näytä kiitollisuutta kollegoille</li>
+                        </ul>
+
+                        <h3>Virkistysillat ja vapaa-aika</h3>
+                        <p>Virkistysillat ovat tärkeitä työhyvinvoinnin kannalta:</p>
+
+                        <h4>1. Virkistysillojen suunnittelu</h4>
+                        <p>Suunnittele virkistysillat etukäteen:</p>
+                        <ul>
+                            <li><strong>Liikunta:</strong> Varaa aikaa liikunnalle</li>
+                            <li><strong>Harrastukset:</strong> Harrasta jotain, mistä nautit</li>
+                            <li><strong>Ystävät ja perhe:</strong> Varaa aikaa läheisille</li>
+                            <li><strong>Rentoutuminen:</strong> Varaa aikaa rentoutumiselle</li>
+                            <li><strong>Uni:</strong> Varaa riittävästi aikaa unelle</li>
+                        </ul>
+
+                        <h4>2. Työn ja vapaa-ajan rajat</h4>
+                        <p>Selkeät rajat ovat tärkeitä:</p>
+                        <ul>
+                            <li><strong>Työaika:</strong> Noudata työaikoja</li>
+                            <li><strong>Sähköpostit:</strong> Älä vastaa sähköposteihin vapaa-ajalla</li>
+                            <li><strong>Puhelimet:</strong> Aseta puhelin hiljaiselle vapaa-ajalla</li>
+                            <li><strong>Työajattelu:</strong> Anna mielen levätä työstä</li>
+                            <li><strong>Rituaalit:</strong> Luo rituaaleja työpäivän lopettamiseen</li>
+                        </ul>
+
+                        <h3>Työhyvinvoinnin edistämisen käytännön ohjeet</h3>
+                        <p>Tässä konkreettisia ohjeita työhyvinvoinnin edistämiseen:</p>
+
+                        <h4>Päivittäiset toimenpiteet</h4>
+                        <ul>
+                            <li><strong>Aamulla:</strong> Aloita päivä rauhallisesti</li>
+                            <li><strong>Tauot:</strong> Ota säännölliset tauot</li>
+                            <li><strong>Liikunta:</strong> Liiku työajan aikana</li>
+                            <li><strong>Vesi:</strong> Juo riittävästi vettä</li>
+                            <li><strong>Ruoka:</strong> Syö terveellisesti</li>
+                            <li><strong>Ilta:</strong> Lopeta työpäivä ajoissa</li>
+                        </ul>
+
+                        <h4>Viikoittaiset toimenpiteet</h4>
+                        <ul>
+                            <li><strong>Liikunta:</strong> Harjoittele 2-3 kertaa viikossa</li>
+                            <li><strong>Harrastukset:</strong> Varaa aikaa harrastuksille</li>
+                            <li><strong>Ystävät:</strong> Tapaa ystäviä</li>
+                            <li><strong>Luonto:</strong> Vieraile luonnossa</li>
+                            <li><strong>Rentoutuminen:</strong> Varaa aikaa rentoutumiselle</li>
+                        </ul>
+
+                        <h4>Kuukausittaiset toimenpiteet</h4>
+                        <ul>
+                            <li><strong>Arviointi:</strong> Arvioi työhyvinvointia</li>
+                            <li><strong>Muutokset:</strong> Tee tarvittavia muutoksia</li>
+                            <li><strong>Uudet harrastukset:</strong> Kokeile uusia asioita</li>
+                            <li><strong>Koulutus:</strong> Osallistu koulutukseen</li>
+                            <li><strong>Loma:</strong> Suunnittele lomia</li>
+                        </ul>
+
+                        <h3>Työhyvinvoinnin mittaus</h3>
+                        <p>Voit mitata työhyvinvointia seuraavilla tavoilla:</p>
+
+                        <h4>Fyysiset mittarit</h4>
+                        <ul>
+                            <li><strong>Unenlaatu:</strong> Seuraa unenlaatua</li>
+                            <li><strong>Energia:</strong> Arvioi energiatasoa</li>
+                            <li><strong>Kivut:</strong> Seuraa kipuja</li>
+                            <li><strong>Liikunta:</strong> Kirjaa liikunnan määrä</li>
+                            <li><strong>Ruokailu:</strong> Seuraa ruokailutottumuksia</li>
+                        </ul>
+
+                        <h4>Psyykkiset mittarit</h4>
+                        <ul>
+                            <li><strong>Mieliala:</strong> Arvioi mielialaa</li>
+                            <li><strong>Stressi:</strong> Seuraa stressitasoa</li>
+                            <li><strong>Motivaatio:</strong> Arvioi motivaatiota</li>
+                            <li><strong>Keskittymiskyky:</strong> Arvioi keskittymiskykyä</li>
+                            <li><strong>Tyytyväisyys:</strong> Arvioi tyytyväisyyttä työhön</li>
+                        </ul>
+
+                        <h3>Kun kannattaa hakea apua</h3>
+                        <p>Ota yhteyttä ammattilaiseen, jos:</p>
+                        <ul>
+                            <li>Stressi vaikuttaa fyysiseen hyvinvointiin</li>
+                            <li>Koen kroonisia kipuja</li>
+                            <li>Unenlaatu on huono</li>
+                            <li>Motivaatio on alhainen</li>
+                            <li>Työhyvinvointi ei parane omilla toimenpiteillä</li>
+                        </ul>
+
+                        <h3>Yhteenveto</h3>
+                        <p>Työhyvinvointi on tärkeä osa yleistä hyvinvointiamme. Hyvä työhyvinvointi parantaa työtehoa, vähentää stressiä ja auttaa ylläpitämään tasapainoa työn ja vapaa-ajan välillä.</p>
+
+                        <p>Muista, että työhyvinvointi on investointi tulevaisuuteen. Pieniä muutoksia päivittäin voi johtaa suuriin parannuksiin pitkällä aikavälillä. Jos tarvitset apua työhyvinvoinnin edistämisessä, olen aina valmis auttamaan!</p>
+                    </div>
+
+                    <div class="article-footer">
+                        <div class="article-tags">
+                            <span class="tag">Työhyvinvointi</span>
+                            <span class="tag">Stressinhallinta</span>
+                            <span class="tag">Ergonomia</span>
+                            <span class="tag">Hyvinvointi</span>
+                        </div>
+                        <div class="article-share">
+                            <h4>Jaa artikkeli:</h4>
+                            <div class="share-buttons">
+                                <button class="share-btn" data-platform="facebook">Facebook</button>
+                                <button class="share-btn" data-platform="twitter">Twitter</button>
+                                <button class="share-btn" data-platform="linkedin">LinkedIn</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section class="related-articles">
+            <div class="container">
+                <h2>Aiheeseen liittyvät artikkelit</h2>
+                <div class="related-grid">
+                    <article class="related-card">
+                        <img src="images/blog-3.jpg" alt="Psykofyysinen fysioterapia" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="psykofyysinen-fysioterapia.html">Psykofyysinen fysioterapia - kokonaisvaltainen lähestymistapa</a></h3>
+                            <p>Miten kehon ja mielen hyvinvointi liittyvät toisiinsa ja miten psykofyysinen fysioterapia auttaa.</p>
+                        </div>
+                    </article>
+                    <article class="related-card">
+                        <img src="images/blog-1.jpg" alt="Raskausajan hyvinvointi ja liikunta" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="raskausajan-hyvinvointi.html">Raskausajan hyvinvointi ja liikunta</a></h3>
+                            <p>Miten liikunta tukee raskausajan hyvinvointia ja mitä harjoituksia voi turvallisesti tehdä raskausaikana.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

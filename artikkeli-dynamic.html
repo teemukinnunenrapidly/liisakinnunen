@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladataan artikkelia... - Liisa Kinnunen</title>
+    <meta name="description" content="Ladataan artikkelia...">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Supabase JavaScript library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi-dynamic.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Loading state -->
+        <div class="loading-container" id="loading-container">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Ladataan artikkelia...</p>
+            </div>
+        </div>
+
+        <!-- Article content (will be populated dynamically) -->
+        <article class="article" id="article-content" style="display: none;">
+            <div class="container">
+                <div class="article-header" id="article-header">
+                    <!-- Article header will be populated here -->
+                </div>
+
+                <div class="article-image" id="article-image">
+                    <!-- Article image will be populated here -->
+                </div>
+
+                <div class="article-content">
+                    <div class="article-text" id="article-text">
+                        <!-- Article text will be populated here -->
+                    </div>
+
+                    <div class="article-footer" id="article-footer">
+                        <!-- Article footer will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Related articles section -->
+        <section class="related-articles" id="related-articles" style="display: none;">
+            <div class="container">
+                <h2>Aiheeseen liittyvät artikkelit</h2>
+                <div class="related-grid" id="related-grid">
+                    <!-- Related articles will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Error state -->
+        <div class="error-container" id="error-container" style="display: none;">
+            <div class="container">
+                <div class="error-message">
+                    <h2>Artikkelia ei löytynyt</h2>
+                    <p>Pyytämääsi artikkelia ei löytynyt. Tarkista URL-osoite tai palaa <a href="blogi-dynamic.html">blogi-sivulle</a>.</p>
+                    <button class="btn btn-primary" onclick="window.history.back()">Takaisin</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi-dynamic.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="artikkeli-dynamic.js"></script>
+</body>
+</html> 

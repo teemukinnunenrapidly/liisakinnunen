@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liisa Kinnunen - Fysioterapeutti ja Personal Trainer</title>
+    <meta name="description" content="Liisa Kinnunen - erikoistunut äitiysfysioterapiaan, lantionpohjalihaksiin ja psykofyysiseen fysioterapiaan. Autan kohti parempaa kehon hallintaa ja kivuttomampaa arkea.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="tel:0406753170" class="nav-cta-btn">
+                        <span class="cta-icon">📞</span>
+                        <span class="cta-phone">040 675 3170</span>
+                    </a>
+                </div>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-text-box">
+                <h2>Tervetuloa Liisa Kinnusen fysioterapiaan</h2>
+                <p>Olen auttanut asiakkaita monissa ongelmissa kohti parempaa kehon hallintaa ja kivuttomampaa arkea. Erikoisosaamiseni liittyy äitiysfysioterapiaan, lantionpohjalihaksiin, kunnon kohottamiseen ja eri kiputiloihin liittyviin ongelmiin.</p>
+                <div class="hero-buttons">
+                    <a href="palvelut.html" class="btn btn-primary">Katso palvelut</a>
+                    <a href="#yhteystiedot" class="btn btn-secondary">Varaa aika</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Miksi valita minut?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤰</div>
+                        <h3>Äitiysfysioterapia</h3>
+                        <p>Erikoistunut äitiysfysioterapiaan ja synnytyksestä palautumiseen</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💪</div>
+                        <h3>Personal Trainer</h3>
+                        <p>Kokemusta lihaskuntoharjoittelusta ja toiminnallisesta treenistä</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Psykofyysinen lähestymistapa</h3>
+                        <p>Huomioin sekä kehon että mielen hyvinvoinnin</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="latest-blog">
+            <div class="container">
+                <h2 class="section-title">Uusimmat artikkelit</h2>
+                <div class="blog-preview-grid">
+                    <article class="blog-preview-card">
+                        <div class="blog-preview-image">
+                            <!-- CSS-generated placeholder image -->
+                        </div>
+                        <div class="blog-preview-content">
+                            <div class="blog-preview-meta">
+                                <span class="blog-preview-date">15.12.2024</span>
+                                <span class="blog-preview-category">Äitiysfysioterapia</span>
+                            </div>
+                            <h3><a href="raskausajan-hyvinvointi.html">Raskausajan hyvinvointi ja liikunta</a></h3>
+                            <p>Miten liikunta tukee raskausajan hyvinvointia ja mitä harjoituksia voi turvallisesti tehdä raskausaikana.</p>
+                            <a href="raskausajan-hyvinvointi.html" class="read-more">Lue lisää →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-preview-card">
+                        <div class="blog-preview-image">
+                            <!-- CSS-generated placeholder image -->
+                        </div>
+                        <div class="blog-preview-content">
+                            <div class="blog-preview-meta">
+                                <span class="blog-preview-date">10.12.2024</span>
+                                <span class="blog-preview-category">Lantionpohja</span>
+                            </div>
+                            <h3><a href="lantionpohjalihasten-harjoittelu.html">Lantionpohjalihasten harjoittelu 5 vaiheessa</a></h3>
+                            <p>Praktinen opas lantionpohjalihasten harjoitteluun ja kuntoutukseen.</p>
+                            <a href="lantionpohjalihasten-harjoittelu.html" class="read-more">Lue lisää →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-preview-card">
+                        <div class="blog-preview-image">
+                            <!-- CSS-generated placeholder image -->
+                        </div>
+                        <div class="blog-preview-content">
+                            <div class="blog-preview-meta">
+                                <span class="blog-preview-date">05.12.2024</span>
+                                <span class="blog-preview-category">Hyvinvointi</span>
+                            </div>
+                            <h3><a href="psykofyysinen-fysioterapia.html">Psykofyysinen fysioterapia - kokonaisvaltainen lähestymistapa</a></h3>
+                            <p>Miten kehon ja mielen hyvinvointi liittyvät toisiinsa ja miten psykofyysinen fysioterapia auttaa.</p>
+                            <a href="psykofyysinen-fysioterapia.html" class="read-more">Lue lisää →</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="blog-preview-cta">
+                    <a href="blogi.html" class="btn btn-secondary">Katso kaikki artikkelit</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Valmis aloittamaan kuntoutusta?</h2>
+                <p>Olen luova ongelmanratkaisija ja keksin keinot hyvinvoinnin edistämiseen asiakkaan kanssa yhdessä!</p>
+                <a href="#yhteystiedot" class="btn btn-primary">Varaa aika</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

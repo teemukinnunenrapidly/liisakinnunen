@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synnytyksestä palautuminen - ensimmäiset kuukaudet - Liisa Kinnunen</title>
+    <meta name="description" content="Praktisia ohjeita synnytyksestä palautumiseen ja vatsalihasten erkauman kuntoutukseen. Liisa Kinnusen ammattilaisohjeet.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Liisa Kinnunen</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Etusivu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="palvelut.html" class="nav-link">Palvelut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kauppa.html" class="nav-link">Kauppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blogi.html" class="nav-link">Blogi</a>
+                    </li>
+                </ul>
+                <div class="cart-icon">
+                    <button class="cart-btn" id="cart-toggle">
+                        <span class="cart-icon-text">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ostoskorin popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <article class="article">
+            <div class="container">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-date">01.12.2024</span>
+                        <span class="article-category">Äitiysfysioterapia</span>
+                        <span class="article-author">Liisa Kinnunen</span>
+                    </div>
+                    <h1 class="article-title">Synnytyksestä palautuminen - ensimmäiset kuukaudet</h1>
+                    <p class="article-excerpt">Praktisia ohjeita synnytyksestä palautumiseen ja vatsalihasten erkauman kuntoutukseen. Opas ensimmäisiin kuukausiin äitiydessä.</p>
+                </div>
+
+                <div class="article-image">
+                    <img src="images/blog-4.jpg" alt="Synnytyksestä palautuminen" class="article-hero-img">
+                </div>
+
+                <div class="article-content">
+                    <div class="article-text">
+                        <h2>Miksi synnytyksestä palautuminen on tärkeää?</h2>
+                        <p>Synnytyksestä palautuminen on kehon luonnollinen prosessi, joka vaatii aikaa ja huolellista huomiota. Ensimmäiset kuukaudet ovat erityisen tärkeitä, sillä ne määrittelevät pitkän aikavälin hyvinvoinnin. Tässä artikkelissa käyn läpi käytännön ohjeet synnytyksestä palautumiseen.</p>
+
+                        <h3>Ensimmäiset viikot synnytyksen jälkeen</h3>
+                        <p>Ensimmäiset 6-8 viikkoa synnytyksen jälkeen ovat kriittisiä palautumisen kannalta:</p>
+                        <ul>
+                            <li><strong>Lohdut:</strong> Lohdut ovat normaali osa synnytyksestä ja kestävät 2-6 viikkoa</li>
+                            <li><strong>Vatsalihasten erkauma:</strong> Vatsalihasten erkauma on yleinen ja vaatii kuntoutusta</li>
+                            <li><strong>Lantionpohjan palautuminen:</strong> Lantionpohja on venynyt synnytyksessä ja tarvitsee aikaa palautua</li>
+                            <li><strong>Hormonaalinen tasapaino:</strong> Hormonit palautuvat raskausajan tasolta</li>
+                            <li><strong>Unen puute:</strong> Uuden äidin unenlaatu on usein huono</li>
+                        </ul>
+
+                        <h3>Vatsalihasten erkauman kuntoutus</h3>
+                        <p>Vatsalihasten erkauma (diastasis recti) on yleinen synnytyksen jälkeen. Se tarkoittaa, että suorat vatsalihakset ovat erkaantuneet keskiviivasta. Tässä ohjeet kuntoutukseen:</p>
+
+                        <h4>1. Erkauman tunnistaminen</h4>
+                        <p>Voit tarkistaa erkauman itse:</p>
+                        <ol>
+                            <li>Makaat selällään, polvet taivutettuina</li>
+                            <li>Aseta sormet vatsan keskiviivalle</li>
+                            <li>Nosta päätä ja hartiat</li>
+                            <li>Tunne, onko sormien välissä rako</li>
+                            <li>Jos rako on leveämpi kuin 2-3 sormea, on kyseessä erkauma</li>
+                        </ol>
+
+                        <h4>2. Turvalliset harjoitukset</h4>
+                        <p>Erkauman kuntoutuksessa on tärkeää välttää harjoituksia, jotka lisäävät vatsan painetta:</p>
+                        <ul>
+                            <li><strong>Vältä:</strong> Perinteisiä vatsalihasharjoituksia (crunch, sit-up)</li>
+                            <li><strong>Vältä:</strong> Raskaita nostoja ja kantamista</li>
+                            <li><strong>Vältä:</strong> Korkealla intensiteetillä tehtyjä harjoituksia</li>
+                            <li><strong>Suosittele:</strong> Hengitysharjoituksia</li>
+                            <li><strong>Suosittele:</strong> Pehmeitä venytyksiä</li>
+                            <li><strong>Suosittele:</strong> Lantionpohjalihasten harjoittelua</li>
+                        </ul>
+
+                        <h4>3. Kuntoutusohjelma</h4>
+                        <p>Aloita kuntoutus varovasti:</p>
+                        <ol>
+                            <li><strong>Viikko 1-2:</strong> Hengitysharjoitukset ja rentoutuminen</li>
+                            <li><strong>Viikko 3-4:</strong> Pehmeät lantionpohjalihasten harjoitukset</li>
+                            <li><strong>Viikko 5-6:</strong> Vatsalihasten syvien kerrosten aktivoiminen</li>
+                            <li><strong>Viikko 7-8:</strong> Edistyneet harjoitukset, jos keho on valmis</li>
+                        </ol>
+
+                        <h3>Lantionpohjan kuntoutus</h3>
+                        <p>Lantionpohja on kokenut suuren kuormituksen synnytyksessä ja tarvitsee kuntoutusta:</p>
+
+                        <h4>Lantionpohjalihasten harjoittelu</h4>
+                        <p>Aloita lantionpohjalihasten harjoittelu varovasti:</p>
+                        <ul>
+                            <li>Harjoittele päivittäin 5-10 minuuttia</li>
+                            <li>Keskity laatuun, ei määrään</li>
+                            <li>Kuuntele kehoasi</li>
+                            <li>Jos koet kipua, lopeta harjoittelu</li>
+                            <li>Konsultoi fysioterapeuttia, jos olet epävarma</li>
+                        </ul>
+
+                        <h3>Fyysinen aktiivisuus synnytyksen jälkeen</h3>
+                        <p>Liikunta on tärkeää synnytyksen jälkeen, mutta on tärkeää aloittaa varovasti:</p>
+
+                        <h4>Ensimmäiset viikot (0-6 viikkoa)</h4>
+                        <ul>
+                            <li><strong>Kävely:</strong> Aloita lyhyillä kävelyillä ja lisää pituutta ajan myötä</li>
+                            <li><strong>Hengitysharjoitukset:</strong> Syvät hengitysharjoitukset rentouttavat</li>
+                            <li><strong>Pehmeät venytykset:</strong> Venytä varovasti, älä yliannosta</li>
+                            <li><strong>Rentoutuminen:</strong> Varaa aikaa rentoutumiselle</li>
+                        </ul>
+
+                        <h4>6-12 viikon jälkeen</h4>
+                        <ul>
+                            <li><strong>Jooga tai pilates:</strong> Jos keho on valmis</li>
+                            <li><strong>Uinti:</strong> Erinomainen harjoitus, koska vesi tukee kehoa</li>
+                            <li><strong>Kevyt kuntoharjoittelu:</strong> Aloita varovasti</li>
+                            <li><strong>Kävely:</strong> Lisää kävelyn intensiteettiä</li>
+                        </ul>
+
+                        <h3>Mielen hyvinvointi synnytyksen jälkeen</h3>
+                        <p>Synnytyksen jälkeinen aika voi olla haastava myös mielenterveyden kannalta:</p>
+
+                        <h4>Yleisiä tunteita</h4>
+                        <ul>
+                            <li>Väsymys ja unen puute</li>
+                            <li>Ahdistus ja huoli</li>
+                            <li>Masennuksen oireet</li>
+                            <li>Itsetunnon ongelmat</li>
+                            <li>Suhteiden muutokset</li>
+                        </ul>
+
+                        <h4>Apua mielen hyvinvointiin</h4>
+                        <ul>
+                            <li><strong>Puhu:</strong> Jaa tunteitasi puolisosi tai ystäviesi kanssa</li>
+                            <li><strong>Hae apua:</strong> Älä pelkää hakea ammattiapua</li>
+                            <li><strong>Varaa aikaa itsellesi:</strong> Vaikka vain muutama minuutti päivässä</li>
+                            <li><strong>Liiku:</strong> Fyysinen aktiivisuus parantaa mielialaa</li>
+                            <li><strong>Nuku:</strong> Yritä saada riittävästi unta</li>
+                        </ul>
+
+                        <h3>Kun kannattaa hakea apua</h3>
+                        <p>Ota yhteyttä lääkäriin tai fysioterapeuttiin, jos:</p>
+                        <ul>
+                            <li>Vatsalihasten erkauma ei parane 6-8 viikon jälkeen</li>
+                            <li>Koen kipua harjoittelun aikana</li>
+                            <li>Virtsankarkailu ei parane harjoittelusta huolimatta</li>
+                            <li>Masennuksen oireet pahenevat</li>
+                            <li>Olet epävarma harjoitusten tekemisestä</li>
+                        </ul>
+
+                        <h3>Yhteenveto</h3>
+                        <p>Synnytyksestä palautuminen on yksilöllinen prosessi, joka vaatii aikaa ja kärsivällisyyttä. Muista kuunnella kehoasi ja antaa itsellesi aikaa palautua. Jos tarvitset apua palautumisessa, olen aina valmis auttamaan!</p>
+
+                        <p>Muista, että jokainen äiti on erilainen ja palautuminen tapahtuu omalla aikataulullaan. Ole armollinen itsellesi ja muista juhlia pieniä voittoja!</p>
+                    </div>
+
+                    <div class="article-footer">
+                        <div class="article-tags">
+                            <span class="tag">Synnytyksestä palautuminen</span>
+                            <span class="tag">Vatsalihasten erkauma</span>
+                            <span class="tag">Äitiysfysioterapia</span>
+                            <span class="tag">Kuntoutus</span>
+                        </div>
+                        <div class="article-share">
+                            <h4>Jaa artikkeli:</h4>
+                            <div class="share-buttons">
+                                <button class="share-btn" data-platform="facebook">Facebook</button>
+                                <button class="share-btn" data-platform="twitter">Twitter</button>
+                                <button class="share-btn" data-platform="linkedin">LinkedIn</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section class="related-articles">
+            <div class="container">
+                <h2>Aiheeseen liittyvät artikkelit</h2>
+                <div class="related-grid">
+                    <article class="related-card">
+                        <img src="images/blog-1.jpg" alt="Raskausajan hyvinvointi ja liikunta" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="raskausajan-hyvinvointi.html">Raskausajan hyvinvointi ja liikunta</a></h3>
+                            <p>Miten liikunta tukee raskausajan hyvinvointia ja mitä harjoituksia voi turvallisesti tehdä raskausaikana.</p>
+                        </div>
+                    </article>
+                    <article class="related-card">
+                        <img src="images/blog-2.jpg" alt="Lantionpohjalihasten harjoittelu" class="related-img">
+                        <div class="related-content">
+                            <h3><a href="lantionpohjalihasten-harjoittelu.html">Lantionpohjalihasten harjoittelu 5 vaiheessa</a></h3>
+                            <p>Praktinen opas lantionpohjalihasten harjoitteluun ja kuntoutukseen.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="yhteystiedot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

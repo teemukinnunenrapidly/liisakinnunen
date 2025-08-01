@@ -2,52 +2,11 @@
 class AppointmentLoader {
     constructor() {
         this.currentWeek = new Date()
-        this.weekNavigator = document.getElementById('current-week')
-        this.scheduleGrid = document.getElementById('aikataulu-grid')
-        this.bookingForm = document.getElementById('booking-form-container')
-        this.selectedTimeSlot = null
+        this.scheduleGrid = document.getElementById('schedule-grid')
         this.suggestedTimes = document.getElementById('suggested-times')
-        
-        // Check if we should show next week automatically
-        this.checkAutoNextWeek()
         
         this.initializeEventListeners()
         this.loadCurrentWeek()
-    }
-
-    checkAutoNextWeek() {
-        const now = new Date()
-        const currentDay = now.getDay() // 0 = Sunday, 5 = Friday
-        const currentHour = now.getHours()
-        
-        console.log(`Tarkistetaan automaattinen viikkoselaus: ${now.toLocaleDateString('fi-FI')} ${now.toLocaleTimeString('fi-FI')}`)
-        console.log(`Päivä: ${currentDay} (0=Sun, 5=Fri), Kello: ${currentHour}`)
-        
-        // If it's Friday (5) and after 12:00 PM, show next week
-        if (currentDay === 5 && currentHour >= 12) {
-            console.log('Perjantai klo 12:00 jälkeen - näytetään seuraavan viikon kalenteri')
-            this.currentWeek.setDate(this.currentWeek.getDate() + 7)
-        } else {
-            console.log('Näytetään tämän viikon kalenteri')
-        }
-    }
-
-    // Test function to simulate different times (for development)
-    testAutoNextWeek(simulatedDay = null, simulatedHour = null) {
-        const now = new Date()
-        const testDay = simulatedDay !== null ? simulatedDay : now.getDay()
-        const testHour = simulatedHour !== null ? simulatedHour : now.getHours()
-        
-        console.log(`🧪 TESTI: Simuloidaan päivä ${testDay}, kello ${testHour}`)
-        
-        if (testDay === 5 && testHour >= 12) {
-            console.log('✅ TESTI: Perjantai klo 12:00 jälkeen - näytetään seuraavan viikon kalenteri')
-            this.currentWeek.setDate(this.currentWeek.getDate() + 7)
-            this.loadCurrentWeek()
-        } else {
-            console.log('✅ TESTI: Näytetään tämän viikon kalenteri')
-            this.loadCurrentWeek()
-        }
     }
 
     initializeEventListeners() {

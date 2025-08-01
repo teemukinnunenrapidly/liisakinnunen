@@ -181,6 +181,97 @@ class AppointmentLoader {
             
             this.scheduleGrid.appendChild(row)
         })
+
+        // Render mobile calendar
+        this.renderMobileCalendar(startOfWeek, bookedSlots)
+    }
+
+    renderMobileCalendar(startOfWeek, bookedSlots) {
+        const mobileDaySelect = document.getElementById('mobile-day-select')
+        const mobileTimeSlots = document.getElementById('mobile-time-slots')
+        
+        if (!mobileDaySelect || !mobileTimeSlots) return
+        
+        // Clear existing content
+        mobileDaySelect.innerHTML = '<option value="">Valitse päivä</option>'
+        mobileTimeSlots.innerHTML = ''
+        
+        const weekDays = ['Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai', 'Sunnuntai']
+        const timeSlots = this.generateTimeSlots()
+        
+        // Create day options
+        for (let i = 0; i < 7; i++) {
+            const dayDate = new Date(startOfWeek)
+            dayDate.setDate(dayDate.getDate() + i)
+            
+            const dayName = weekDays[i]
+            const dayNumber = dayDate.getDate()
+            const monthName = dayDate.toLocaleDateString('fi-FI', { month: 'short' })
+            const dateString = dayDate.toISOString().split('T')[0]
+            
+            const option = document.createElement('option')
+            option.value = dateString
+            option.textContent = `${dayName} ${dayNumber}. ${monthName}`
+            mobileDaySelect.appendChild(option)
+        }
+        
+        // Add event listener for day selection
+        mobileDaySelect.addEventListener('change', (e) => {
+            const selectedDate = e.target.value
+            if (selectedDate) {
+                this.renderMobileTimeSlots(new Date(selectedDate), bookedSlots)
+            } else {
+                mobileTimeSlots.innerHTML = ''
+            }
+        })
+    }
+
+    renderMobileTimeSlots(selectedDate, bookedSlots) {
+        const mobileTimeSlots = document.getElementById('mobile-time-slots')
+        if (!mobileTimeSlots) return
+        
+        mobileTimeSlots.innerHTML = ''
+        const timeSlots = this.generateTimeSlots()
+        
+        timeSlots.forEach(timeSlot => {
+            const slotDateTime = this.createSlotDateTime(selectedDate, timeSlot)
+            const isBooked = this.isSlotBooked(slotDateTime, bookedSlots)
+            const isPast = this.isSlotInPast(slotDateTime)
+            const isWeekend = selectedDate.getDay() === 0 || selectedDate.getDay() === 6
+            
+            let slotClass = 'mobile-time-slot'
+            let status = ''
+            
+            if (isPast) {
+                slotClass += ' past'
+                status = 'Menneisyys'
+            } else if (isWeekend) {
+                slotClass += ' weekend'
+                status = 'Suljettu'
+            } else if (isBooked) {
+                slotClass += ' booked'
+                status = 'Varattu'
+            } else {
+                slotClass += ' available'
+                status = 'Vapaa'
+            }
+            
+            const slotElement = document.createElement('div')
+            slotElement.className = slotClass
+            slotElement.innerHTML = `
+                <span class="time">${timeSlot}</span>
+                <span class="status">${status}</span>
+            `
+            
+            // Add click event for available slots
+            if (!isPast && !isWeekend && !isBooked) {
+                slotElement.addEventListener('click', () => {
+                    this.selectTimeSlot(slotDateTime, timeSlot, selectedDate)
+                })
+            }
+            
+            mobileTimeSlots.appendChild(slotElement)
+        })
     }
 
     generateTimeSlots() {

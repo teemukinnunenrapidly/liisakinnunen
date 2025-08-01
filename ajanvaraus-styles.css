@@ -388,10 +388,105 @@
     font-size: 14px;
 }
 
-/* Responsive Design */
+/* Mobile Calendar View */
+.mobile-calendar {
+    display: none;
+}
+
+.mobile-day-selector {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.mobile-day-selector select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #ffffff;
+    color: #111827;
+}
+
+.mobile-time-slots {
+    display: none;
+}
+
+.mobile-time-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    margin-bottom: 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mobile-time-slot.available {
+    border-color: #d1fae5;
+    color: #059669;
+}
+
+.mobile-time-slot.available:hover {
+    background: #ecfdf5;
+    border-color: #10b981;
+}
+
+.mobile-time-slot.booked {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
+    cursor: not-allowed;
+}
+
+.mobile-time-slot.past {
+    background: #f9fafb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.mobile-time-slot.weekend {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fed7aa;
+    cursor: not-allowed;
+}
+
+.mobile-time-slot .time {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.mobile-time-slot .status {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive Design - Mobile First */
 @media (max-width: 768px) {
     .appointment-container {
         padding: 16px;
+    }
+    
+    /* Hide desktop calendar on mobile */
+    .schedule-grid {
+        display: none;
+    }
+    
+    /* Show mobile calendar */
+    .mobile-calendar {
+        display: block;
+    }
+    
+    .mobile-day-selector {
+        display: block;
+    }
+    
+    .mobile-time-slots {
+        display: block;
     }
     
     .week-navigation {
@@ -401,6 +496,75 @@
         padding: 20px;
     }
     
+    .week-navigation h2 {
+        font-size: 16px;
+    }
+    
+    .nav-button {
+        padding: 12px 20px;
+        font-size: 16px;
+        min-height: 44px; /* Touch-friendly */
+    }
+    
+    .booking-form {
+        padding: 24px;
+        margin: 16px;
+        max-width: none;
+        width: calc(100% - 32px);
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn {
+        width: 100%;
+        min-height: 44px; /* Touch-friendly */
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .appointment-container {
+        padding: 12px;
+    }
+    
+    .week-navigation {
+        padding: 16px;
+    }
+    
+    .week-navigation h2 {
+        font-size: 14px;
+    }
+    
+    .nav-button {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    
+    .mobile-time-slot {
+        padding: 12px;
+        margin-bottom: 6px;
+    }
+    
+    .mobile-time-slot .time {
+        font-size: 14px;
+    }
+    
+    .mobile-time-slot .status {
+        font-size: 12px;
+    }
+    
+    .booking-form {
+        padding: 20px;
+        margin: 12px;
+        width: calc(100% - 24px);
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
     .schedule-header,
     .schedule-row {
         grid-template-columns: 100px repeat(7, 1fr);
@@ -419,40 +583,5 @@
     
     .day-date {
         font-size: 11px;
-    }
-    
-    .booking-form {
-        padding: 24px;
-        margin: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .schedule-header,
-    .schedule-row {
-        grid-template-columns: 80px repeat(7, 1fr);
-    }
-    
-    .time-column,
-    .time-slot {
-        padding: 8px 4px;
-        font-size: 12px;
-        min-height: 48px;
-    }
-    
-    .day-name {
-        font-size: 12px;
-    }
-    
-    .day-date {
-        font-size: 10px;
-    }
-    
-    .form-buttons {
-        flex-direction: column;
-    }
-    
-    .btn {
-        width: 100%;
     }
 } 

@@ -35,6 +35,7 @@ serve(async (req) => {
   try {
     // Parse request body
     const { startDate, endDate } = await req.json()
+    console.log('Request received:', { startDate, endDate })
 
     if (!startDate || !endDate) {
       return new Response(
@@ -58,6 +59,8 @@ serve(async (req) => {
       .eq('user_id', 'liisa')
       .single()
 
+    console.log('Auth data:', { authData, authError })
+
     if (authError || !authData?.refresh_token) {
       return new Response(
         JSON.stringify({ 
@@ -77,6 +80,12 @@ serve(async (req) => {
     const clientSecret = Deno.env.get('GOOGLE_CLIENT_SECRET')!
     const refreshToken = authData.refresh_token
 
+    console.log('OAuth config:', { 
+      clientId: clientId ? 'SET' : 'NOT_SET',
+      clientSecret: clientSecret ? 'SET' : 'NOT_SET',
+      refreshToken: refreshToken ? 'SET' : 'NOT_SET'
+    })
+
     // 1. Exchange refresh token for access token
     const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
@@ -91,11 +100,17 @@ serve(async (req) => {
       }),
     })
 
+    console.log('Token response status:', tokenResponse.status)
+
     if (!tokenResponse.ok) {
       const errorText = await tokenResponse.text()
       console.error('Token exchange failed:', errorText)
       return new Response(
-        JSON.stringify({ error: 'Failed to get access token' }),
+        JSON.stringify({ 
+          error: 'Failed to get access token',
+          details: errorText,
+          status: tokenResponse.status
+        }),
         { 
           status: 500, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -104,6 +119,7 @@ serve(async (req) => {
     }
 
     const tokenData: GoogleAuthResponse = await tokenResponse.json()
+    console.log('Token exchange successful')
 
     // 2. Get calendar events from Google Calendar API
     const calendarResponse = await fetch(
@@ -144,6 +160,11 @@ serve(async (req) => {
         end: event.end.dateTime,
         timeZone: event.start.timeZone,
       }))
+
+    console.log('Calendar events fetched:', { 
+      totalEvents: events.length, 
+      bookedCount: bookedSlots.length 
+    })
 
     // Return list of calendar events
     return new Response(

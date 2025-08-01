@@ -244,11 +244,13 @@ nav {
     text-align: center;
     color: white;
     margin-top: 80px;
+    width: 100%;
 }
 
 .hero-content {
     max-width: 800px;
     padding: 0 2rem;
+    margin: 0 auto;
 }
 
 .hero h1 {
@@ -306,7 +308,19 @@ nav {
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 0 2rem;
+}
+
+/* Hero section should be full width */
+main .hero {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Other sections */
+main > section:not(.hero) {
+    padding: 4rem 0;
 }
 
 /* Sections */

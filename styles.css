@@ -355,6 +355,32 @@ section {
     margin-bottom: 1.5rem;
 }
 
+.service-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.service-card li {
+    position: relative;
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.service-card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: #4299e1;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
 .service-card .btn {
     background-color: #4299e1;
     color: white;
@@ -403,12 +429,27 @@ section {
 
 .pricing-item ul {
     list-style: none;
-    margin-bottom: 2rem;
+    padding: 0;
+    margin: 1.5rem 0;
 }
 
 .pricing-item li {
+    position: relative;
     padding: 0.5rem 0;
-    color: #718096;
+    padding-left: 1.5rem;
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.pricing-item li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: #4299e1;
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 /* Blog preview */

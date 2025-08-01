@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="stripe-config.js"></script>
+    <script src="supabase-client.js"></script>
+    <script src="products-loader.js"></script>
 </head>
 <body>
     <header>
@@ -70,76 +72,9 @@
                 </div>
 
                 <div class="products-grid">
-                    <div class="product-card" data-category="luennot">
-                        <div class="product-image">
-                            <img src="images/luento-1.jpg" alt="Luento: Äitiysfysioterapia" class="product-img">
-                        </div>
-                        <div class="product-content">
-                            <h3>Äitiysfysioterapia - perusteet</h3>
-                            <p>Luento äitiysfysioterapian perusteista ja raskausajan hyvinvoinnista.</p>
-                            <div class="product-price">50€</div>
-                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="koulutukset">
-                        <div class="product-image">
-                            <img src="images/koulutus-1.jpg" alt="Koulutus: Lantionpohjalihasten harjoittelu" class="product-img">
-                        </div>
-                        <div class="product-content">
-                            <h3>Lantionpohjalihasten harjoittelu</h3>
-                            <p>Ammattillinen koulutus lantionpohjalihasten toimintaan ja kuntoutukseen.</p>
-                            <div class="product-price">150€</div>
-                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="hyvinvointi">
-                        <div class="product-image">
-                            <img src="images/hyvinvointi-1.jpg" alt="Hyvinvointi: Psykofyysinen fysioterapia" class="product-img">
-                        </div>
-                        <div class="product-content">
-                            <h3>Psykofyysinen fysioterapia</h3>
-                            <p>Kokonaisvaltainen lähestymistapa kehon ja mielen hyvinvoinnista.</p>
-                            <div class="product-price">80€</div>
-                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="luennot">
-                        <div class="product-image">
-                            <img src="images/luento-2.jpg" alt="Luento: Personal Trainer -ohjaus" class="product-img">
-                        </div>
-                        <div class="product-content">
-                            <h3>Personal Trainer -ohjaus</h3>
-                            <p>Luento henkilökohtaisesta lihaskuntoharjoittelun ohjauksesta.</p>
-                            <div class="product-price">40€</div>
-                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="koulutukset">
-                        <div class="product-image">
-                            <img src="images/koulutus-2.jpg" alt="Koulutus: Vatsalihasten erkauman kuntoutus" class="product-img">
-                        </div>
-                        <div class="product-content">
-                            <h3>Vatsalihasten erkauman kuntoutus</h3>
-                            <p>Kattava koulutus vatsalihasten erkauman tunnistamiseen ja kuntoutukseen.</p>
-                            <div class="product-price">120€</div>
-                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="hyvinvointi">
-                        <div class="product-image">
-                            <img src="images/hyvinvointi-2.jpg" alt="Hyvinvointi: Työhyvinvointi ja virkistysillat" class="product-img">
-                        </div>
-                        <div class="product-content">
-                            <h3>Työhyvinvointi ja virkistysillat</h3>
-                            <p>Praktisia ohjeita työhyvinvoinnin edistämiseen ja stressinhallintaan.</p>
-                            <div class="product-price">60€</div>
-                            <button class="btn btn-primary add-to-cart">Lisää ostoskoriin</button>
-                        </div>
+                    <!-- Tuotteet ladataan dynaamisesti Supabasesta -->
+                    <div class="loading-products">
+                        <p>Ladataan tuotteita...</p>
                     </div>
                 </div>
             </div>

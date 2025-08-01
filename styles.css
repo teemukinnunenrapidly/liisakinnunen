@@ -452,6 +452,60 @@ section {
     font-size: 0.9rem;
 }
 
+/* Pricing card styles */
+.pricing-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.pricing-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #2d3748;
+}
+
+.pricing-card .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4299e1;
+    margin-bottom: 1.5rem;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.pricing-card li {
+    position: relative;
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.pricing-card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: #4299e1;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
 /* Blog preview */
 .blog-preview-grid {
     display: grid;

@@ -1,73 +1,81 @@
-/* Appointment Booking Calendar Styles */
+/* Appointment Booking Calendar Styles - Untitled UI Inspired */
 
 .appointment-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #ffffff;
 }
 
 .week-navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 20px;
+    margin-bottom: 32px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 16px 24px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .week-navigation h2 {
-    color: white;
+    color: #111827;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 18px;
     font-weight: 600;
+    line-height: 1.5;
 }
 
 .nav-button {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 10px 20px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 500;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .nav-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: #f9fafb;
+    border-color: #9ca3af;
+    color: #111827;
 }
 
 .nav-button:active {
-    transform: translateY(0);
+    background: #f3f4f6;
 }
 
-/* Calendar Grid */
+/* Calendar Grid - Untitled UI Style */
 .schedule-grid {
-    background: white;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e1e5e9;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .schedule-header {
     display: grid;
-    grid-template-columns: 100px repeat(7, 1fr);
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-    font-weight: 600;
-    text-align: center;
+    grid-template-columns: 120px repeat(7, 1fr);
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .schedule-header > div {
-    padding: 15px 10px;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 16px 12px;
+    border-right: 1px solid #e5e7eb;
+    font-weight: 600;
+    font-size: 14px;
+    color: #374151;
+    text-align: center;
 }
 
 .schedule-header > div:last-child {
@@ -77,29 +85,31 @@
 .day-column {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
 }
 
 .day-name {
-    font-size: 0.9rem;
+    font-size: 14px;
     font-weight: 600;
+    color: #374151;
 }
 
 .day-date {
-    font-size: 0.8rem;
-    opacity: 0.9;
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
 }
 
 /* Time Slots */
 .schedule-row {
     display: grid;
-    grid-template-columns: 100px repeat(7, 1fr);
-    border-bottom: 1px solid #e1e5e9;
+    grid-template-columns: 120px repeat(7, 1fr);
+    border-bottom: 1px solid #f3f4f6;
     transition: background-color 0.2s ease;
 }
 
 .schedule-row:hover {
-    background-color: #f8f9fa;
+    background-color: #f9fafb;
 }
 
 .schedule-row:last-child {
@@ -107,81 +117,104 @@
 }
 
 .time-column {
-    padding: 15px 10px;
-    background: #f8f9fa;
+    padding: 16px 12px;
+    background: #f9fafb;
     font-weight: 600;
-    color: #495057;
+    color: #374151;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-right: 1px solid #e1e5e9;
+    border-right: 1px solid #e5e7eb;
+    font-size: 14px;
 }
 
 .time-slot {
-    padding: 15px 10px;
+    padding: 16px 12px;
     text-align: center;
     cursor: pointer;
-    border-right: 1px solid #e1e5e9;
-    font-size: 0.9rem;
+    border-right: 1px solid #f3f4f6;
+    font-size: 14px;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 60px;
+    min-height: 64px;
+    position: relative;
 }
 
 .time-slot:last-child {
     border-right: none;
 }
 
-/* Slot States */
+/* Slot States - Untitled UI Style */
 .time-slot.available {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
-    position: relative;
-    overflow: hidden;
+    background: #ffffff;
+    color: #059669;
+    border: 1px solid #d1fae5;
+}
+
+.time-slot.available:hover {
+    background: #ecfdf5;
+    border-color: #10b981;
+    transform: scale(1.02);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .time-slot.available::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-.time-slot.available:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
-}
-
-.time-slot.available:hover::before {
-    left: 100%;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
 }
 
 .time-slot.booked {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-    color: white;
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
     cursor: not-allowed;
 }
 
+.time-slot.booked::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: #dc2626;
+    border-radius: 50%;
+}
+
 .time-slot.past {
-    background: #e9ecef;
-    color: #6c757d;
+    background: #f9fafb;
+    color: #9ca3af;
     cursor: not-allowed;
 }
 
 .time-slot.weekend {
-    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-    color: #8b4513;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fed7aa;
     cursor: not-allowed;
 }
 
-/* Booking Form */
+.time-slot.weekend::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: #f59e0b;
+    border-radius: 50%;
+}
+
+/* Booking Form - Untitled UI Style */
 .booking-form-container {
     position: fixed;
     top: 0;
@@ -193,23 +226,24 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(4px);
 }
 
 .booking-form {
-    background: white;
-    padding: 30px;
+    background: #ffffff;
+    padding: 32px;
     border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    max-width: 500px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 480px;
     width: 90%;
+    border: 1px solid #e5e7eb;
     animation: slideIn 0.3s ease;
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(-50px);
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
@@ -218,9 +252,10 @@
 }
 
 .booking-form h3 {
-    margin: 0 0 20px 0;
-    color: #333;
-    font-size: 1.5rem;
+    margin: 0 0 24px 0;
+    color: #111827;
+    font-size: 20px;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -231,83 +266,99 @@
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 600;
-    color: #495057;
+    font-weight: 500;
+    color: #374151;
+    font-size: 14px;
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #e1e5e9;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
     border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    font-size: 14px;
+    transition: all 0.2s ease;
     box-sizing: border-box;
+    background: #ffffff;
+    color: #111827;
 }
 
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #4facfe;
-    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9ca3af;
 }
 
 .form-buttons {
     display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 30px;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 32px;
 }
 
 .btn {
-    padding: 12px 24px;
+    padding: 12px 20px;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 120px;
+    transition: all 0.2s ease;
+    min-width: 100px;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
+    background: #3b82f6;
+    color: #ffffff;
+    border: 1px solid #3b82f6;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+    background: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .btn-secondary {
-    background: #6c757d;
-    color: white;
+    background: #ffffff;
+    color: #374151;
+    border: 1px solid #d1d5db;
 }
 
 .btn-secondary:hover {
-    background: #5a6268;
-    transform: translateY(-2px);
+    background: #f9fafb;
+    border-color: #9ca3af;
+    transform: translateY(-1px);
 }
 
 /* Loading and Error States */
 .loading {
     text-align: center;
-    padding: 40px;
-    color: #6c757d;
+    padding: 48px;
+    color: #6b7280;
+    font-size: 14px;
 }
 
 .loading::after {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #4facfe;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e5e7eb;
+    border-top: 2px solid #3b82f6;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 @keyframes spin {
@@ -316,26 +367,67 @@
 }
 
 .error {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-    color: white;
-    padding: 15px;
+    background: #fef2f2;
+    color: #dc2626;
+    padding: 16px;
     border-radius: 8px;
     text-align: center;
     margin: 20px 0;
+    border: 1px solid #fecaca;
+    font-size: 14px;
+}
+
+/* Selected Time Display */
+.selected-time {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #0369a1;
+    font-weight: 500;
+    font-size: 14px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .appointment-container {
-        padding: 10px;
+        padding: 16px;
     }
     
     .week-navigation {
         flex-direction: column;
-        gap: 15px;
+        gap: 16px;
         text-align: center;
+        padding: 20px;
     }
     
+    .schedule-header,
+    .schedule-row {
+        grid-template-columns: 100px repeat(7, 1fr);
+    }
+    
+    .time-column,
+    .time-slot {
+        padding: 12px 8px;
+        font-size: 13px;
+        min-height: 56px;
+    }
+    
+    .day-name {
+        font-size: 13px;
+    }
+    
+    .day-date {
+        font-size: 11px;
+    }
+    
+    .booking-form {
+        padding: 24px;
+        margin: 16px;
+    }
+}
+
+@media (max-width: 480px) {
     .schedule-header,
     .schedule-row {
         grid-template-columns: 80px repeat(7, 1fr);
@@ -343,37 +435,24 @@
     
     .time-column,
     .time-slot {
-        padding: 10px 5px;
-        font-size: 0.8rem;
+        padding: 8px 4px;
+        font-size: 12px;
+        min-height: 48px;
     }
     
     .day-name {
-        font-size: 0.8rem;
+        font-size: 12px;
     }
     
     .day-date {
-        font-size: 0.7rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .schedule-header,
-    .schedule-row {
-        grid-template-columns: 60px repeat(7, 1fr);
+        font-size: 10px;
     }
     
-    .time-column,
-    .time-slot {
-        padding: 8px 3px;
-        font-size: 0.7rem;
-        min-height: 50px;
+    .form-buttons {
+        flex-direction: column;
     }
     
-    .day-name {
-        font-size: 0.7rem;
-    }
-    
-    .day-date {
-        font-size: 0.6rem;
+    .btn {
+        width: 100%;
     }
 } 

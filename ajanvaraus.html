@@ -45,16 +45,18 @@
         <!-- Booking Section -->
         <section class="booking-section">
             <div class="appointment-container">
-                <!-- Week Navigator -->
+                <!-- Week Navigation -->
                 <div class="week-navigation">
                     <button class="nav-button" id="prev-week">
-                        ← Edellinen viikko
+                        <span class="nav-arrow">←</span>
+                        <span class="nav-text">Edellinen viikko</span>
                     </button>
-                    <div id="current-week">
-                        <h2>15. - 21. tammikuuta 2024</h2>
+                    <div class="current-week" id="current-week">
+                        <!-- Week display will be updated here -->
                     </div>
                     <button class="nav-button" id="next-week">
-                        Seuraava viikko →
+                        <span class="nav-text">Seuraava viikko</span>
+                        <span class="nav-arrow">→</span>
                     </button>
                 </div>
 

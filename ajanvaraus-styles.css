@@ -10,47 +10,55 @@
 
 .week-navigation {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 32px;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 16px 24px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-}
-
-.week-navigation h2 {
-    color: #111827;
-    margin: 0;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.5;
+    padding: 16px 0;
 }
 
 .nav-button {
-    background: #ffffff;
-    border: 1px solid #d1d5db;
-    color: #374151;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 14px;
-    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 8px;
+    padding: 12px 20px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .nav-button:hover {
     background: #f9fafb;
     border-color: #9ca3af;
-    color: #111827;
+    transform: translateY(-1px);
 }
 
 .nav-button:active {
-    background: #f3f4f6;
+    transform: translateY(0);
+}
+
+.nav-arrow {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.nav-text {
+    font-size: 14px;
+}
+
+.current-week {
+    text-align: center;
+}
+
+.current-week h2 {
+    margin: 0;
+    color: #111827;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 /* Calendar Grid - Untitled UI Style */

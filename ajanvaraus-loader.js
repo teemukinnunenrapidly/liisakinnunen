@@ -58,11 +58,17 @@ class AppointmentLoader {
         const endOfWeek = new Date(startOfWeek)
         endOfWeek.setDate(endOfWeek.getDate() + 6)
         
-        const options = { day: 'numeric', month: 'long', year: 'numeric' }
-        const startStr = startOfWeek.toLocaleDateString('fi-FI', options)
-        const endStr = endOfWeek.toLocaleDateString('fi-FI', options)
-        
-        this.weekNavigator.innerHTML = `<h2>${startStr} - ${endStr}</h2>`
+        const weekDisplay = document.getElementById('current-week')
+        weekDisplay.innerHTML = `
+            <h2>${startOfWeek.toLocaleDateString('fi-FI', { 
+                day: 'numeric', 
+                month: 'long' 
+            })} - ${endOfWeek.toLocaleDateString('fi-FI', { 
+                day: 'numeric', 
+                month: 'long',
+                year: 'numeric'
+            })}</h2>
+        `
     }
 
     getStartOfWeek(date) {
@@ -205,7 +211,6 @@ class AppointmentLoader {
         const suggestedSlots = {}
         const weekDays = ['monday', 'tuesday', 'wednesday']
         const dayIndices = [1, 2, 3] // Monday, Tuesday, Wednesday
-        const availableTimeSlots = ['09:00', '12:00', '14:00'] // The time slots we want to check
         
         dayIndices.forEach((dayIndex, i) => {
             const dayName = weekDays[i]
@@ -214,20 +219,15 @@ class AppointmentLoader {
             
             const availableSlots = []
             
-            // Check each time slot for availability
-            availableTimeSlots.forEach(timeSlot => {
+            // Generate all possible 1-hour slots for the day (9:00-17:00)
+            for (let hour = 9; hour <= 16; hour++) {
+                const timeSlot = `${hour.toString().padStart(2, '0')}:00`
                 const slotDateTime = this.createSlotDateTime(dayDate, timeSlot)
                 
                 if (!this.isSlotBooked(slotDateTime, bookedSlots) && 
                     !this.isSlotInPast(slotDateTime)) {
                     
-                    // Calculate end time based on slot
-                    let endTime
-                    if (timeSlot === '12:00') {
-                        endTime = '12:30' // 30 minute session
-                    } else {
-                        endTime = this.getEndTime(timeSlot) // 1 hour session
-                    }
+                    const endTime = this.getEndTime(timeSlot)
                     
                     availableSlots.push({
                         time: `${timeSlot}-${endTime}`,
@@ -240,9 +240,9 @@ class AppointmentLoader {
                         })}`
                     })
                 }
-            })
+            }
             
-            // Take the first 3 available slots (or all if less than 3)
+            // Take the first 3 available slots
             suggestedSlots[dayName] = availableSlots.slice(0, 3)
         })
         
@@ -253,13 +253,10 @@ class AppointmentLoader {
         const days = ['monday', 'tuesday', 'wednesday']
         
         days.forEach(day => {
-            const dateElement = document.getElementById(`${day}-date`)
             const card = document.getElementById(`${day}-card`)
-            const timeSlotsContainer = card.querySelector('.time-slots')
             
             if (suggestedSlots[day] && suggestedSlots[day].length > 0) {
                 const slots = suggestedSlots[day]
-                dateElement.textContent = slots[0].date
                 card.style.opacity = '1'
                 
                 // Update time slots dynamically
@@ -271,7 +268,6 @@ class AppointmentLoader {
                     button.disabled = false
                 })
             } else {
-                dateElement.textContent = '-'
                 card.style.opacity = '0.5'
                 
                 // Show "Ei vapaita aikoja" for all slots
@@ -288,6 +284,16 @@ class AppointmentLoader {
 
     updateTimeSlotsForDay(day, availableSlots) {
         const timeSlotItems = document.querySelectorAll(`#${day}-card .time-slot-item`)
+        const dayNameElement = document.querySelector(`#${day}-card .day-name`)
+        const dayDateElement = document.querySelector(`#${day}-card .day-date`)
+        
+        // Update day header with date if we have slots
+        if (availableSlots.length > 0) {
+            const date = availableSlots[0].date
+            dayDateElement.textContent = date
+        } else {
+            dayDateElement.textContent = '-'
+        }
         
         timeSlotItems.forEach((item, index) => {
             const timeElement = item.querySelector('.time-slot')

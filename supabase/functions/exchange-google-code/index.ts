@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -76,10 +77,35 @@ serve(async (req) => {
       )
     }
 
+    // Store refresh token in database using service role
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!
+    const supabaseServiceKey = Deno.env.get('SERVICE_ROLE_KEY')!
+    const supabase = createClient(supabaseUrl, supabaseServiceKey)
+
+    const { error: dbError } = await supabase
+      .from('google_auth')
+      .upsert({
+        user_id: 'liisa',
+        refresh_token: tokenData.refresh_token,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      })
+
+    if (dbError) {
+      console.error('Database error:', dbError)
+      return new Response(
+        JSON.stringify({ error: 'Failed to store refresh token in database' }),
+        { 
+          status: 500, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      )
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
-        refresh_token: tokenData.refresh_token,
+        message: 'Refresh token stored successfully',
         access_token: tokenData.access_token,
         expires_in: tokenData.expires_in,
         scope: tokenData.scope,

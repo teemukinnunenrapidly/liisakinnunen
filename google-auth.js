@@ -98,7 +98,7 @@ class GoogleAuthHandler {
         try {
             this.updateStatus('loading', 'Yhdistetään kalenteria...')
 
-            // Exchange code for tokens
+            // Exchange code for tokens and store in database
             const tokenResponse = await fetch('https://qqbqywurjlnrlsvyuvxf.supabase.co/functions/v1/exchange-google-code', {
                 method: 'POST',
                 headers: {
@@ -118,19 +118,6 @@ class GoogleAuthHandler {
             const tokenData = await tokenResponse.json()
 
             if (tokenData.success) {
-                // Store refresh token in Supabase
-                const { error: dbError } = await window.supabaseClient
-                    .from('google_auth')
-                    .upsert({
-                        user_id: 'liisa',
-                        refresh_token: tokenData.refresh_token,
-                        created_at: new Date().toISOString()
-                    })
-
-                if (dbError) {
-                    throw new Error('Failed to store refresh token')
-                }
-
                 this.updateStatus('connected', 'Kalenteri yhdistetty onnistuneesti!')
                 this.showConnectedState()
                 

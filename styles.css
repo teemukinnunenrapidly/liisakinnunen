@@ -734,6 +734,27 @@ footer {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.product-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+}
+
+.product-link:hover {
+    transform: scale(1.02);
+}
+
+.product-title-link {
+    color: #2d3748;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.product-title-link:hover {
+    color: #4299e1;
+}
+
 .product-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);

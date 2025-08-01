@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuote - Liisa Kinnunen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="product-detail-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="stripe-config.js"></script>
+    <script src="supabase-client.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Liisa Kinnunen</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Etusivu</a></li>
+                <li><a href="palvelut.html">Palvelut</a></li>
+                <li><a href="kauppa.html">Kauppa</a></li>
+                <li><a href="blogi.html">Blogi</a></li>
+                <li><a href="ajanvaraus.html">Varaa aika</a></li>
+            </ul>
+            <div class="nav-cart">
+                <button class="cart-icon" id="cart-icon">
+                    🛒 <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+                <button class="btn btn-secondary stripe-checkout-btn" id="stripe-checkout-btn" style="display: none;">
+                    Maksa Stripe:llä
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="product-detail-container">
+            <!-- Breadcrumb navigation -->
+            <nav class="breadcrumb">
+                <a href="kauppa.html">Kauppa</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="current-product">Tuote</span>
+            </nav>
+
+            <!-- Product detail section -->
+            <section class="product-detail">
+                <div class="product-images">
+                    <div class="main-image">
+                        <img id="product-main-image" src="" alt="" class="product-detail-img">
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <div class="product-header">
+                        <h1 id="product-title">Ladataan tuotetta...</h1>
+                        <div class="product-category" id="product-category"></div>
+                    </div>
+
+                    <div class="product-price-section">
+                        <div class="product-price" id="product-price">-</div>
+                        <div class="product-availability">
+                            <span class="availability-badge available">Saatavilla</span>
+                        </div>
+                    </div>
+
+                    <div class="product-description" id="product-description">
+                        <p>Ladataan kuvauksen...</p>
+                    </div>
+
+                    <div class="product-features">
+                        <h3>Tuotteen ominaisuudet</h3>
+                        <ul id="product-features">
+                            <li>Ladataan ominaisuuksia...</li>
+                        </ul>
+                    </div>
+
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <label for="quantity">Määrä:</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" id="decrease-quantity">-</button>
+                                <input type="number" id="quantity" value="1" min="1" max="10">
+                                <button class="quantity-btn" id="increase-quantity">+</button>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-large add-to-cart-btn" id="add-to-cart-btn">
+                            Lisää ostoskoriin
+                        </button>
+
+                        <button class="btn btn-secondary btn-large buy-now-btn" id="buy-now-btn">
+                            Osta nyt
+                        </button>
+                    </div>
+
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Kategoria:</span>
+                            <span class="meta-value" id="meta-category">-</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Tuote ID:</span>
+                            <span class="meta-value" id="meta-id">-</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related products section -->
+            <section class="related-products">
+                <h2>Samankaltaiset tuotteet</h2>
+                <div class="related-products-grid" id="related-products">
+                    <!-- Related products will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="product-detail-loader.js"></script>
+</body>
+</html> 

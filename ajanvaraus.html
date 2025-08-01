@@ -29,8 +29,32 @@
                 <span></span>
                 <span></span>
             </div>
+            <div class="nav-cart">
+                <button class="cart-icon" id="cart-icon">
+                    🛒 <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <!-- Cart Popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main>

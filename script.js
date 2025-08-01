@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartItems = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
     const cartCount = document.getElementById('cart-count');
-    const cartToggle = document.getElementById('cart-toggle');
+    const cartIcon = document.getElementById('cart-icon');
     const cartPopup = document.getElementById('cart-popup');
     const cartClose = document.getElementById('cart-close');
     const checkoutBtn = document.getElementById('checkout-btn');
@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Cart popup toggle
-    if (cartToggle) {
-        cartToggle.addEventListener('click', function() {
+    if (cartIcon) {
+        cartIcon.addEventListener('click', function() {
             cartPopup.classList.add('active');
         });
     }

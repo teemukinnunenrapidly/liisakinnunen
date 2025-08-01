@@ -64,20 +64,20 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: #1a1a1a;
+    color: #2d3748;
     background-color: #ffffff;
 }
 
 /* Header */
 header {
-    background-color: #1a1a1a;
+    background-color: #4a5568;
     color: white;
     padding: 1rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 nav {
@@ -110,12 +110,12 @@ nav {
 }
 
 .nav-links a:hover {
-    color: #f0f0f0;
+    color: #e2e8f0;
 }
 
 /* Hero section */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/liisa-etusivu.jpeg');
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/liisa-etusivu.jpeg');
     background-size: cover;
     background-position: center;
     height: 80vh;
@@ -141,7 +141,7 @@ nav {
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 .hero-buttons {
@@ -163,12 +163,13 @@ nav {
 }
 
 .btn-primary {
-    background-color: #1a1a1a;
+    background-color: #4299e1;
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #333333;
+    background-color: #3182ce;
+    transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -179,7 +180,7 @@ nav {
 
 .btn-secondary:hover {
     background-color: white;
-    color: #1a1a1a;
+    color: #2d3748;
 }
 
 /* Main content */
@@ -199,7 +200,7 @@ section {
     font-weight: 700;
     text-align: center;
     margin-bottom: 3rem;
-    color: #1a1a1a;
+    color: #2d3748;
 }
 
 /* Services grid */
@@ -212,7 +213,7 @@ section {
 
 .service-card {
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e2e8f0;
     padding: 2rem;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -227,23 +228,23 @@ section {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #1a1a1a;
+    color: #2d3748;
 }
 
 .service-card p {
-    color: #666666;
+    color: #718096;
     margin-bottom: 1.5rem;
 }
 
 .service-card .btn {
-    background-color: #1a1a1a;
+    background-color: #4299e1;
     color: white;
     padding: 10px 20px;
     font-size: 0.9rem;
 }
 
 .service-card .btn:hover {
-    background-color: #333333;
+    background-color: #3182ce;
 }
 
 /* Pricing grid */
@@ -256,7 +257,7 @@ section {
 
 .pricing-item {
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e2e8f0;
     padding: 2rem;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -271,13 +272,13 @@ section {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #1a1a1a;
+    color: #2d3748;
 }
 
 .price {
     font-size: 2rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #4299e1;
     margin-bottom: 1rem;
 }
 
@@ -288,7 +289,7 @@ section {
 
 .pricing-item li {
     padding: 0.5rem 0;
-    color: #666666;
+    color: #718096;
 }
 
 /* Blog preview */
@@ -301,7 +302,7 @@ section {
 
 .blog-card {
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e2e8f0;
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -325,28 +326,28 @@ section {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #1a1a1a;
+    color: #2d3748;
 }
 
 .blog-card p {
-    color: #666666;
+    color: #718096;
     margin-bottom: 1rem;
 }
 
 .blog-card .btn {
-    background-color: #1a1a1a;
+    background-color: #4299e1;
     color: white;
     padding: 8px 16px;
     font-size: 0.9rem;
 }
 
 .blog-card .btn:hover {
-    background-color: #333333;
+    background-color: #3182ce;
 }
 
 /* Footer */
 footer {
-    background-color: #1a1a1a;
+    background-color: #4a5568;
     color: white;
     padding: 3rem 0;
     margin-top: 4rem;
@@ -368,7 +369,7 @@ footer {
 }
 
 .footer-section p, .footer-section a {
-    color: #cccccc;
+    color: #e2e8f0;
     text-decoration: none;
     margin-bottom: 0.5rem;
     display: block;
@@ -380,7 +381,7 @@ footer {
 
 /* Page headers */
 .page-header {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/home-feat-3.jpg');
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/home-feat-3.jpg');
     background-size: cover;
     background-position: center;
     height: 40vh;

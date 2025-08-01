@@ -3,8 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palvelut - Liisa Kinnunen</title>
-    <meta name="description" content="Liisa Kinnusen fysioterapia- ja Personal Trainer -palvelut - äitiysfysioterapia, lantionpohjalihasten kuntoutus ja lihaskuntoharjoittelu">
+    
+    <!-- Primary Meta Tags -->
+    <title>Fysioterapiapalvelut Rovaniemellä | Äitiysfysioterapia & Personal Trainer - Liisa Kinnunen</title>
+    <meta name="title" content="Fysioterapiapalvelut Rovaniemellä | Äitiysfysioterapia & Personal Trainer - Liisa Kinnunen">
+    <meta name="description" content="Fysioterapiapalvelut Rovaniemellä: äitiysfysioterapia, lantionpohjalihasten kuntoutus, Personal Trainer ja psykofyysinen fysioterapia. Varaa aika nyt!">
+    <meta name="keywords" content="fysioterapiapalvelut rovaniemi, äitiysfysioterapia rovaniemi, lantionpohjalihasten kuntoutus, personal trainer rovaniemi, psykofyysinen fysioterapia, fysioterapeutti rovaniemi">
+    <meta name="author" content="Liisa Kinnunen">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Finnish">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://liisakinnunen.fi/palvelut.html">
+    <meta property="og:title" content="Fysioterapiapalvelut Rovaniemellä | Äitiysfysioterapia & Personal Trainer">
+    <meta property="og:description" content="Fysioterapiapalvelut Rovaniemellä: äitiysfysioterapia, lantionpohjalihasten kuntoutus, Personal Trainer ja psykofyysinen fysioterapia.">
+    <meta property="og:image" content="https://liisakinnunen.fi/images/liisa-etusivu.jpeg">
+    <meta property="og:site_name" content="Liisa Kinnunen - Fysioterapeutti">
+    <meta property="og:locale" content="fi_FI">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://liisakinnunen.fi/palvelut.html">
+    <meta property="twitter:title" content="Fysioterapiapalvelut Rovaniemellä | Äitiysfysioterapia & Personal Trainer">
+    <meta property="twitter:description" content="Fysioterapiapalvelut Rovaniemellä: äitiysfysioterapia, lantionpohjalihasten kuntoutus, Personal Trainer ja psykofyysinen fysioterapia.">
+    <meta property="twitter:image" content="https://liisakinnunen.fi/images/liisa-etusivu.jpeg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://liisakinnunen.fi/palvelut.html">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Fysioterapiapalvelut Rovaniemellä",
+        "description": "Äitiysfysioterapia, lantionpohjalihasten kuntoutus, Personal Trainer ja psykofyysinen fysioterapia Rovaniemellä",
+        "provider": {
+            "@type": "Person",
+            "name": "Liisa Kinnunen",
+            "jobTitle": "Fysioterapeutti ja Personal Trainer"
+        },
+        "areaServed": {
+            "@type": "City",
+            "name": "Rovaniemi"
+        },
+        "serviceType": [
+            "Äitiysfysioterapia",
+            "Lantionpohjalihasten kuntoutus",
+            "Personal Trainer",
+            "Psykofyysinen fysioterapia"
+        ],
+        "url": "https://liisakinnunen.fi/palvelut.html"
+    }
+    </script>
+    
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -50,56 +103,58 @@
     </div>
 
     <main>
-        <section class="page-header">
-            <h1>Palvelut</h1>
+        <section class="page-header" aria-label="Fysioterapiapalvelut Rovaniemellä">
+            <h1>Fysioterapiapalvelut Rovaniemellä</h1>
+            <p>Erikoistunut äitiysfysioterapiaan, lantionpohjalihasten kuntoutukseen ja Personal Trainer -palveluihin</p>
         </section>
 
-        <section class="services">
+        <section class="services" aria-label="Fysioterapiapalvelut">
             <div class="container">
+                <h2 class="section-title">Fysioterapiapalvelut Rovaniemellä</h2>
                 <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">🤰</div>
-                        <h3>Äitiysfysioterapia</h3>
-                        <p>Erikoistunut äitiysfysioterapiaan ja synnytyksestä palautumiseen. Autan raskausajan hyvinvoinnissa ja synnytykseen valmistautumisessa.</p>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">🤰</div>
+                        <h3>Äitiysfysioterapia Rovaniemellä</h3>
+                        <p>Erikoistunut äitiysfysioterapiaan ja synnytyksestä palautumiseen. Autan raskausajan hyvinvoinnissa ja synnytykseen valmistautumisessa Rovaniemellä.</p>
                         <ul class="service-features">
                             <li>Raskausajan hyvinvointi</li>
                             <li>Synnytykseen valmistautuminen</li>
                             <li>Synnytyksestä palautuminen</li>
                             <li>Vatsalihasten erkauman kuntoutus</li>
                         </ul>
-                        <a href="ajanvaraus.html" class="btn btn-primary">Varaa aika</a>
-                    </div>
+                        <a href="ajanvaraus.html" class="btn btn-primary" aria-label="Varaa aika äitiysfysioterapiaan">Varaa aika</a>
+                    </article>
 
-                    <div class="service-card">
-                        <div class="service-icon">💪</div>
-                        <h3>Personal Trainer -palvelut</h3>
-                        <p>Henkilökohtaista lihaskuntoharjoittelun ohjausta ja kuntouttavaa harjoittelua. Sopii sekä aloittelijoille että kokeneemmille treenaajille.</p>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">💪</div>
+                        <h3>Personal Trainer -palvelut Rovaniemellä</h3>
+                        <p>Henkilökohtaista lihaskuntoharjoittelun ohjausta ja kuntouttavaa harjoittelua Rovaniemellä. Sopii sekä aloittelijoille että kokeneemmille treenaajille.</p>
                         <ul class="service-features">
                             <li>Lihaskuntoharjoittelu</li>
                             <li>Kuntosaliohjaukset</li>
                             <li>Toiminnallinen treeni</li>
                             <li>Henkilökohtainen ohjelmat</li>
                         </ul>
-                        <a href="ajanvaraus.html" class="btn btn-primary">Varaa aika</a>
-                    </div>
+                        <a href="ajanvaraus.html" class="btn btn-primary" aria-label="Varaa aika Personal Trainer -palveluihin">Varaa aika</a>
+                    </article>
 
-                    <div class="service-card">
-                        <div class="service-icon">🩺</div>
-                        <h3>Lantionpohjalihasten kuntoutus</h3>
-                        <p>Erikoistunut lantionpohjalihasten toimintaan ja kuntoutukseen. Autan eri kiputilojen ja toimintahäiriöiden hoitamisessa.</p>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">🩺</div>
+                        <h3>Lantionpohjalihasten kuntoutus Rovaniemellä</h3>
+                        <p>Erikoistunut lantionpohjalihasten toimintaan ja kuntoutukseen Rovaniemellä. Autan eri kiputilojen ja toimintahäiriöiden hoitamisessa.</p>
                         <ul class="service-features">
                             <li>Lantionpohjan mittaus</li>
                             <li>Lantionpohjalihasten harjoittelu</li>
                             <li>Kivut ja jännitystilat</li>
                             <li>Manuaalinen hoito</li>
                         </ul>
-                        <a href="ajanvaraus.html" class="btn btn-primary">Varaa aika</a>
-                    </div>
+                        <a href="ajanvaraus.html" class="btn btn-primary" aria-label="Varaa aika lantionpohjalihasten kuntoutukseen">Varaa aika</a>
+                    </article>
 
-                    <div class="service-card">
-                        <div class="service-icon">🧠</div>
-                        <h3>Psykofyysinen fysioterapia</h3>
-                        <p>Kokonaisvaltainen lähestymistapa, joka huomioi sekä kehon että mielen hyvinvoinnin. Autan löytämään tasapainon elämään.</p>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">🧠</div>
+                        <h3>Psykofyysinen fysioterapia Rovaniemellä</h3>
+                        <p>Kokonaisvaltainen lähestymistapa, joka huomioi sekä kehon että mielen hyvinvoinnin Rovaniemellä. Autan löytämään tasapainon elämään.</p>
                         <ul class="service-features">
                             <li>Psykofyysinen tutkiminen</li>
                             <li>Työhyvinvointi ja virkistysillat</li>
@@ -107,7 +162,7 @@
                             <li>Stressinhallinta</li>
                         </ul>
                         <a href="ajanvaraus.html" class="btn btn-primary">Varaa aika</a>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>

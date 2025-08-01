@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://liisakinnunen.fi/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow important pages
+Allow: /palvelut.html
+Allow: /kauppa.html
+Allow: /blogi.html
+Allow: /ajanvaraus.html
+Allow: /*.html 

@@ -79,55 +79,61 @@
                 <div class="suggested-times" id="suggested-times">
                     <h3>Ehdotetut vapaat ajat</h3>
                     <div class="suggested-times-grid">
-                        <div class="suggested-time-card" id="suggested-monday">
+                        <div class="suggested-time-card" id="monday-card">
                             <div class="card-header">
-                                <h4>Maanantai</h4>
-                                <span class="date" id="monday-date">-</span>
+                                <div class="day-name">Maanantai</div>
+                                <div class="day-date" id="monday-date">-</div>
                             </div>
                             <div class="card-content">
                                 <div class="time-slot" id="monday-time">-</div>
-                                <div class="session-info">
-                                    <span class="duration">9:00-10:00</span>
-                                    <span class="price">70€</span>
+                                <div class="service-selection">
+                                    <select class="service-dropdown" id="monday-service">
+                                        <option value="">Valitse palvelu</option>
+                                        <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                        <option value="Hieronta">Hieronta - 70€</option>
+                                        <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
+                                    </select>
                                 </div>
-                                <button class="btn btn-primary select-time-btn" data-day="monday">
-                                    Valitse tämä aika
-                                </button>
                             </div>
+                            <button class="select-time-btn" onclick="appointmentLoader.selectSuggestedTime('monday')">Valitse tämä aika</button>
                         </div>
                         
-                        <div class="suggested-time-card" id="suggested-tuesday">
+                        <div class="suggested-time-card" id="tuesday-card">
                             <div class="card-header">
-                                <h4>Tiistai</h4>
-                                <span class="date" id="tuesday-date">-</span>
+                                <div class="day-name">Tiistai</div>
+                                <div class="day-date" id="tuesday-date">-</div>
                             </div>
                             <div class="card-content">
                                 <div class="time-slot" id="tuesday-time">-</div>
-                                <div class="session-info">
-                                    <span class="duration">9:00-10:00</span>
-                                    <span class="price">70€</span>
+                                <div class="service-selection">
+                                    <select class="service-dropdown" id="tuesday-service">
+                                        <option value="">Valitse palvelu</option>
+                                        <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                        <option value="Hieronta">Hieronta - 70€</option>
+                                        <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
+                                    </select>
                                 </div>
-                                <button class="btn btn-primary select-time-btn" data-day="tuesday">
-                                    Valitse tämä aika
-                                </button>
                             </div>
+                            <button class="select-time-btn" onclick="appointmentLoader.selectSuggestedTime('tuesday')">Valitse tämä aika</button>
                         </div>
                         
-                        <div class="suggested-time-card" id="suggested-wednesday">
+                        <div class="suggested-time-card" id="wednesday-card">
                             <div class="card-header">
-                                <h4>Keskiviikko</h4>
-                                <span class="date" id="wednesday-date">-</span>
+                                <div class="day-name">Keskiviikko</div>
+                                <div class="day-date" id="wednesday-date">-</div>
                             </div>
                             <div class="card-content">
                                 <div class="time-slot" id="wednesday-time">-</div>
-                                <div class="session-info">
-                                    <span class="duration">9:00-10:00</span>
-                                    <span class="price">70€</span>
+                                <div class="service-selection">
+                                    <select class="service-dropdown" id="wednesday-service">
+                                        <option value="">Valitse palvelu</option>
+                                        <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                        <option value="Hieronta">Hieronta - 70€</option>
+                                        <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
+                                    </select>
                                 </div>
-                                <button class="btn btn-primary select-time-btn" data-day="wednesday">
-                                    Valitse tämä aika
-                                </button>
                             </div>
+                            <button class="select-time-btn" onclick="appointmentLoader.selectSuggestedTime('wednesday')">Valitse tämä aika</button>
                         </div>
                     </div>
                     

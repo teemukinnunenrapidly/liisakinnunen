@@ -238,112 +238,67 @@ class AppointmentLoader {
         this.renderMobileCalendar(startOfWeek, bookedSlots)
         
         // Find and display suggested times
-        this.findSuggestedTimes(startOfWeek, bookedSlots)
+        const suggestedSlots = this.findSuggestedTimes(startOfWeek, bookedSlots)
+        this.updateSuggestedTimesDisplay(suggestedSlots)
     }
 
     findSuggestedTimes(startOfWeek, bookedSlots) {
-        const weekDays = ['Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai', 'Sunnuntai']
-        const timeSlots = this.generateTimeSlots()
-        
-        // Find next available slots for Monday (1), Tuesday (2), Wednesday (3)
-        const targetDays = [1, 2, 3] // Monday, Tuesday, Wednesday
         const suggestedSlots = {}
+        const weekDays = ['monday', 'tuesday', 'wednesday']
+        const dayIndices = [1, 2, 3] // Monday, Tuesday, Wednesday
         
-        targetDays.forEach(dayIndex => {
+        dayIndices.forEach((dayIndex, i) => {
+            const dayName = weekDays[i]
             const dayDate = new Date(startOfWeek)
             dayDate.setDate(dayDate.getDate() + dayIndex)
             
-            // Find first available slot for this day
-            for (let timeSlot of timeSlots) {
+            const timeSlots = this.generateTimeSlots()
+            let foundSlot = null
+            
+            for (const timeSlot of timeSlots) {
                 const slotDateTime = this.createSlotDateTime(dayDate, timeSlot)
-                const isBooked = this.isSlotBooked(slotDateTime, bookedSlots)
-                const isPast = this.isSlotInPast(slotDateTime)
-                const isWeekend = dayDate.getDay() === 0 || dayDate.getDay() === 6
                 
-                if (!isPast && !isWeekend && !isBooked) {
-                    suggestedSlots[dayIndex] = {
-                        date: dayDate,
+                if (!this.isSlotBooked(slotDateTime, bookedSlots) && 
+                    !this.isSlotInPast(slotDateTime)) {
+                    foundSlot = {
                         time: timeSlot,
-                        dayName: weekDays[dayIndex]
+                        date: `${dayDate.toLocaleDateString('fi-FI', { 
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'short'
+                        })}`,
+                        dateTime: slotDateTime
                     }
                     break
                 }
             }
+            
+            suggestedSlots[dayName] = foundSlot
         })
         
-        // Update the suggested times display
-        this.updateSuggestedTimesDisplay(suggestedSlots)
+        return suggestedSlots
     }
 
     updateSuggestedTimesDisplay(suggestedSlots) {
-        const dayNames = ['monday', 'tuesday', 'wednesday']
-        const dayIndices = [1, 2, 3]
+        const days = ['monday', 'tuesday', 'wednesday']
         
-        dayIndices.forEach((dayIndex, i) => {
-            const dayName = dayNames[i]
-            const slot = suggestedSlots[dayIndex]
+        days.forEach(day => {
+            const timeElement = document.getElementById(`${day}-time`)
+            const dateElement = document.getElementById(`${day}-date`)
+            const card = document.getElementById(`${day}-card`)
+            const button = card.querySelector('.select-time-btn')
             
-            const timeElement = document.getElementById(`${dayName}-time`)
-            const dateElement = document.getElementById(`${dayName}-date`)
-            const durationElement = document.querySelector(`#suggested-${dayName} .duration`)
-            const priceElement = document.querySelector(`#suggested-${dayName} .price`)
-            
-            if (slot && timeElement && dateElement) {
-                const dayNumber = slot.date.getDate()
-                const monthName = slot.date.toLocaleDateString('fi-FI', { month: 'short' })
-                
+            if (suggestedSlots[day]) {
+                const slot = suggestedSlots[day]
                 timeElement.textContent = slot.time
-                dateElement.textContent = `${slot.dayName} ${dayNumber}. ${monthName}`
-                
-                // Calculate end time (1 hour session)
-                const startTime = new Date(slot.date)
-                const [hours, minutes] = slot.time.split(':').map(Number)
-                startTime.setHours(hours, minutes, 0, 0)
-                
-                const endTime = new Date(startTime)
-                endTime.setHours(endTime.getHours() + 1)
-                
-                const startTimeStr = startTime.toLocaleTimeString('fi-FI', { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                })
-                const endTimeStr = endTime.toLocaleTimeString('fi-FI', { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                })
-                
-                if (durationElement) {
-                    durationElement.textContent = `${startTimeStr}-${endTimeStr}`
-                }
-                
-                if (priceElement) {
-                    priceElement.textContent = '70€'
-                }
-                
-                // Enable the button
-                const button = document.querySelector(`[data-day="${dayName}"]`)
-                if (button) {
-                    button.disabled = false
-                    button.style.opacity = '1'
-                }
-            } else if (timeElement && dateElement) {
-                timeElement.textContent = 'Ei vapaita aikoja'
-                dateElement.textContent = 'Ei saatavilla'
-                
-                if (durationElement) {
-                    durationElement.textContent = '-'
-                }
-                
-                if (priceElement) {
-                    priceElement.textContent = '-'
-                }
-                
-                // Disable the button
-                const button = document.querySelector(`[data-day="${dayName}"]`)
-                if (button) {
-                    button.disabled = true
-                    button.style.opacity = '0.5'
-                }
+                dateElement.textContent = slot.date
+                button.disabled = false
+                card.style.opacity = '1'
+            } else {
+                timeElement.textContent = '-'
+                dateElement.textContent = '-'
+                button.disabled = true
+                card.style.opacity = '0.5'
             }
         })
     }
@@ -517,14 +472,16 @@ class AppointmentLoader {
     }
 
     showBookingForm() {
-        if (this.selectedTimeSlot) {
-            document.getElementById('selected-time').innerHTML = `
-                <strong>${this.selectedTimeSlot.displayDate}</strong><br>
-                <strong>${this.selectedTimeSlot.displayTime} - ${this.getEndTime(this.selectedTimeSlot.displayTime)}</strong>
-            `
-            this.bookingForm.style.display = 'block'
-            this.bookingForm.scrollIntoView({ behavior: 'smooth' })
+        const formContainer = document.getElementById('booking-form-container')
+        const serviceSelect = document.getElementById('service-type')
+        
+        // Pre-select the chosen service if available
+        if (this.selectedService && serviceSelect) {
+            serviceSelect.value = this.selectedService
         }
+        
+        formContainer.style.display = 'block'
+        formContainer.scrollIntoView({ behavior: 'smooth' })
     }
 
     hideBookingForm() {
@@ -624,8 +581,16 @@ class AppointmentLoader {
     selectSuggestedTime(day) {
         const timeElement = document.getElementById(`${day}-time`)
         const dateElement = document.getElementById(`${day}-date`)
+        const serviceDropdown = document.getElementById(`${day}-service`)
         
         if (timeElement && dateElement && timeElement.textContent !== '-') {
+            // Check if service is selected
+            const selectedService = serviceDropdown.value
+            if (!selectedService) {
+                alert('Valitse ensin palvelu')
+                return
+            }
+            
             const time = timeElement.textContent
             const date = dateElement.textContent
             
@@ -638,6 +603,9 @@ class AppointmentLoader {
             const selectedDate = new Date(dateString)
             const [hours, minutes] = time.split(':').map(Number)
             selectedDate.setHours(hours, minutes, 0, 0)
+            
+            // Store selected service
+            this.selectedService = selectedService
             
             this.selectTimeSlot(selectedDate, time, selectedDate)
         }

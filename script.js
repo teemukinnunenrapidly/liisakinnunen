@@ -197,39 +197,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Checkout button functionality
     if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
+        checkoutBtn.addEventListener('click', async function() {
             console.log('Checkout button clicked');
             if (cart.length === 0) {
                 showNotification('Ostoskorisi on tyhjä!');
                 return;
             }
             
-            console.log('Cart has items, showing Stripe button');
-            // Show Stripe checkout button
-            const stripeCheckoutBtn = document.getElementById('stripe-checkout-btn');
-            if (stripeCheckoutBtn) {
-                stripeCheckoutBtn.style.display = 'inline-block';
-                console.log('Stripe checkout button shown');
-            } else {
-                console.error('Stripe checkout button not found');
-            }
-        });
-    } else {
-        console.error('Checkout button not found');
-    }
-
-    // Stripe checkout functionality
-    const stripeCheckoutBtn = document.getElementById('stripe-checkout-btn');
-    if (stripeCheckoutBtn && window.stripeConfig) {
-        console.log('Stripe checkout button found and stripeConfig available');
-        stripeCheckoutBtn.addEventListener('click', async function() {
-            console.log('Stripe checkout button clicked');
-            if (cart.length === 0) {
-                showNotification('Ostoskorisi on tyhjä!');
-                return;
-            }
-
-            console.log('Cart items:', cart);
+            console.log('Cart has items, proceeding to Stripe checkout');
+            
             try {
                 // Create line items for Stripe
                 const lineItems = cart.map(item => ({
@@ -286,9 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     } else {
-        console.error('Stripe checkout button or stripeConfig not available');
-        console.log('stripeCheckoutBtn:', stripeCheckoutBtn);
-        console.log('window.stripeConfig:', window.stripeConfig);
+        console.error('Checkout button not found');
     }
 
     // Load cart on page load

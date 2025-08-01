@@ -205,34 +205,45 @@ class AppointmentLoader {
         const suggestedSlots = {}
         const weekDays = ['monday', 'tuesday', 'wednesday']
         const dayIndices = [1, 2, 3] // Monday, Tuesday, Wednesday
+        const availableTimeSlots = ['09:00', '12:00', '14:00'] // The time slots we want to check
         
         dayIndices.forEach((dayIndex, i) => {
             const dayName = weekDays[i]
             const dayDate = new Date(startOfWeek)
             dayDate.setDate(dayDate.getDate() + dayIndex)
             
-            const timeSlots = this.generateTimeSlots()
-            let foundSlot = null
+            const availableSlots = []
             
-            for (const timeSlot of timeSlots) {
+            // Check each time slot for availability
+            availableTimeSlots.forEach(timeSlot => {
                 const slotDateTime = this.createSlotDateTime(dayDate, timeSlot)
                 
                 if (!this.isSlotBooked(slotDateTime, bookedSlots) && 
                     !this.isSlotInPast(slotDateTime)) {
-                    foundSlot = {
-                        time: timeSlot,
+                    
+                    // Calculate end time based on slot
+                    let endTime
+                    if (timeSlot === '12:00') {
+                        endTime = '12:30' // 30 minute session
+                    } else {
+                        endTime = this.getEndTime(timeSlot) // 1 hour session
+                    }
+                    
+                    availableSlots.push({
+                        time: `${timeSlot}-${endTime}`,
+                        startTime: timeSlot,
+                        dateTime: slotDateTime,
                         date: `${dayDate.toLocaleDateString('fi-FI', { 
                             weekday: 'long',
                             day: 'numeric',
                             month: 'short'
-                        })}`,
-                        dateTime: slotDateTime
-                    }
-                    break
+                        })}`
+                    })
                 }
-            }
+            })
             
-            suggestedSlots[dayName] = foundSlot
+            // Take the first 3 available slots (or all if less than 3)
+            suggestedSlots[dayName] = availableSlots.slice(0, 3)
         })
         
         return suggestedSlots
@@ -244,11 +255,15 @@ class AppointmentLoader {
         days.forEach(day => {
             const dateElement = document.getElementById(`${day}-date`)
             const card = document.getElementById(`${day}-card`)
+            const timeSlotsContainer = card.querySelector('.time-slots')
             
-            if (suggestedSlots[day]) {
-                const slot = suggestedSlots[day]
-                dateElement.textContent = slot.date
+            if (suggestedSlots[day] && suggestedSlots[day].length > 0) {
+                const slots = suggestedSlots[day]
+                dateElement.textContent = slots[0].date
                 card.style.opacity = '1'
+                
+                // Update time slots dynamically
+                this.updateTimeSlotsForDay(day, slots)
                 
                 // Enable all buttons for this day
                 const buttons = card.querySelectorAll('.select-time-btn')
@@ -259,11 +274,48 @@ class AppointmentLoader {
                 dateElement.textContent = '-'
                 card.style.opacity = '0.5'
                 
+                // Show "Ei vapaita aikoja" for all slots
+                this.updateTimeSlotsForDay(day, [])
+                
                 // Disable all buttons for this day
                 const buttons = card.querySelectorAll('.select-time-btn')
                 buttons.forEach(button => {
                     button.disabled = true
                 })
+            }
+        })
+    }
+
+    updateTimeSlotsForDay(day, availableSlots) {
+        const timeSlotItems = document.querySelectorAll(`#${day}-card .time-slot-item`)
+        
+        timeSlotItems.forEach((item, index) => {
+            const timeElement = item.querySelector('.time-slot')
+            const serviceDropdown = item.querySelector('.service-dropdown')
+            const button = item.querySelector('.select-time-btn')
+            
+            if (availableSlots[index]) {
+                const slot = availableSlots[index]
+                timeElement.textContent = slot.time
+                timeElement.style.color = '#059669'
+                
+                // Update button onclick with correct time
+                button.onclick = () => this.selectSuggestedTime(day, slot.startTime)
+                button.disabled = false
+                
+                // Enable service dropdown
+                serviceDropdown.disabled = false
+                serviceDropdown.style.opacity = '1'
+            } else {
+                timeElement.textContent = 'Ei vapaita aikoja'
+                timeElement.style.color = '#9ca3af'
+                
+                // Disable button
+                button.disabled = true
+                
+                // Disable service dropdown
+                serviceDropdown.disabled = true
+                serviceDropdown.style.opacity = '0.5'
             }
         })
     }
@@ -578,6 +630,8 @@ class AppointmentLoader {
     }
 
     getTimeSlotIndex(time) {
+        // For dynamic time slots, we'll use the index based on the time slot position
+        // This will be 1, 2, or 3 based on which slot is available
         const timeMap = {
             '09:00': '1',
             '12:00': '2', 

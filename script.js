@@ -56,29 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Shop filter functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const productCards = document.querySelectorAll('.product-card');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-
-            const category = this.getAttribute('data-category');
-
-            productCards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-
     // Shopping cart functionality
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     const cartItems = document.getElementById('cart-items');

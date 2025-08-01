@@ -285,6 +285,8 @@ class AppointmentLoader {
             
             const timeElement = document.getElementById(`${dayName}-time`)
             const dateElement = document.getElementById(`${dayName}-date`)
+            const durationElement = document.querySelector(`#suggested-${dayName} .duration`)
+            const priceElement = document.querySelector(`#suggested-${dayName} .price`)
             
             if (slot && timeElement && dateElement) {
                 const dayNumber = slot.date.getDate()
@@ -292,6 +294,31 @@ class AppointmentLoader {
                 
                 timeElement.textContent = slot.time
                 dateElement.textContent = `${slot.dayName} ${dayNumber}. ${monthName}`
+                
+                // Calculate end time (1 hour session)
+                const startTime = new Date(slot.date)
+                const [hours, minutes] = slot.time.split(':').map(Number)
+                startTime.setHours(hours, minutes, 0, 0)
+                
+                const endTime = new Date(startTime)
+                endTime.setHours(endTime.getHours() + 1)
+                
+                const startTimeStr = startTime.toLocaleTimeString('fi-FI', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                })
+                const endTimeStr = endTime.toLocaleTimeString('fi-FI', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                })
+                
+                if (durationElement) {
+                    durationElement.textContent = `${startTimeStr}-${endTimeStr}`
+                }
+                
+                if (priceElement) {
+                    priceElement.textContent = '70€'
+                }
                 
                 // Enable the button
                 const button = document.querySelector(`[data-day="${dayName}"]`)
@@ -302,6 +329,14 @@ class AppointmentLoader {
             } else if (timeElement && dateElement) {
                 timeElement.textContent = 'Ei vapaita aikoja'
                 dateElement.textContent = 'Ei saatavilla'
+                
+                if (durationElement) {
+                    durationElement.textContent = '-'
+                }
+                
+                if (priceElement) {
+                    priceElement.textContent = '-'
+                }
                 
                 // Disable the button
                 const button = document.querySelector(`[data-day="${dayName}"]`)

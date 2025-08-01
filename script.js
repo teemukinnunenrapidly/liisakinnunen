@@ -195,17 +195,77 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification('Tuote poistettu ostoskorista');
     };
 
-    // Checkout functionality
+    // Checkout button functionality
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', function() {
             if (cart.length === 0) {
-                showNotification('Ostoskorisi on tyhjä');
+                showNotification('Ostoskorisi on tyhjä!');
                 return;
             }
             
-            // Here you would typically redirect to checkout page
-            showNotification('Siirrytään kassalle...');
-            // window.location.href = '/checkout';
+            // Show Stripe checkout button
+            const stripeCheckoutBtn = document.getElementById('stripe-checkout-btn');
+            if (stripeCheckoutBtn) {
+                stripeCheckoutBtn.style.display = 'inline-block';
+            }
+        });
+    }
+
+    // Stripe checkout functionality
+    const stripeCheckoutBtn = document.getElementById('stripe-checkout-btn');
+    if (stripeCheckoutBtn && window.stripeConfig) {
+        stripeCheckoutBtn.addEventListener('click', async function() {
+            if (cart.length === 0) {
+                showNotification('Ostoskorisi on tyhjä!');
+                return;
+            }
+
+            try {
+                // Create line items for Stripe
+                const lineItems = cart.map(item => ({
+                    price_data: {
+                        currency: 'eur',
+                        product_data: {
+                            name: item.name,
+                        },
+                        unit_amount: item.price * 100, // Convert to cents
+                    },
+                    quantity: item.quantity,
+                }));
+
+                // Create checkout session
+                const response = await fetch('https://qqbqywurjlnrlsvyuvxf.supabase.co/functions/v1/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxYnF5d3Vyamxucmxzdnl1dnhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMzkzOTgsImV4cCI6MjA2OTYxNTM5OH0.9nlkXt3Sn9ET8SsZImmQeekYKxFRGxCo3ofUPmWuwew'
+                    },
+                    body: JSON.stringify({
+                        line_items: lineItems,
+                        mode: 'payment',
+                        success_url: `${window.location.origin}/success.html`,
+                        cancel_url: `${window.location.origin}/kauppa.html`,
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const session = await response.json();
+
+                // Redirect to Stripe Checkout
+                const result = await window.stripeConfig.stripe.redirectToCheckout({
+                    sessionId: session.id,
+                });
+
+                if (result.error) {
+                    showNotification('Virhe maksun aloittamisessa: ' + result.error.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Virhe maksun aloittamisessa. Yritä uudelleen.');
+            }
         });
     }
 

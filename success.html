@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maksu onnistui - Liisa Kinnunen</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="stripe-config.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Liisa Kinnunen</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Etusivu</a></li>
+                <li><a href="palvelut.html">Palvelut</a></li>
+                <li><a href="kauppa.html">Kauppa</a></li>
+                <li><a href="blogi.html">Blogi</a></li>
+                <li><a href="ajanvaraus.html">Varaa aika</a></li>
+            </ul>
+            <div class="nav-cart">
+                <button class="cart-icon" id="cart-icon">
+                    🛒 <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Popup -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-popup-content">
+            <div class="cart-popup-header">
+                <h3>Ostoskorisi</h3>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Ostoskorin tuotteet lisätään JavaScriptillä -->
+            </div>
+            <div class="cart-popup-footer">
+                <div class="cart-total">
+                    <strong>Yhteensä: <span id="cart-total">0€</span></strong>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="checkout-btn">Siirry kassalle</button>
+                <button class="btn btn-secondary stripe-checkout-btn" id="stripe-checkout-btn" style="display: none;">
+                    Maksa Stripe:llä
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="success-section">
+            <div class="container">
+                <div class="success-content">
+                    <div class="success-icon">✅</div>
+                    <h1>Maksu onnistui!</h1>
+                    <p>Kiitos ostoksestasi! Saat vahvistuksen sähköpostiisi pian.</p>
+                    <div class="success-details">
+                        <h3>Ostoksesi:</h3>
+                        <div id="purchase-details">
+                            <!-- Purchase details will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="success-actions">
+                        <a href="kauppa.html" class="btn btn-primary">Jatka ostamista</a>
+                        <a href="index.html" class="btn btn-secondary">Palaa etusivulle</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liisa Kinnunen</h3>
+                    <p>Fysioterapeutti ja Personal Trainer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Linkit</h4>
+                    <ul>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Liisa Kinnunen. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Clear cart on successful payment
+        localStorage.removeItem('cart');
+        updateCartDisplay();
+        
+        // Show purchase details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+        
+        if (sessionId) {
+            // Here you could fetch session details from Stripe
+            document.getElementById('purchase-details').innerHTML = `
+                <p>Maksutapahtuma: ${sessionId}</p>
+                <p>Aika: ${new Date().toLocaleString('fi-FI')}</p>
+            `;
+        }
+    </script>
+</body>
+</html> 

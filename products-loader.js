@@ -13,6 +13,7 @@ class ProductsLoader {
 
     async loadProducts() {
         try {
+            console.log('Loading products from Supabase...');
             const { data, error } = await window.supabaseClient
                 .from('tuotteet')
                 .select('*')
@@ -25,7 +26,7 @@ class ProductsLoader {
             }
 
             this.products = data || [];
-            console.log('Products loaded:', this.products);
+            console.log('Products loaded successfully:', this.products);
         } catch (error) {
             console.error('Error loading products:', error);
         }
@@ -33,19 +34,36 @@ class ProductsLoader {
 
     renderProducts(category = 'all') {
         const productsGrid = document.querySelector('.products-grid');
-        if (!productsGrid) return;
+        if (!productsGrid) {
+            console.error('Products grid not found');
+            return;
+        }
+
+        console.log('Rendering products for category:', category);
+        console.log('Available products:', this.products);
 
         const filteredProducts = category === 'all' 
             ? this.products 
             : this.products.filter(product => product.kategoria === category);
 
+        console.log('Filtered products:', filteredProducts);
+
+        if (filteredProducts.length === 0) {
+            productsGrid.innerHTML = `
+                <div class="no-products">
+                    <p>Ei tuotteita tässä kategoriassa.</p>
+                </div>
+            `;
+            return;
+        }
+
         productsGrid.innerHTML = filteredProducts.map(product => `
             <div class="product-card" data-category="${product.kategoria}">
                 <div class="product-image">
-                    <img src="${product.kuva_url || 'images/placeholder.jpg'}" 
+                    <img src="${product.kuva_url || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5Q0EzQUYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5LdXZhIGVpIG9sZSBhdmFpbGxhYmxlPC90ZXh0Pgo8L3N2Zz4K'}" 
                          alt="${product.nimi}" 
                          class="product-img"
-                         onerror="this.src='images/placeholder.jpg'">
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5Q0EzQUYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5LdXZhIGVpIG9sZSBhdmFpbGxhYmxlPC90ZXh0Pgo8L3N2Zz4K'">
                 </div>
                 <div class="product-content">
                     <h3>${product.nimi}</h3>

@@ -910,6 +910,17 @@ footer {
     margin: 0;
 }
 
+.no-articles {
+    text-align: center;
+    padding: 3rem;
+    color: #718096;
+    font-size: 1.1rem;
+}
+
+.no-articles p {
+    margin: 0;
+}
+
 /* Responsive adjustments for shop */
 @media (max-width: 768px) {
     .shop-filters {

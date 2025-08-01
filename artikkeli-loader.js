@@ -46,19 +46,21 @@ class ArticleLoader {
     }
 
     setupEventListeners() {
-        // Category filters
+        // Category filters - only if they exist (for shop page)
         const filterBtns = document.querySelectorAll('.filter-btn');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                e.target.classList.add('active');
-                
-                this.currentCategory = e.target.dataset.category;
-                this.renderArticles();
+        if (filterBtns.length > 0) {
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    e.target.classList.add('active');
+                    
+                    this.currentCategory = e.target.dataset.category;
+                    this.renderArticles();
+                });
             });
-        });
+        }
     }
 
     renderArticles() {
@@ -68,9 +70,11 @@ class ArticleLoader {
             return;
         }
 
-        // Filter articles by category
+        // Filter articles by category only if we're on a page with filters
         let filteredArticles = [...this.articles];
-        if (this.currentCategory !== 'all') {
+        const hasFilters = document.querySelectorAll('.filter-btn').length > 0;
+        
+        if (hasFilters && this.currentCategory !== 'all') {
             filteredArticles = filteredArticles.filter(article => 
                 article.category === this.currentCategory
             );
@@ -85,7 +89,7 @@ class ArticleLoader {
         if (filteredArticles.length === 0) {
             artikkelilista.innerHTML = `
                 <div class="no-articles">
-                    <p>Ei artikkeleita tässä kategoriassa.</p>
+                    <p>Ei artikkeleita${hasFilters ? ' tässä kategoriassa' : ''}.</p>
                 </div>
             `;
             return;

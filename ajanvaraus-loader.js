@@ -285,7 +285,6 @@ class AppointmentLoader {
     updateTimeSlotsForDay(day, availableSlots) {
         const timeSlotItems = document.querySelectorAll(`#${day}-card .time-slot-item`)
         const dayNameElement = document.querySelector(`#${day}-card .day-name`)
-        const dayDateElement = document.querySelector(`#${day}-card .day-date`)
         
         // Update day header with date if we have slots
         if (availableSlots.length > 0) {
@@ -297,7 +296,6 @@ class AppointmentLoader {
                 'wednesday': 'Keskiviikko'
             }
             dayNameElement.textContent = `${dayNames[day]} ${date}`
-            dayDateElement.textContent = '' // Clear the separate date element
         } else {
             const dayNames = {
                 'monday': 'Maanantai',
@@ -305,7 +303,6 @@ class AppointmentLoader {
                 'wednesday': 'Keskiviikko'
             }
             dayNameElement.textContent = `${dayNames[day]} -`
-            dayDateElement.textContent = ''
         }
         
         timeSlotItems.forEach((item, index) => {

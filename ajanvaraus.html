@@ -11,31 +11,23 @@
     <script src="supabase-client.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html">Liisa Kinnunen</a>
-            </div>
-            <ul class="nav-menu">
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Liisa Kinnunen</a>
+            <ul class="nav-links">
                 <li><a href="index.html">Etusivu</a></li>
                 <li><a href="palvelut.html">Palvelut</a></li>
-                <li><a href="blogi.html">Blogi</a></li>
-                <li><a href="ajanvaraus.html" class="active">Ajanvaraus</a></li>
                 <li><a href="kauppa.html">Kauppa</a></li>
+                <li><a href="blogi.html">Blogi</a></li>
+                <li><a href="ajanvaraus.html">Varaa aika</a></li>
             </ul>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
             <div class="nav-cart">
                 <button class="cart-icon" id="cart-icon">
                     🛒 <span class="cart-count" id="cart-count">0</span>
                 </button>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Cart Popup -->
     <div class="cart-popup" id="cart-popup">
@@ -56,15 +48,14 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <main>
         <!-- Page Header -->
-        <header class="page-header">
+        <section class="page-header">
             <div class="container">
                 <h1>Ajanvaraus</h1>
                 <p>Varaa aika Liisan palveluihin</p>
             </div>
-        </header>
+        </section>
 
         <!-- Booking Section -->
         <section class="booking-section">
@@ -84,13 +75,158 @@
                     </button>
                 </div>
 
+                <!-- Suggested Times View -->
+                <div class="suggested-times" id="suggested-times">
+                    <h3>Ehdotetut ajat</h3>
+                    <div class="suggested-times-grid">
+                        <div class="suggested-time-card">
+                            <div class="card-header">
+                                <div class="day-name">Maanantai</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="time-slots">
+                                    <div class="time-slot-item">
+                                        <div class="time-slot">Ei vapaita aikoja</div>
+                                        <div class="service-selection">
+                                            <select class="service-dropdown">
+                                                <option value="">Valitse palvelu</option>
+                                                <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                                <option value="hieronta">Hieronta - 70€</option>
+                                                <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
+                                            </select>
+                                        </div>
+                                        <button class="select-time-btn" disabled>Valitse tämä aika</button>
+                                    </div>
+                                    <div class="time-slot-item">
+                                        <div class="time-slot">Ei vapaita aikoja</div>
+                                        <div class="service-selection">
+                                            <select class="service-dropdown">
+                                                <option value="">Valitse palvelu</option>
+                                                <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                                <option value="hieronta">Hieronta - 70€</option>
+                                                <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
+                                            </select>
+                                        </div>
+                                        <button class="select-time-btn" disabled>Valitse tämä aika</button>
+                                    </div>
+                                    <div class="time-slot-item">
+                                        <div class="time-slot">Ei vapaita aikoja</div>
+                                        <div class="service-selection">
+                                            <select class="service-dropdown">
+                                                <option value="">Valitse palvelu</option>
+                                                <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                                <option value="hieronta">Hieronta - 70€</option>
+                                                <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
+                                            </select>
+                                        </div>
+                                        <button class="select-time-btn" disabled>Valitse tämä aika</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="suggested-time-card">
+                            <div class="card-header">
+                                <div class="day-name">Tiistai</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="time-slots">
+                                    <div class="time-slot-item">
+                                        <div class="time-slot">Ei vapaita aikoja</div>
+                                        <div class="service-selection">
+                                            <select class="service-dropdown">
+                                                <option value="">Valitse palvelu</option>
+                                                <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                                <option value="hieronta">Hieronta - 70€</option>
+                                                <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
+                                            </select>
+                                        </div>
+                                        <button class="select-time-btn" disabled>Valitse tämä aika</button>
+                                    </div>
+                                    <div class="time-slot-item">
+                                        <div class="time-slot">Ei vapaita aikoja</div>
+                                        <div class="service-selection">
+                                            <select class="service-dropdown">
+                                                <option value="">Valitse palvelu</option>
+                                                <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                                <option value="hieronta">Hieronta - 70€</option>
+                                                <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
+                                            </select>
+                                        </div>
+                                        <button class="select-time-btn" disabled>Valitse tämä aika</button>
+                                    </div>
+                                    <div class="time-slot-item">
+                                        <div class="time-slot">Ei vapaita aikoja</div>
+                                        <div class="service-selection">
+                                            <select class="service-dropdown">
+                                                <option value="">Valitse palvelu</option>
+                                                <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                                <option value="hieronta">Hieronta - 70€</option>
+                                                <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
+                                            </select>
+                                        </div>
+                                        <button class="select-time-btn" disabled>Valitse tämä aika</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="suggested-time-card">
+                            <div class="card-header">
+                                <div class="day-name">Keskiviikko</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="time-slots">
+                                    <div class="time-slot-item">
+                                        <div class="time-slot">Ei vapaita aikoja</div>
+                                        <div class="service-selection">
+                                            <select class="service-dropdown">
+                                                <option value="">Valitse palvelu</option>
+                                                <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                                <option value="hieronta">Hieronta - 70€</option>
+                                                <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
+                                            </select>
+                                        </div>
+                                        <button class="select-time-btn" disabled>Valitse tämä aika</button>
+                                    </div>
+                                    <div class="time-slot-item">
+                                        <div class="time-slot">Ei vapaita aikoja</div>
+                                        <div class="service-selection">
+                                            <select class="service-dropdown">
+                                                <option value="">Valitse palvelu</option>
+                                                <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                                <option value="hieronta">Hieronta - 70€</option>
+                                                <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
+                                            </select>
+                                        </div>
+                                        <button class="select-time-btn" disabled>Valitse tämä aika</button>
+                                    </div>
+                                    <div class="time-slot-item">
+                                        <div class="time-slot">Ei vapaita aikoja</div>
+                                        <div class="service-selection">
+                                            <select class="service-dropdown">
+                                                <option value="">Valitse palvelu</option>
+                                                <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                                <option value="hieronta">Hieronta - 70€</option>
+                                                <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
+                                            </select>
+                                        </div>
+                                        <button class="select-time-btn" disabled>Valitse tämä aika</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="view-toggle" id="show-full-calendar">Näytä koko kalenteri</button>
+                </div>
+
                 <!-- Schedule Grid -->
-                <div class="schedule-grid" id="aikataulu-grid">
+                <div class="schedule-grid" id="aikataulu-grid" style="display: none;">
                     <!-- Schedule content will be loaded dynamically -->
                 </div>
 
                 <!-- Mobile Calendar View -->
-                <div class="mobile-calendar">
+                <div class="mobile-calendar" style="display: none;">
                     <div class="mobile-day-selector">
                         <select id="mobile-day-select">
                             <option value="">Valitse päivä</option>
@@ -101,146 +237,8 @@
                     </div>
                 </div>
 
-                <!-- Suggested Times View -->
-                <div class="suggested-times" id="suggested-times">
-                    <h3>Ehdotetut vapaat ajat</h3>
-                    <div class="suggested-times-grid">
-                        <div class="suggested-time-card" id="monday-card">
-                            <div class="card-header">
-                                <div class="day-name">Maanantai</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="time-slots">
-                                    <div class="time-slot-item">
-                                        <div class="time-slot" id="monday-time-1">9:00-10:00</div>
-                                        <select class="service-dropdown" id="monday-service-1">
-                                            <option value="">Valitse palvelu</option>
-                                            <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
-                                            <option value="Hieronta">Hieronta - 70€</option>
-                                            <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
-                                        </select>
-                                        <button class="select-time-btn">Valitse tämä aika</button>
-                                    </div>
-                                    
-                                    <div class="time-slot-item">
-                                        <div class="time-slot" id="monday-time-2">12:00-12:30</div>
-                                        <select class="service-dropdown" id="monday-service-2">
-                                            <option value="">Valitse palvelu</option>
-                                            <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
-                                            <option value="Hieronta">Hieronta - 70€</option>
-                                            <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
-                                        </select>
-                                        <button class="select-time-btn">Valitse tämä aika</button>
-                                    </div>
-                                    
-                                    <div class="time-slot-item">
-                                        <div class="time-slot" id="monday-time-3">14:00-15:00</div>
-                                        <select class="service-dropdown" id="monday-service-3">
-                                            <option value="">Valitse palvelu</option>
-                                            <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
-                                            <option value="Hieronta">Hieronta - 70€</option>
-                                            <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
-                                        </select>
-                                        <button class="select-time-btn">Valitse tämä aika</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="suggested-time-card" id="tuesday-card">
-                            <div class="card-header">
-                                <div class="day-name">Tiistai</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="time-slots">
-                                    <div class="time-slot-item">
-                                        <div class="time-slot" id="tuesday-time-1">9:00-10:00</div>
-                                        <select class="service-dropdown" id="tuesday-service-1">
-                                            <option value="">Valitse palvelu</option>
-                                            <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
-                                            <option value="Hieronta">Hieronta - 70€</option>
-                                            <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
-                                        </select>
-                                        <button class="select-time-btn">Valitse tämä aika</button>
-                                    </div>
-                                    
-                                    <div class="time-slot-item">
-                                        <div class="time-slot" id="tuesday-time-2">12:00-12:30</div>
-                                        <select class="service-dropdown" id="tuesday-service-2">
-                                            <option value="">Valitse palvelu</option>
-                                            <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
-                                            <option value="Hieronta">Hieronta - 70€</option>
-                                            <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
-                                        </select>
-                                        <button class="select-time-btn">Valitse tämä aika</button>
-                                    </div>
-                                    
-                                    <div class="time-slot-item">
-                                        <div class="time-slot" id="tuesday-time-3">14:00-15:00</div>
-                                        <select class="service-dropdown" id="tuesday-service-3">
-                                            <option value="">Valitse palvelu</option>
-                                            <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
-                                            <option value="Hieronta">Hieronta - 70€</option>
-                                            <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
-                                        </select>
-                                        <button class="select-time-btn">Valitse tämä aika</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="suggested-time-card" id="wednesday-card">
-                            <div class="card-header">
-                                <div class="day-name">Keskiviikko</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="time-slots">
-                                    <div class="time-slot-item">
-                                        <div class="time-slot" id="wednesday-time-1">9:00-10:00</div>
-                                        <select class="service-dropdown" id="wednesday-service-1">
-                                            <option value="">Valitse palvelu</option>
-                                            <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
-                                            <option value="Hieronta">Hieronta - 70€</option>
-                                            <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
-                                        </select>
-                                        <button class="select-time-btn">Valitse tämä aika</button>
-                                    </div>
-                                    
-                                    <div class="time-slot-item">
-                                        <div class="time-slot" id="wednesday-time-2">12:00-12:30</div>
-                                        <select class="service-dropdown" id="wednesday-service-2">
-                                            <option value="">Valitse palvelu</option>
-                                            <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
-                                            <option value="Hieronta">Hieronta - 70€</option>
-                                            <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
-                                        </select>
-                                        <button class="select-time-btn">Valitse tämä aika</button>
-                                    </div>
-                                    
-                                    <div class="time-slot-item">
-                                        <div class="time-slot" id="wednesday-time-3">14:00-15:00</div>
-                                        <select class="service-dropdown" id="wednesday-service-3">
-                                            <option value="">Valitse palvelu</option>
-                                            <option value="Äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
-                                            <option value="Hieronta">Hieronta - 70€</option>
-                                            <option value="Psykofyysinen fysioterapia">Psykofyysinen fysioterapia - 70€</option>
-                                        </select>
-                                        <button class="select-time-btn">Valitse tämä aika</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="view-toggle">
-                        <button class="btn btn-secondary" id="show-full-calendar">
-                            Näytä koko kalenteri
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Booking Form -->
-                <div class="booking-form-container" id="booking-form-container">
+                <!-- Booking Form Modal -->
+                <div class="booking-form-container" id="booking-form-container" style="display: none;">
                     <div class="booking-form">
                         <div class="booking-summary">
                             <h3>Varaa aika</h3>
@@ -251,29 +249,27 @@
                         <form id="booking-form">
                             <div class="form-group">
                                 <label for="client-name">Nimi *</label>
-                                <input type="text" id="client-name" name="clientName" required>
+                                <input type="text" id="client-name" name="client-name" required>
                             </div>
                             <div class="form-group">
                                 <label for="client-email">Sähköposti *</label>
-                                <input type="email" id="client-email" name="clientEmail" required>
+                                <input type="email" id="client-email" name="client-email" required>
                             </div>
                             <div class="form-group">
                                 <label for="client-phone">Puhelinnumero *</label>
-                                <input type="tel" id="client-phone" name="clientPhone" required>
+                                <input type="tel" id="client-phone" name="client-phone" required>
                             </div>
                             <div class="form-group">
-                                <label for="service-type">Palvelu *</label>
-                                <select id="service-type" name="serviceType" required>
-                                    <option value="">Valitse palvelu</option>
-                                    <option value="Äitiysfysioterapia">Äitiysfysioterapia</option>
-                                    <option value="Personal Trainer">Personal Trainer</option>
-                                    <option value="Fysioterapia">Fysioterapia</option>
-                                    <option value="Konsultointi">Konsultointi</option>
+                                <label for="selected-service">Palvelu</label>
+                                <select id="selected-service" name="selected-service">
+                                    <option value="äitiysfysioterapia">Äitiysfysioterapia - 70€</option>
+                                    <option value="hieronta">Hieronta - 70€</option>
+                                    <option value="psykofyysinen">Psykofyysinen fysioterapia - 70€</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="booking-notes">Viesti</label>
-                                <textarea id="booking-notes" name="notes" rows="3" placeholder="Kerro tarkemmin mitä haluat tai onko erityisiä toiveita..."></textarea>
+                                <textarea id="booking-notes" name="booking-notes" rows="4"></textarea>
                             </div>
                             <div class="form-buttons">
                                 <button type="button" class="btn btn-secondary" id="cancel-booking">Peruuta</button>
@@ -293,21 +289,19 @@
                 <div class="footer-section">
                     <h3>Liisa Kinnunen</h3>
                     <p>Fysioterapeutti ja Personal Trainer</p>
-                    <p>Email: liisa@liisakinnunen.fi</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Palvelut</h3>
-                    <ul>
-                        <li><a href="palvelut.html#äitiysfysioterapia">Äitiysfysioterapia</a></li>
-                        <li><a href="palvelut.html#personal-trainer">Personal Trainer</a></li>
-                        <li><a href="palvelut.html#fysioterapia">Fysioterapia</a></li>
-                    </ul>
+                    <h4>Yhteystiedot</h4>
+                    <p>📧 info@liisakinnunen.fi</p>
+                    <p>📱 040 6753170</p>
+                    <p>📍 Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Blogi</h3>
+                    <h4>Linkit</h4>
                     <ul>
-                        <li><a href="blogi.html">Kaikki artikkelit</a></li>
+                        <li><a href="palvelut.html">Palvelut</a></li>
                         <li><a href="kauppa.html">Kauppa</a></li>
+                        <li><a href="blogi.html">Blogi</a></li>
                     </ul>
                 </div>
             </div>
@@ -317,7 +311,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
     <script src="ajanvaraus-loader.js"></script>
 </body>

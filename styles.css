@@ -702,6 +702,210 @@ section {
     line-height: 1.6;
 }
 
+/* Article content styles */
+.article {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.article-content {
+    margin-bottom: 4rem;
+}
+
+.article-text {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+    color: #2d3748;
+}
+
+.article-text h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 2.5rem 0 1rem 0;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+}
+
+.article-text h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    color: #2d3748;
+}
+
+.article-text h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+    color: #2d3748;
+}
+
+.article-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #4a5568;
+}
+
+.article-text ul, .article-text ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.article-text li {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    color: #4a5568;
+}
+
+.article-text strong {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.article-text em {
+    font-style: italic;
+    color: #4a5568;
+}
+
+.article-text blockquote {
+    border-left: 4px solid #4299e1;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #4a5568;
+    background: #f7fafc;
+    padding: 1.5rem;
+    border-radius: 0;
+}
+
+/* Article footer */
+.article-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.article-tags {
+    margin-bottom: 2rem;
+}
+
+.tag {
+    display: inline-block;
+    background: #e2e8f0;
+    color: #4a5568;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+    font-size: 0.9rem;
+    border-radius: 0;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.tag:hover {
+    background: #cbd5e0;
+    color: #2d3748;
+}
+
+.article-share h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #2d3748;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    background: #4299e1;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background-color 0.2s ease;
+}
+
+.share-btn:hover {
+    background: #3182ce;
+}
+
+/* Related articles */
+.related-articles {
+    background: #f7fafc;
+    padding: 4rem 0;
+    margin-top: 4rem;
+}
+
+.related-articles h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #2d3748;
+    text-align: center;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.related-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+.related-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.related-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.related-content {
+    padding: 1.5rem;
+}
+
+.related-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #2d3748;
+}
+
+.related-content h3 a {
+    color: #2d3748;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.related-content h3 a:hover {
+    color: #4299e1;
+}
+
+.related-content p {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
 .blog-card .btn {
     background-color: #4299e1;
     color: white;
@@ -1287,8 +1491,25 @@ footer {
         font-size: 1.75rem;
     }
     
-    .article-hero-content {
+    .article-content {
         padding: 0 1rem;
+    }
+    
+    .article-text {
+        font-size: 1rem;
+    }
+    
+    .article-text h2 {
+        font-size: 1.75rem;
+    }
+    
+    .article-text h3 {
+        font-size: 1.25rem;
+    }
+    
+    .related-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
     .blog-grid {
